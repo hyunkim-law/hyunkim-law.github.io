@@ -1,0 +1,26 @@
+---
+layout: page
+title: "블로그 글 모음"
+permalink: blog-index.html
+order: 001
+---
+<div class="introduction">
+
+<p>블로그! 말만 들어도 가슴이 뛰던 때가 있었죠.  하루 종일 서류 뒤적거리고, 전화와 회의실 사이에서 갈팡질팡하며, 계약서 문장 하나 단어 하나로 고민을 거듭할 때, 점심시간 지나고 빨리 들어와서 블로그에 글 하나 쓸 수 있다는 생각에 기분이 좋아지던 때가 있었습니다.  지금은 그렇지 않다는 뜻이 아니라.</p>
+<p>조금 더 천천히, 그러나 조금 더 세심하게, 조금이나마 읽는 사람에게 도움이 되는 글을 써 보려 합니다. </p>
+</div>
+
+<hr>
+
+<div class="toc">
+  <h2>블로그 글모음 (2017년 1월 이후)</h2>
+  <ul class="post">
+    {% for item in site.posts %}
+    <li class="post-title">
+      <a href="{{ site.baseurl }}{{ item.url }}">
+        {{ item.title }}
+      </a> -   <em>{{ item.date | date: "%Y년 %m월 %-d일" }}</em>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

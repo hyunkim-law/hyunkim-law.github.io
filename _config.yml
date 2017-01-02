@@ -1,0 +1,57 @@
+# Works with Jekyll 3.2.1
+
+# Setup
+title:               hyunkim.lawyer
+tagline:             '한 미국변호사의 서랍'
+description:         '호기심 많은 미국변호사 김변의 노트. 컴퓨터, 책, 영어, 스타트업, 그리고 법.  그리고, 새로운 것을 배우기.  도전하기.  요즘은 바이오테크.'
+url:                 'http://hyunkim.lawyer'
+baseurl:             ''
+
+# About/contact
+author:
+  name:              Hyun Kim
+  url:               http://hyunkim.lawyer
+  email:             hyunkim@hyunkim.lawyer
+
+# Permalinks
+
+# permalink: pretty
+permalink: /blog/:year/:month/:title.html
+
+# Set encoding to UTF-8
+encoding: utf-8
+
+# Collections for texts
+collections:
+  texts:
+    output: true
+  how:
+    output: true
+    permalink: /how/:title.html
+  laws:
+    output: true
+    permalink: /laws/:title.html
+  dictionary:
+    output: true
+    permalink: /dictionary/:title.html
+  categories:
+    output: true
+    permalink: /categories/:title.html
+    
+# Markdown specs
+markdown: kramdown
+
+kramdown:
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  footnote_backlink: "&#x21a9;&#xfe0e;"
+  toc_levels:     1..6
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+# Custom vars
+version:             0.0.1
+
+# Exclusions from the final site
+exclude: [s3_website.yml, optional, vendor]
