@@ -1,36 +1,49 @@
 ---
 layout: page
-title: About
+title: "소개"
+permalink: about.html
+order: 006
 ---
 
-One of our most pressing and ever revolving needs as scholars is to pass on our textual artifacts from one generation to another. The art of textual editing, among other practices, has helped many cultures to remember and interpret for centuries. Alas, that art is practiced and encouraged in its highest form by a dwindling number of scholars. In a digital environment the problem is compounded by the difficulties of the medium. While vast repositories, and "e-publications" appear on the online scene yearly, very few manifest a textual scholar's disciplined attention to detail. In contrast, most textual scholars who have made the leap to a rigorous digital practice have focused on markup, relying on technical teams to deploy and maintain their work. This makes your average scholarly digital edition a very costly, and therefore limited affair.
+## 저자 또는 관리자 또는 블로거 김현은
 
-As we see it, a minimal edition is one that aims to reduce the size and complexity of the back and front end, and the learning curves for the user and the producer. Out of-the-box, this theme can help you build a simple reading edition, or a traditional scholarly edition with footnotes and a bibliography without breaking the bank. In our estimate, these are the two most immediately useful type of editions for editors and readers. An edition produced with Ed consists of static pages whose rate of decay is substantially lower than database-driven systems. As an added bonus, these static pages require less bandwith. Our hope is that our approach can help beginners or veterans deploy beautiful editions with less effort, that it can help us teach a 'full stack' [in one academic semester](https://github.com/susannalles/MinimalEditions/blob/master/index.md), allow us to care for our projects at less cost, and perhaps, just perhaps, allow us to generate high-quality editions on github.io in large quantities based on the [git-lit](http://jonreeve.com/2015/09/introducing-git-lit/) model by Jonathan Reeve. We're coming for you, Kindle! 
+### (급한 사람을 위해) 한 마디로,
 
+미국 변호사이지만 (워싱턴주), 컴퓨터와 정보기술, 전자, 금융 그리고 요즘은 바이오 등과 같이 새로운 것을 좋아합니다.  연락은 **lawfully** [at] 지메일로 이메일 또는 구글 행아웃으로 하십시오.
 
-## Sample Ed editions.
+### 급하지 않은 사람을 위해 좀더 길게 말하자면,
 
-- [Our sample site](http://elotroalex.github.io/ed/) is the first edition built with Ed.
-- [Fugitive Verses](http://fugitiverses.viraltexts.org/): Popular Reprinted Poetry from Nineteenth Century Newspapers
-- [mini lazarillo](http://minilazarillo.github.io/): A minimal edition of the *Lazarillo de Tormes*
+위에서 왜 "미국변호사<u>이지만</u>" 이라고 했을까요?  로스쿨을 다닐 때 한 교수가 이렇게 말한 적이 있습니다.
 
+>노벨 법학상이 왜 없는지 알아?  자기가 하고 싶은 말을 다른 사람이 먼저 했다는 걸 알고 나면, 다른 학자들은 슬퍼하지만, 법학자들은 기뻐하기 때문이야.
 
+당연하죠.  내가 하고 싶은 말을 아무도 이전에 한 적이 없다면, 그것은 법이 아니라는 뜻이고, 다른 말로 하면 나는 이미 진 게임을 하고 있는거죠.  손자가 탄식할 일입니다.
 
-## Current Features
-- Templates for narrative, drama and poetry
-- Responsive design for mobile phones, tablets and PCs.
-- Relatively easy to learn and teach
-- Works well in high- or low- bandwitdh scenarios
-- Easier for digital archives and libraries to preserve
-- Open source, open access
-- Unobtrusive footnotes
-- Metadata in Dublin Core and OpenGraph to play nice with Zotero, libraries and social media.
-- Automatic table of content generation
-- Simple search functionality
-- Annotations via [hypothes.is](https://hypothes.is/)
-- Optional: Ability to generate well-formatted bibliographies and linked citations
+법학은 새로운 것을 추구하지 않습니다.  좋은 말로 하면, 전통을 지키는 것을 사명으로 생각하는 학문이며, 심하게 말하자면 "보수에 목숨을 거는" 반진보적인 학문입니다.  이런 점에서 보자면, 나는 학문으로서 법학을 추구하지 않습니다.  문제를 해결하는 도구로서 법을 이용하는거죠.  이런 점에서 나에게 법은 "이기는 기술"이고, 원하는 것을 "달성하는 기술"입니다.  나는 그걸 추구합니다.  새로운 것을 좋아하면서, 새로운 것에 대한 저항이 심한 영역에서 살아 남은 한 가지 비결은 법은 결국 "새로운 문제를 오래된 얼개에 붓는 것"이라고 이해하는 것입니다.
 
+철학 (연세대 학사), 정치학 (연세대 석사)과 법학 (조지타운대 JD)을 공부하였습니다.  
 
-## Installing and using Ed
+영어 (OTL English), 금융 (머니해킹), 오래전에는 컴퓨터 (따라해보는 실전해킹) 등의 책을 썼고, 금융 (파생상품), 오래전에는 인도 (밴디트퀀) 등에 대한 책을 번역하였습니다.  주된 업무영역 역시 금융 (구조화금융, 파생상품, 스타트업)과 전자 (소프트웨어 및 하드웨어)이며, 요즘은 바이오테크에 관심을 가지고 있습니다.  계약서 작성과 협상 및 자문 등의 업무를 많이 하고 있으며, 요즘은 소송과 분쟁해결에 관심을 많이 가지고 있습니다.
 
-To learn how to install and begin using Ed, please visit our [documentation page](http://elotroalex.github.io/ed/documentation/).
+---
+
+## 이 사이트는
+
+오래전부터 블로그를 사용했지만 (가지고 놀았지만) 제가 하는 일과 관련되어 블로그를 유지해 보자고 결심한 것은 최근입니다.  그 이유는 블로그가 주는 자유 때문입니다.  블로그에서는 큰 그림을 보여주지 않아도 됩니다.  매일매일의 단상만 적어도 되고, 뉴스거리만 써도 무방합니다.  블로그의 구조가 그렇습니다.  누구도 블로그에서 큰 그림을 볼 것을 기대하지 않습니다.  따라서 어떤 다른 도구보다 큰 자유를 누릴 수 있습니다.  그러니, 블로그의 틀에서 벗어나고자한다면, 큰 용기가 필요합니다.  오늘은 아니어도, 내일은 아니어도, 언젠가는 큰그림을 보여줄 수 있어야 하기 때문입니다.  한 번 해 보렵니다.
+
+법, 영어 (미국 변호사에게 이 두 가지는 필수입니다), 컴퓨터 소프트웨어와 하드웨어, 바이오테크, 스타트업 등등에 대해서 이야기하려 합니다.
+
+### 이 사이트를 만들 때 사용한 것들은
+
+이 사이트는 [지킬](https://jekyllrb.com/)과 [Ed](http://elotroalex.github.io/ed/)라는 스킨으로 만들었습니다.  이 스킨에 대한 자세한 설명은 [About Ed](http://elotroalex.github.io/ed/about/) 및 [Ed Documentation](http://elotroalex.github.io/ed/documentation/)을 참고하세요.
+
+---
+
+## Disclaimer
+
+(변호사이므로) 이 페이지에서 기대할 것과 특히 기대하지 말아야 할 것을 명시하여야 합니다.  블로그를 포함하여 모든 웹사이트는 "광고"로 이해되기 때문입니다.  심지어는 저는 광고 목적으로 이걸 운영하는 것이 아닐 때에도 마찬가지입니다.  기대할 것은 위에서 말했고, 기대하지 말아야 하는 것은 첫째, 여기에서 내가 어떤 일을 하여 어떤 성과를 냈다고 말하더라도 (그러지 않을 예정입니다.  변호사로서의 비밀유지의무에 더하여, 내가 무슨 일을 해서 무슨 결과를 내었는지에 대해 말하는 것은 함께 일한 사람, 즉 고객에 대한 배려가 아니라고 생각하기 때문입니다) 그런 일을 맡기면 비슷한 결과가 나올 것이라는 뜻은 아닙니다.  둘째, 내가 뭘 잘한다고 말했다고 해서, 그 분야의 전문가이거나 자격증을 가지고 있거나 누군가에게 인증을 받았다는 뜻은 아닙니다.  셋째, 여기에서 무슨 이야기를 하더라도, 그것은 법률자문이 아닙니다.  법률자문은 기본적으로 개인적인 일입니다.  여기에서 이야기하는 것은 단순히 내가 업무상, 취미상 알게 된 내용 즉 지식을 나열하고 정리한 것일 뿐입니다.
+
+## License
+
+다른 곳에 글을 복사해 가는 것은 허용하지만, 반드시 출처를 표시해 주시기 바랍니다.  특정 페이지에 포함된 글은 파편적인 지식일 가능성이 높고, 큰그림을 보여주지 못할 가능성이 높기 때문에, 또 누군가가 그걸 믿고 엉뚱한 일을 할 수 있기 때문에, 각별히 주의 부탁드립니다.
+

@@ -1,0 +1,27 @@
+---
+layout: page
+title: "자료집"
+permalink: files-index.html
+order: 000
+---
+<div class="introduction">
+
+<p>아래에는 제가 정리한 자료를 올려 놓았습니다. 대체로 메모, 계약서 양식 등으로 자료를 정리하여 제공할 생각입니다. 현재는 스타트업에 대한 자료를 정리하고 있습니다.</p>
+<p>수시로 수정할 수 있으므로, 마지막으로 수정한 날짜를 확인해 주시기 바랍니다. 여기에 올리는 자료는 법률의견은 아닙니다. 일반적인 상황에서 도움이 될 수 있도록 작성하였습니다. 모든 자료는 <em>pdf</em>로 제공됩니다.</p>
+</div>
+
+<hr>
+
+<div class="toc">
+  <h2>자료 (pdf)</h2>
+  <ul class="post">
+    {% for item in site.data.files %}
+    <li class="post-title">
+      <a href="{{ site.baseurl }}/assets/pdf/{{ item.url }}.pdf">
+        {{ item.name }} 
+      </a> - {{ item.description }} <em>(마지막으로 수정한 날: 
+      {{ item.date | date: "%Y년 %-m월 %-d일" }})</em>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
