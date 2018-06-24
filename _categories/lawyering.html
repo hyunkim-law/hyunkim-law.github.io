@@ -1,0 +1,30 @@
+---
+layout: page
+title: "일 못하는 변호사"
+permalink: /categories/lawyering.html
+order: 004
+---
+<div class="introduction">
+
+<p>"일을 제대로 하면 효율적이다.  제대로 된 일을 하면 효과적이다."  피터 드러커의 말입니다.  제대로 된 일을 하도록 가르칠 수 있을까?  모르겠습니다.  적어도 일을 제대로 하는 방법은 가르칠 수 있습니다.  제대로 된 일에는 기준이 없지만, 일을 제대로 하는 데에는 기준이 있기 때문입니다.  일을 제대로 하면, 시간도 단축되고, 시간과 장소에 구애받지 않고 유연하며, 결과가 훨씬 더 낫습니다.  여기에는 제가 터득한 일을 제대로 하는 방법을 정리해두려 합니다.</p>
+</div>
+
+<hr>
+
+<div class="toc">
+  <h2>일 못하는 변호사 블로그 포스팅</h2>
+  <ul class="post">
+    {% for item in site.posts %}
+    {% if item.categories contains 'lawyering' %}
+    <li class="post-title">
+      <a href="{{ site.baseurl }}{{ item.url }}">
+        {{ item.title }}
+      </a> - {{ item.date | date: "%Y년 %-m월 %-d일" }}
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+<hr>
+
