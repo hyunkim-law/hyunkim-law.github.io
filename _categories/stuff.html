@@ -1,0 +1,30 @@
+---
+layout: page
+title: "물건들"
+permalink: /categories/stuff.html
+order: 005
+---
+<div class="introduction">
+
+<p>주로 사들이는 물건과 사들이기 위해 찾아 보는 과정</p>
+</div>
+
+<hr>
+
+<div class="toc">
+  <h2>물건들</h2>
+  <ul class="post">
+    {% for item in site.posts %}
+    {% if item.categories contains 'stuff' %}
+    <li class="post-title">
+      <a href="{{ site.baseurl }}{{ item.url }}">
+        {{ item.title }}
+      </a> - {{ item.date | date: "%Y년 %-m월 %-d일" }}
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+<hr>
+
