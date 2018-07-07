@@ -1,5 +1,5 @@
 ---
-layout: lost
+layout: post
 title: "민트 19로 업그레이드"
 categories: tools
 date: 2018-07-07 13:00:00 +0900
