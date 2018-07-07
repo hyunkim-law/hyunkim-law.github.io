@@ -40,6 +40,9 @@ collections:
   codes:
     output: true
     permalink: /codes/:title.html
+  living:
+    output: true
+    permalink: /living/:title.html
     
 # Markdown specs
 markdown: kramdown
