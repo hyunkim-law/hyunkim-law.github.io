@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: "변호사를 위한 키보드"
-categories: lawyering, devices
+categories: lawyering, stuff
 date: 2018-07-10 15:30:00 +0900
 ---
 
