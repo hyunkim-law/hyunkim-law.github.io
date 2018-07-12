@@ -4,5 +4,6 @@ layout: default
 
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
+  <div align="right"><em>{{ page.date | date: "%Y년 %-m월 %d일 작성" }}</em></div>
   {{ content }}
 </div>

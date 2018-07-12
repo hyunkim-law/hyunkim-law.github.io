@@ -1,0 +1,30 @@
+---
+layout: page
+title: "단상들"
+permalink: /categories/news.html
+order: 006
+---
+<div class="introduction">
+
+<p>저널리스트도 아니고 전문 블로거도 아닙니다. 수동적인 뉴스의 소비자입니다. 가끔씩 생각나는 단상입니다. </p>
+</div>
+
+<hr>
+
+<div class="toc">
+  <h2>물건들</h2>
+  <ul class="post">
+    {% for item in site.posts %}
+    {% if item.categories contains 'news' %}
+    <li class="post-title">
+      <a href="{{ site.baseurl }}{{ item.url }}">
+        {{ item.title }}
+      </a> - {{ item.date | date: "%Y년 %-m월 %-d일" }}
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+<hr>
+
