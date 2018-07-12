@@ -35,7 +35,7 @@ title: "hyunkim.lawyer"
 <!-- <div class="toc">
   <h2>내가 일하는 방법</h2>
   <ul class="post">
-  {% assign sorted = (site.how | sort: 'order')  %} 
+  {% assign sorted = site.how | sort: 'order'  %} 
   {% for item in sorted %}
   <li class="post-title">
     <a href="{{ site.baseurl }}{{ item.url }}">
