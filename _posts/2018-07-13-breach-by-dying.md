@@ -1,0 +1,16 @@
+---
+layout: news
+title: "죽으면 계약위반"
+categories: news, law
+date: 2018-07-13 14:30:00 +0900
+---
+
+린지 더들(Lindsay Durdle)은 5월 31일 37세의 나이에 유방암으로 사망하였다. 그리고, 페이팔은 그 이야기를 듣고 계약 위반이라고 소송도 불사하겠다고 공문을 보냈다. 페이팔에 따르면, 그녀는 페이팔에서 £3,240.72의 크레딧을 사용하였는데, 죽음으로써 페이팔과의 약정 제15.4(c)를 위반하였으며, "이 위반은 치유(remedy)가 불가능하다"고 하였다. 참고로, 죽음은 치유가 불가능하다.
+
+[Lowering the Bar](http://loweringthebar.net)는 나름 제15.4(c)조가 무었인지 알아 보기 위해 영국 페이팔 사이트를 찾아 보았는데, 자꾸 미국 페이팔 사이트로 가는 바람에 찾지 못했다고 한다. 미국 약관 제12조에도 "죽으면 계약위반 (you will be in default if you pass away)"이라는 말이 있다고 한다.
+
+> 죽으시려면 어떻게 가장 잘 죽는지에 대해서 조언해 줄 수 있는 자격을 갖춘 변호사와 상담하기 전에는 절대로 죽지 마시기를 강력히 제안합니다. --- [Company Says Customer Breached Her Contract by Dying](http://loweringthebar.net/2018/07/breached-contract-by-dying.html), 번역은 내가
+
+> I would strongly advise you not to die before consulting a qualified and licensed attorney who can counsel you on the best way to do that. 
+
+물론이다. 변호사와 미리 상담하기 전에는 절대 죽지 말라!
