@@ -1,0 +1,31 @@
+I",<p>노트북이 부팅이 안됐다. 아마도 <code class="highlighter-rouge">jupyter notebook</code>을 가지고 이것 저것 해 보면서 <code class="highlighter-rouge">nvidia</code> 드라이버를 설치했던게 문제를 일으킨 것 걑았다. 그걸 지우니 다 해결됐다. 먼저 부팅하면서 <code class="highlighter-rouge">Esc</code> 키를 눌러서 <code class="highlighter-rouge">grub</code> 메뉴로 들어간다. 거기에서 <code class="highlighter-rouge">E</code> 키를 눌러서 메뉴 편집으로 들어가고, 다음 줄을 찾는다. 대체로 비슷한 줄일 것이다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>linux	/boot/vmlinuz-5.5-x86_64 <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>243231f0-6bdb-4016-9644-9e8bcdf49a04 rw  quiet <span class="nv">apparmor</span><span class="o">=</span>1 <span class="nv">security</span><span class="o">=</span>apparmor udev.log_priority<span class="o">=</span>3
+</code></pre></div></div>
+
+<p>맨 마지막에 숫자 <code class="highlighter-rouge">3</code>을 더한다. 즉, <code class="highlighter-rouge">... udev.log_priority=3 3</code>과 같이 되도록 하는 것이다. <code class="highlighter-rouge">Ctrl + X</code>를 눌러서 다시 메뉴로 돌아간 다음에, 여기에서 편집한 것을 선택하여 부팅한다. 그러면 <code class="highlighter-rouge">level 3</code> 즉 윈도우 없는 커맨드라인으로 진입한다. 첫번째 줄은 <code class="highlighter-rouge">nvidia</code>가 들어간 패키지를 모두 찾는 것이고, 두번째 줄은 그 목록에 있는 것을 모조리 지우라는 뜻이다. 한 가지 예를 든 것이다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-Qs</span> nvidia
+<span class="nb">sudo </span>pacman <span class="nt">-R</span> cuda
+</code></pre></div></div>
+
+<p>막상 부팅이 안되니 아주 당황스러웠다. 여기에서 해결이 안되면, 예를 들어 최근에 설치한 커널을 삭제하는 등의 방법을 해 봐야 했을 것이기 때문에… 이렇게 해결된 것이 다행이다.</p>
+
+<p>혹시 여기에 대해서 이야기하고 싶다면,</p>
+
+<hr />
+<hr />
+<div id="kakao-talk-channel-chat-button"></div>
+<script type="text/javascript">
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('cc45b4c6e3de3bcbf13268ab287cd900');
+    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
+    Kakao.Channel.createChatButton({
+      container: '#kakao-talk-channel-chat-button',
+      channelPublicId: '_gtxesxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
+    });
+  //]]>
+</script>
+
+:ET
