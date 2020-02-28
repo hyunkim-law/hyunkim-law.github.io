@@ -1,0 +1,16 @@
+current directory: /home/hyun/gits/web/hyunkim-law.github.io/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+/home/hyun/.rvm/rubies/ruby-2.7.0-preview1/bin/ruby -I /home/hyun/.rvm/rubies/ruby-2.7.0-preview1/lib/ruby/2.7.0 -r ./siteconf20200228-8042-efdbk5.rb extconf.rb
+creating Makefile
+
+current directory: /home/hyun/gits/web/hyunkim-law.github.io/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" clean
+
+current directory: /home/hyun/gits/web/hyunkim-law.github.io/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR="
+compiling ruby_http_parser.c
+compiling ryah_http_parser.c
+linking shared-object ruby_http_parser.so
+
+current directory: /home/hyun/gits/web/hyunkim-law.github.io/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 ruby_http_parser.so ./.gem.20200228-8042-oh0yrw

@@ -17,6 +17,7 @@ author:
 
 # permalink: pretty
 permalink: /blog/:year/:month/:title.html
+color-scheme: blue
 
 # Set encoding to UTF-8
 encoding: utf-8
@@ -61,3 +62,27 @@ version:             0.0.1
 
 # Exclusions from the final site
 exclude: [s3_website.yml, optional, vendor]
+
+# Gems
+gems: ['jekyll/scholar']
+
+# Scholar
+scholar:
+  style: modern-language-association
+  locale: en
+  sort_by: none
+  order: ascending
+  group_by: none
+  group_order: ascending
+  source: ./_bibliography
+  bibliography: references.bib
+  bibliography_templates: "{{references}}"
+  relative: "/ed/bibliography.html"
+  replace_strings: true
+  join_strings: true
+  use_raw_bibtex_entry: false
+  details_dir: bibliography
+  details_layout: bibtex.html
+  details_link: Details
+
+  query: "@*"

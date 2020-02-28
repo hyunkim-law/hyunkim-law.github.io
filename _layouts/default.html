@@ -3,7 +3,7 @@
 
   {% include head.html %}
 
-  <body class="theme-base-0f layout-reverse">
+  <body class="layout-reverse {% if page.color-scheme %} theme-base-{{ page.color-scheme }}{% else %} theme-base-{{ site.color-scheme }}{% endif %}">
 
     <!-- This if statement decides which sidebar to use -->
     {% if page.toc %}
