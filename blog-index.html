@@ -16,11 +16,15 @@ order: 001
   <h2>블로그 글모음 (2017년 1월 이후)</h2>
   <ul class="post">
     {% for item in site.posts %}
+    {% unless item.categories contains 'gtd' %}
     <li class="post-title">
       <a href="{{ site.baseurl }}{{ item.url }}">
         {{ item.title }}
       </a> -   <em>{{ item.date | date: "%Y년 %m월 %-d일" }}</em>
     </li>
+    {% endunless %}
     {% endfor %}
   </ul>
 </div>
+
+<p>다만 사이트 운영과 관련하여 <a href="/categories/gtd.html">할 일을 기록한 곳</a>은 목록에서 빠져 있습니다. 관리자 개인의 참고 목적이기 때문입니다.</p>
