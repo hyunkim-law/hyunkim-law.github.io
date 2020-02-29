@@ -1,0 +1,1774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>hyunkim.lawyer</title>
+ <link href="http://hyunkim.lawyer/atom.xml" rel="self"/>
+ <link href="http://hyunkim.lawyer/"/>
+ <updated>2020-02-29T15:04:26+09:00</updated>
+ <id>http://hyunkim.lawyer</id>
+ <author>
+   <name>Hyun Kim</name>
+   <email>hyunkim@hyunkim.lawyer</email>
+ </author>
+
+ 
+ <entry>
+   <title>grub 이용하여 리눅스 고치기</title>
+   <link href="http://hyunkim.lawyer/blog/2020/02/grub.html"/>
+   <updated>2020-02-28T17:30:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2020/02/grub</id>
+   <content type="html">&lt;p&gt;노트북이 부팅이 안됐다. 아마도 &lt;code class=&quot;highlighter-rouge&quot;&gt;jupyter notebook&lt;/code&gt;을 가지고 이것 저것 해 보면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;nvidia&lt;/code&gt; 드라이버를 설치했던게 문제를 일으킨 것 걑았다. 그걸 지우니 다 해결됐다. 먼저 부팅하면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Esc&lt;/code&gt; 키를 눌러서 &lt;code class=&quot;highlighter-rouge&quot;&gt;grub&lt;/code&gt; 메뉴로 들어간다. 거기에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;E&lt;/code&gt; 키를 눌러서 메뉴 편집으로 들어가고, 다음 줄을 찾는다. 대체로 비슷한 줄일 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;linux	/boot/vmlinuz-5.5-x86_64 &lt;span class=&quot;nv&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;UUID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;243231f0-6bdb-4016-9644-9e8bcdf49a04 rw  quiet &lt;span class=&quot;nv&quot;&gt;apparmor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1 &lt;span class=&quot;nv&quot;&gt;security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;apparmor udev.log_priority&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;맨 마지막에 숫자 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;을 더한다. 즉, &lt;code class=&quot;highlighter-rouge&quot;&gt;... udev.log_priority=3 3&lt;/code&gt;과 같이 되도록 하는 것이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + X&lt;/code&gt;를 눌러서 다시 메뉴로 돌아간 다음에, 여기에서 편집한 것을 선택하여 부팅한다. 그러면 &lt;code class=&quot;highlighter-rouge&quot;&gt;level 3&lt;/code&gt; 즉 윈도우 없는 커맨드라인으로 진입한다. 첫번째 줄은 &lt;code class=&quot;highlighter-rouge&quot;&gt;nvidia&lt;/code&gt;가 들어간 패키지를 모두 찾는 것이고, 두번째 줄은 그 목록에 있는 것을 모조리 지우라는 뜻이다. 한 가지 예를 든 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Qs&lt;/span&gt; nvidia
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; cuda
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;막상 부팅이 안되니 아주 당황스러웠다. 여기에서 해결이 안되면, 예를 들어 최근에 설치한 커널을 삭제하는 등의 방법을 해 봐야 했을 것이기 때문에… 이렇게 해결된 것이 다행이다.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Juno를 이용하여 아이폰에서 Jupyter Notebook 하기</title>
+   <link href="http://hyunkim.lawyer/blog/2020/02/on-juno.html"/>
+   <updated>2020-02-27T20:30:30+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2020/02/on-juno</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;https://jupyter.org/&quot;&gt;쥬피터 노트북&lt;/a&gt;을 모르는 사람은 거의 없을 것이다. 문득 이걸 아이폰에서 하고 싶다는 생각이 들었다. 도대체 왜? – 라고 묻는 사람은 이런 취미생활의 기본을 모르는 것이다. 나중에 안쓸 바에라도, 일단 되면 좋지 않겠는가?&lt;/p&gt;
+
+&lt;p&gt;아이폰에서 쥬피터 노트북을 해 보려면 어떻게 해야 하나? 가장 쉬운 방법은 브라우저에서 &lt;a href=&quot;https://colab.research.google.com/&quot;&gt;google colab&lt;/a&gt;을 사용하는 것이다.그렇지만, 다른 방법은 없을까? 검색해 보니 &lt;a href=&quot;https://juno.sh/&quot;&gt;Juno&lt;/a&gt;를 이용하는 방법이 있다.  아이폰에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Juno&lt;/code&gt;를 이용하는 것은 앱스토에에서 다운로드받는 것 만큼이나 쉽다. 이걸로 다양한 데이터 작업을 해볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Juno&lt;/code&gt;에는 다양한 파이썬 패키지를 설치하여 사용할 수 있다. 다만, &lt;strong&gt;순수 파이썬 패키지&lt;/strong&gt;만 사용 가능하다고 한다. 이 말은 &lt;code class=&quot;highlighter-rouge&quot;&gt;keras&lt;/code&gt;나 &lt;code class=&quot;highlighter-rouge&quot;&gt;tensorflow&lt;/code&gt; 같은 것은 아마도 사용하지 못할 것이라는 뜻이다. 그 이외에는 제법 쓸만할 것 같다. 적어도 &lt;code class=&quot;highlighter-rouge&quot;&gt;matplotlib&lt;/code&gt;은 사용할 수 있지 않은가?&lt;/p&gt;
+
+&lt;p&gt;그런데, 막상 쓸려고 하면, 한글 폰트가 기본으로 깔려 있지 않으므로, 에러가 자꾸 난다. 예를 들어, &lt;code class=&quot;highlighter-rouge&quot;&gt;pykrx&lt;/code&gt;라는 패키지를 이용하여 주식 가격을 받고, 간단한 차트를 그리려 해 보자. 데스크탑에서라면 이렇게 할 것이다. 아래는 &lt;code class=&quot;highlighter-rouge&quot;&gt;카카오&lt;/code&gt; 주식의 작년 1월 1일부터 12월 31일까지 종가를 그려본 것이다. 문제는 차트를 그릴 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;matplotlib&lt;/code&gt;을 사용한다는 것이다. 이미지에 한글이 보기 싫은 네모로 찍히는 것이다. 그나저나 굳이 이걸 아이폰에서 할 이유가 뭐가 있을까? 할 수 있을 것 같아 보이니까…&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pykrx&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stock&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_market_ohlcv_by_date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;20190101&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;2019-12-31&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;035720&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'종가'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;정말 간단한데, 이게 아이폰에서는 그렇게 간단하지 않다. 도대체 열 이름을 왜 시가, 고가, 종가, 저가, 거래량과 같이 붙였을까? 딱히 영어를 좋아해서라기보다는 전형적으로 예상하는 상황이 아닌 경우 (예를 들어, 아이폰에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;jupyter notebook&lt;/code&gt;으로 이용하기) 반드시 문제가 발생한다. 아이폰 &lt;code class=&quot;highlighter-rouge&quot;&gt;juno&lt;/code&gt;에서 이것 사실상 입력할 수가 없다.  설령 입력한다 하더라도 &lt;code class=&quot;highlighter-rouge&quot;&gt;pyplot&lt;/code&gt;에서 에러가 나고, 글자가 깨져 보인다. 몇 가지 방법이 있다. 사실상 생각보다 많은 방법으로 해결할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;제목과-라벨-변경하기&quot;&gt;제목과 라벨 변경하기&lt;/h2&gt;
+
+&lt;p&gt;첫째는 가장 쉽고 직관적 방법으로, 제목과 x, y축 라벨을 바꾸는 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'closing price'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'price'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'date'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;간단해 보이는데, 막상 간단한 편집이라도 하려 하면, 한글 입력이 안되는 문제는 해결하지 못했다. 물론 굳이 가장 간단한 방법을 쓰겠다면, 이 방법을 쓰고, 파일을 &lt;code class=&quot;highlighter-rouge&quot;&gt;dropbox&lt;/code&gt; 같은 곳에 저장해 두고, PC에서 편집할 수도 있겠다.&lt;/p&gt;
+
+&lt;h2 id=&quot;열-이름-바꾸기&quot;&gt;열 이름 바꾸기&lt;/h2&gt;
+
+&lt;p&gt;둘째는 열 이름을 바꾸어 주어야 한다. 열 이름만 바꾸면 되는 것은 아니고, 인덱스명도 바꾸어야 한다. 위에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;df&lt;/code&gt;를 받아 오고 나서 다음과 같이 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'시가'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'opening'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'고가'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'high'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'종가'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'closing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'저가'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'low'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'거래량'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'volume'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;names&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'date'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;시스템-폰트-이용하기&quot;&gt;시스템 폰트 이용하기&lt;/h2&gt;
+
+&lt;p&gt;다른 방법은 아이폰의 시스템 폰트를 이용하는 것이다. 사실 시스템 폰트가 깔려 있는데, 그걸 쓰지 않을 이유는 없다. 이렇게 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.font_manager&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font_manager&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;font_dirs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'/System/Library/Fonts/Core/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;font_files&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font_manager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;findSystemFonts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fontpaths&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;font_dirs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;font_list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font_manager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;createFontList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;font_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;font_manager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fontManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ttflist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;font_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'font.family'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Apple SD Gothic Neo'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그리하여, …&lt;/p&gt;
+
+&lt;!-- _includes/image.html --&gt;
+&lt;figure&gt;
+    &lt;hr /&gt;
+    &lt;img src=&quot;https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/IMG_4220.png&quot; alt=&quot;아이폰에서 주노 사용&quot; /&gt;
+    &lt;figcaption style=&quot;text-align: center&quot;&gt;&lt;strong&gt;그림: 아이폰에서 Juno 사용&lt;/strong&gt;&lt;/figcaption&gt;
+    &lt;hr /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;막상 이렇게 정리해 두고 보니 아주 쉬워 보이는데, 정작 정보를 찾기는 쉽지 않았다. 언제나처럼 &lt;a href=&quot;https://stackoverflow.com/questions/35668219/how-to-set-up-a-custom-font-with-custom-path-to-matplotlib-global-font/43647344&quot;&gt;스택오버플로우&lt;/a&gt;는 답을 알고 있다. 더 다양한 방법은 &lt;a href=&quot;http://corazzon.github.io/matplotlib_font_setting&quot;&gt;matplotlib에서 한글폰트 사용하기&lt;/a&gt; 페이지를 참고해도 좋다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>다시 블로깅 시작하기</title>
+   <link href="http://hyunkim.lawyer/blog/2020/02/restart.html"/>
+   <updated>2020-02-27T09:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2020/02/restart</id>
+   <content type="html">&lt;p&gt;코로나 바이러스 때문에 온 세상이 난리입니다.&lt;/p&gt;
+
+&lt;p&gt;한때는 블로그가 낙이었죠. 블로그 자체가 좋았다기 보다는 (그 정도까지 너드는 아닙니다. 아닐 겁니다. 아마도…), 이걸 하기 위해서는 뭔가 끊임없이 배워야 하고 (쓸 거리가 있어야 하니까요), 이를 계기로 사람들을 만날 수 있는 게 좋았습니다. 마음 한편에는 블로그를 다시 시작해야겠다는 생각이 있었지만, 정신 없이 지내다 보니 문득 이 페이지에 마지막으로 글을 올린지도 햇수로 2년이 지났네요. 다시 시작해 보려 합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;jekylled-설치하기&quot;&gt;Jekyll/Ed 설치하기&lt;/h2&gt;
+
+&lt;p&gt;여러가지 블로그 툴을 써 보았지만, 가장 좋아하고 결국 안착한 곳은 &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;jekyll&lt;/a&gt;입니다. 당연히 이 페이지도 그걸로 만들었습니다. 그리고, &lt;a href=&quot;https://github.com/minicomp/ed&quot;&gt;Ed.&lt;/a&gt;라는 테마를 사용하였습니다. 사용방법은 &lt;a href=&quot;https://minicomp.github.io/ed/documentation/&quot;&gt;Documentation&lt;/a&gt; 페이지에 있습니다만, 편의상 아래에 간략히 정리해 둡니다. 루비는 &lt;a href=&quot;https://rvm.io/&quot;&gt;RVM&lt;/a&gt;으로 설치하였습니다. 여기서부터 시작합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gpg2 &lt;span class=&quot;nt&quot;&gt;--recv-keys&lt;/span&gt; 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;url &lt;span class=&quot;nt&quot;&gt;-sSL&lt;/span&gt; https://get.rvm.io | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; stable
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;다만, 시스템이 아니라 자기 사용자 계정에 설치할 때에는 이렇게 합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;url &lt;span class=&quot;nt&quot;&gt;-sSL&lt;/span&gt; https://get.rvm.io | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--ignore-dotfiles&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;source &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.rvm/scripts/rvm&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그리고, 정작 루비는 이렇게 설치합니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt;은 루비 프로그램이라서, 루비를 설치하는 겁니다. 그리고, 루비는 버전 관리가 복잡하므로, 미리 루비 버전 관리자를 설치하는거죠.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm list known
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.7.0-preview1
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 2.7.0-preview1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;일단 지킬을 설치할 준비는 끝났습니다. &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;공식 사이트&lt;/a&gt;에서 제안하는 방법은 이렇습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler jekyll
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll new my-awesome-site
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;my-awesome-site
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그렇지만, 굳이 그렇게 하지 않을 것입니다. 이 과정을 거치지 않고, 바로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ed.&lt;/code&gt; 설치로 넘어갑니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/minicomp/ed.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 다운로드하였습니다. 공식문서에서는 그 다음에 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundler&lt;/code&gt;를 설치하라고 하지만, 그 전에 할 일이 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;bibliography&lt;/code&gt;를 쓰기 위해서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;optional/jekyll-scholar starter kit&lt;/code&gt; 폴더의 내용을 루트로 복사하는 겁니다. 일단 다운로드받은 사이트로 들어갑니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;optional/jekyll-scholar&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;starter&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;kit&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 하는 이유는 &lt;code class=&quot;highlighter-rouge&quot;&gt;bibliography&lt;/code&gt;를 쓰기 위해서는 다른 &lt;code class=&quot;highlighter-rouge&quot;&gt;gem&lt;/code&gt;을 설치해야 되기 때문이죠. 여하튼, 설치가 끝났고, 그 다음에는 환경설정을 위해서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일을 편집합니다. &lt;a href=&quot;https://jekyllrb-ko.github.io/docs/configuration/&quot;&gt;이 페이지&lt;/a&gt;를 보면 환경설정에 도움이 될 것입니다.&lt;/p&gt;
+
+&lt;p&gt;일단은 이렇게 합니다. 뭐… 복잡해 보였는데, 막상 써 보니 별 것 아니네요.&lt;/p&gt;
+
+&lt;h2 id=&quot;깃헙에-업로드하기&quot;&gt;깃헙에 업로드하기&lt;/h2&gt;
+
+&lt;p&gt;조금 까다롭습니다.  적어도 그렇게 이야기합니다. 이렇게 하라고 하더군요.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rake ed:publish
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>법률시장의 변곡점 3: 기업자문시장의 변화</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/corporate-law.html"/>
+   <updated>2018-07-30T03:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/corporate-law</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;로펌에서 외부 투자자를 받을 수 없다면, 시장은 계속해서 로펌 업무 가운데 순수한 법률자문에 속하는 것을 제외한 모든 것을 빼앗아갈 것이다… (변호사가 아닌) 제삼자가 제공할 수 있는 모든 것은 결국 제삼자가 제공하게 될 것이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/2018/07/inflection-point-of-law-2.html&quot;&gt;앞의 글&lt;/a&gt;에서 헨더슨 교수는 전체 법률시장을 개인자문/대리와 기업자문/대리로 나누어 분석하였다고 했는데, 이제 기업자문에 대해서 생각해 보겠다.&lt;/p&gt;
+
+&lt;p&gt;그의 자료에 따르면, 개인자문영역은 현격히 줄어든 반면, 기업자문영역은 현격히 늘어났다. 그에 따르면,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;개인자문은/대리는 2007년 655억달러 규모에서 2012년 5년만에 588억달러로 줄어든 반면,&lt;/li&gt;
+  &lt;li&gt;기업자문/대리는 같은 기간 1,521억달러 규모에서 1,785억달러 규모로 증가하였다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;개인자문/대리가 줄어든 이유는 앞에서 살펴본 것처럼 자기대리(pro se litigant)의 증가에 따른 것이라 치고, 기업자문/대리는 왜 이렇게 늘어났을까? 물론 기업자문/대리가 복잡하고 규모가 커진 것도 이유가 있겠지만, 그도 말하는 것처럼 사내변호사의 급격한 증가를 감안하면, 그것만으로는 대답이 아니다. 그의 주장은 이것은 일부 나이든 변호사가 많아졌기 때문이라고 한다. 그가 하는 말에 따르면, 수익은 증가하였음에도 불구하고, 수요는 상대적으로 증가하지 않았다고 한다. 그러므로, 그의 주장에 따르면 법률회사에 나이 든 파트너가 많기 때문에 이행기적 현상이라고 한다 (즉, 이들이 더 높은 금액을 청구하기 때문이라는 것이다. 그리고, 이런 나이든 변호사는 새로운 도구에 투자하기도 싫어하고, 신기술을 배우기도 싫어하기 때문이라고 한다. 베이비부머 세대 변호사가 은퇴하면 변화는 더 가속화될 것이라고 한다 (위 논문 15쪽).&lt;/p&gt;
+
+&lt;p&gt;이 관찰이 흥미로운 것은 변호사의 생산성이 높아지고, 신시장을 개척해서 수익이 높아진 것이 아니라, 신기술을 수용하기를 체계적으로 거부하기 때문에 — 즉 생산성을 인위적으로 낮게 유지하기 때문에 — 수익성이 높다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;이와 관련하여 흥미로운 관찰은 다음의 통계이다. 클리오 (Clio)라는 사건관리와 시간관리 서비스 제공회사에 따르면, 소형법률 사무소 변호사가 평균적으로 하루 2.3시간 법률업무를 수행한다고 한다. 이 가운데 실제로 고객에게 청구하는 금액은 그 82%, 즉 1.6시간이다. 시간당 $260 (클리오 평균)를 청구한다고 하면 하루 $422달러, 일년 50주라고 가정하면 $105,000이다. 여기에서 세금, 사무실 비용, 직원 급여, 건강보험, 퇴직대책, 보험 (malpractice insurance), 마케팅 등등의 비용을 제외하기 전이다. 그러면 하루 6시간이 남는데, 이 가운데 1/3을 사업개발에 사용하고, 48%를 행정관리업무를 하면서 지낸다고 한다 (위 논문 14쪽). 그러니까, 소수의 대형/초대형 로펌을 제외하고는 사실상 사무실을 유지하기 힘든 수준이라는 것이다. 즉, 위의 수익의 상승은 소수의 대형/초대형 로펌에 집중되어 있다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;그 이유가 사실상 (적어도 일부는) 사내변호사의 급격한 증가 때문이라고 한다. 그 이유는 첫째, 사내변호사 수가 급격히 증가하였기 때문이다. 둘째, 로펌과 달리 이들은 로펌 바깥에서 여러가지 법률 서비스를 (ALSP: Alternative Legal Service Provider) 소싱하여 사용하는 것에 거부감이 없다.&lt;/p&gt;
+
+&lt;p&gt;정작 흥미로운 것은 그가 사내변호사의 역할에 따라 일반 기업을 다음의 6가지 유형으로 나눈다는 것이다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;유형 1: 개인으로 구성된 회사&lt;/li&gt;
+  &lt;li&gt;유형 2: 기업주 소유 회사 (이 둘은 사내변호사의 역할과 관련하여 차이가 없다)&lt;/li&gt;
+  &lt;li&gt;유형 3: 기업주 아래에 법무팀장 (General Counsel)만 있는 경우&lt;/li&gt;
+  &lt;li&gt;유형 4: (기업주가 아니라) 경영진 아래에 법무팀장이 있고, 그 아래에 사내 법무팀 직원이 있는 경우&lt;/li&gt;
+  &lt;li&gt;유형 5: 경영진 아래에 법무팀장, 그 아래에 임원급 사내변호사, 그 아래에 여러 사내변호사가 있는 경우&lt;/li&gt;
+  &lt;li&gt;유형 6: 경영진 아래에 법무팀장, 그 아래에 법무 기능조직이 여럿 있고, 각자 사내 변호사가 있으며 (M&amp;amp;A 담당 부팀장 별도로 있음), 그리고 법무운영 (Legal Ops) 팀이 별도로 있고, 법무팀이 전체적으로 구매, 소싱을 통하여 자원을 공유하는 형태. 가장 고도화된 조직이다. 유형 6에서 법무운영 팀은 주로 ALSP 서비스를 구매하고, 조직하는 역할을 담당한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이런 조직의 운영에 대해서는 흥미로운 주제이므로 나중에 다시 다루어 보겠다.&lt;/p&gt;
+
+&lt;p&gt;결론적으로, 법률시장의 변곡점, 법률시장의 변화는 궁극적으로는 사내변호사 조직이 중심이 되어 이끌어갈 수 밖에 없다는 것이다. 기존의 변호사법/윤리 규정이 바뀌지 않는다면…&lt;/p&gt;
+
+&lt;p&gt;이와 관련하여 법률산업에 관련된 기업에 상당한 투자를 한 투자은행가는 이렇게 말했다고 한다. 맨 앞에서 인용했지만, 다시 한 번 인용해 보자.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;로펌에서 외부 투자자를 받을 수 없다면, 시장은 계속해서 로펌 업무 가운데 순수한 법률자문에 속하는 것을 제외한 모든 것을 빼앗아갈 것이다… (변호사가 아닌) 제삼자가 제공할 수 있는 모든 것은 결국 제삼자가 제공하게 될 것이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;다음번에는 그럼 도대체 이런 ALSP에는 어떤 것이 있는지 정리해 보겠다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>법률시장의 변곡점 2: 대서소, 매칭서비스, VLO 그리고 온라인 소액재판</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/inflection-point-of-law-2.html"/>
+   <updated>2018-07-29T22:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/inflection-point-of-law-2</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;/blog/2018/07/inflection-point-of-law.html&quot;&gt;앞의 글&lt;/a&gt;에서 말한 것처럼 법률시장은 곧 급격한 변화를 겪을 것이다. 그 가운데 일부는 이미 현재진행형이다.&lt;/p&gt;
+
+&lt;p&gt;캘리포니아 변호사협회의 요청에 따라 리서치를 수행한 헨더슨 교수는 그의 &lt;a href=&quot;http://board.calbar.ca.gov/docs/agendaItem/Public/agendaitem1000022382.pdf&quot;&gt;논문&lt;/a&gt;에서 법률시장을 두 가지로 나눈다. 하나는 개인의 필요를 충족시키는 시장 — 그는 PeopleLaw 분야라고 한다 — 그리고 다른 하나는 회사 등의 조직의 수요에 대응하는 시장 — 그는 Organizational Client 분야라고 한다 (위 논문 13쪽) — 으로 나눈다.&lt;/p&gt;
+
+&lt;p&gt;앞에서 말한 현재 아무도 서비스를 제공하지 못하는 99.9984%의 시장은 사실상 PeopleLaw 영역이다. 이 논문에서는 인용하지 않지만, 여기에서는 이 시장에 대응하는 몇 가지 대응책을 정리해 보겠다.&lt;/p&gt;
+
+&lt;p&gt;1. &lt;strong&gt;대서소.&lt;/strong&gt; 자기소송을 하는 당사자를 대체로 pro se 당사자라 한다. 과거에는 변호사를 선임하든지 아니면 직접 자기소송을 하든지 두가지였다. 요즘은 필요한 것만 제공하는 서비스들이 많다. 대표적인 것이 &lt;a href=&quot;https://en.wikipedia.org/wiki/Legal_ghostwriting&quot;&gt;대서소 또는 ghostwriting&lt;/a&gt;이라고 한다. 예를 들어, 소장을 대신작성해 준다는 취지에서 그렇게 이름 붙였지만, 전략에 대해서 코치만 해 줄 수도 있고, 소송에서 행동하는 방법 (예를 들어 판사 앞에서는 어떻게 하라는 등) 또는 반대신문 하는 방법 등에 대해서만 교육해 줄 수도 있다. 이게 허용되는지 여부는 주별로 조금씩 다르니 확인이 필요하다. 끼워팔기를 하지 않는다는 측면에서 &lt;a href=&quot;https://en.wikipedia.org/wiki/Unbundled_legal_services&quot;&gt;언번들링&lt;/a&gt;이라고 하기도 하고 제한된 범위의 대리 (limited scope representation) 또는 과제별 대리 (discrete task representation)이라고 하기도 한다.&lt;/p&gt;
+
+&lt;p&gt;2. &lt;strong&gt;매칭 서비스.&lt;/strong&gt; 대표적인 것이 위 논문에서 말하는 것과 같은 &lt;a href=&quot;https://www.avvo.com/&quot;&gt;avvo&lt;/a&gt;같은 사이트이다. 이 사이트의 사용이 허용되는지에 대해서는 주별로 다르다. 특히 이 서비스가 비변호사와 수익을 공유하는 측면이 있다는 점에서…&lt;/p&gt;
+
+&lt;p&gt;3. &lt;strong&gt;가상법률사무소.&lt;/strong&gt; VLO라 한다. 또는 &lt;a href=&quot;https://en.wikipedia.org/wiki/Virtual_law_firm&quot;&gt;VLF&lt;/a&gt;라 하기도 한다. 따지고 보면 말이 되는게, 로펌의 비용의 대부분이 사무실 임대료이고, 그 다음이 직원 급여일 것이다 (역전되는 경우도 있을 수 있다). 그렇다면, 이것을 가상화함으로써 비용을 크게 낮출 수 있고, 따라서 수임료를 크게 줄일 수도 있을 것이다. 여기에 대해서도 주별로 다르니…&lt;/p&gt;
+
+&lt;p&gt;4. &lt;strong&gt;온라인 분쟁해결.&lt;/strong&gt; 법원은 무엇인가? 권력기관인가 서비스 기관인가? 리처드 서스킨드 (Richard Susskind)는 이 질문은 “법원은 서비스인가 장소인가?”라고 되묻는다 (위 논문 20쪽). 위 논문에서 말하듯이 가장 발달한 형태는 캐나다 브리티시 콜럼비아의 민사분쟁해결 재판소 (CRT: Civil Resolution Tribunal)이라고 한다. 민사 소송으로써 $5,000 미만의 모든 사건은 온라인 시스템으로 해결해야 한다. 변호사도 필요 없고, 온라인 중재로 분쟁을 해결한다. 사건 담당자 (cas e manager)가 사건을 진행하는데, 전체 사건 가운데 5퍼센트 미만에 대해서만 CRT가 공식적으로 개입한다고 한다. 이 온라인 시스템은 PwC가 만들었다고 한다. 개인도 이 시장에서 여러가지 시도를 하고 있지만, 사실상 이 시장은 법률시장과 분쟁해결의 특성상 정부가 주도하여 이끌고 가야 한다고 생각한다.&lt;/p&gt;
+
+&lt;p&gt;이외에도 다양한 형태의 온라인 분쟁해결 시스템 (ODR: Online Dispute Resolution)이 생기고 있다. 정부의 관리비용을 크게 낮춰준다고 한다. 예를 들어, EU에서는 모든 소비자와 온라인 거래와 관련된 분쟁을 ODR로 해결하라고 규정하였다고 한다. 텍사스의 2 카운티에서도 이와 비슷한 것을 시행할 계획이라고 한다. 한 판사는 이것을 “파자마 정의(pajama justice)”라고 한다고 한다.&lt;/p&gt;
+
+&lt;p&gt;PeopleLaw 시장에서 기술을 이용하여 비용을 낮추려는 시도는 다양하게 이루어지고 있지만, 대체로 위와 같이 정리된다. 특히 대서소와 가상법률사무소에 주목하라. 다른 것과는 달리 자본투자가 필요 없다. 오히려 자본투자를 급격히 낮추어 줌으로써 진입장벽을 크게 낮추어 준다. 기존의 로펌이라도 가능하면 활용할 방안을 고민해 보아야 할 것이다.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>법률시장의 변곡점 -- 1</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/inflection-point-of-law.html"/>
+   <updated>2018-07-29T03:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/inflection-point-of-law</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;법률관련 직업은 변곡점에 와 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;인디애나법대 교수 윌리엄 헨더슨의 말이다. 그는 캘리포니아 변호사협회의 태스크포스의 요청에 따라 조사를 수행하였다. 그 결과를 &lt;a href=&quot;http://board.calbar.ca.gov/docs/agendaItem/Public/agendaitem1000022382.pdf&quot;&gt;Legal Market Landscape Report&lt;/a&gt;로 제출하였다. 태스크포스는 변호사들이 신기술을 사용하는 것과 변호사 아닌 자가 법률서비스를 제공하는 것을 금지하는 윤리규칙을 개정하는 방향에 대하여 고심하고 있다. 곧 변화가 생길 것 같다. 헨더슨 교수도 말하다시피, 어딘가에서 변화가 생긴다면 당연 캘리포니아가 가장 빠르지 않겠는가?  앞으로 몇 차례에 걸쳐서 이 보고서를 읽은 감상을 정리하겠다.&lt;/p&gt;
+
+&lt;p&gt;나로서는 가장 충격적인 (생각해 보면 그렇지만 당연한) 이야기는 상당히 뒤쪽에 나온다. 민사소송에서 적어도 한쪽이 “자기소송” (변호사를 통하지 않고 직접 변론하는 경우)을 하는 사건이 전체의 76%라고 한다. 꽤 높을 것이라고 예상은 했었지만, 아주 높은 숫자이다. 그 다음에 그는 손해배상액이 설정된 (거절되지 않은) 사건들 가운데 배상액의 중간값은 $2,441이고, 3/4의 사건이 $5,100라고 한다. 2십만건이 넘는 사건을 조사해 보았는데, 배상액이 5십만 달러가 넘는 사건이 357건, 그리고 백만 달러가 넘는 사건은 165건이라고 한다. (공교롭게도 내가 관여했던 사건은 모두가 후자에 드는 경우였다. 당연하지 않은가? 비용을 생각해 보면…) 비용을 생각해 보면, 전체 소송비용의 중간값은 적게는 $43,000 (자동차 사고)에서 $122,000 (전문가 과실)이다. 그러니, 대부분의 사건은 비용 감당이 안된다 (위 논문, 20쪽).&lt;/p&gt;
+
+&lt;p&gt;물론 수백만 달러를 놓고 다투는 사건은 당연히 상당한 기술과 경험과 역량이 있는 변호사들이 담당할 것이다. 그렇지만, 그래서 우리가 눈을 감고 있는 사건들이 사실상 3/4를 넘는다는 뉴스는 충격적이었다. 솔직히 말하자면, 변호사를 선임할 만한 가치가 있는 사건의 기준을 $500,000라고 본다면, 전체 법률시장의 99.9984%가 사실상 “자동화”가 가능한 영역에 놓인다는 이야기이다.&lt;/p&gt;
+
+&lt;p&gt;그런데 법률시장 전체를 놓고 보면 약 95.1%의 시장을 변호사/로펌이 장악하고 있다. 당연하지 않은가? 어쩌면 변호사들은 나머지 5%의 행방이 더 궁금할 것이다. 이 가운데 1.2%를 흔히 말하는 ALPS (대안적 법률 서비스 제공자: Alternative Legal Service Provider)가 장악하고 있다 (위 논문 3쪽). 이 ALPS에 대해서 이야기하면, 미국의 법률시장을 잘 모르는 사람들은 좀 당혹스러울 것이다. 여기에 대해서는 좀 나중에 다루기로 하자.&lt;/p&gt;
+
+&lt;p&gt;흥미로운 것은 여기에서 빠진 것이 사내법무팀과 알바변호사 (contract attorney; lawyers working in the git economy)이다. 이 둘은 최근 아주 급속하게 성장하고 있다. 알바변호사는 소위 우버 운전사와 비슷한 역할을 하는 사람들이다. 이들은 평균적으로 시간당 $32 – 35 정도를 받고 소송이나 인수합병 관련 업무에서 문서검토와 같은 노동집약적인 업무를 하는 프리랜서 변호사들이다 (위 논문 8쪽).&lt;/p&gt;
+
+&lt;p&gt;이들은 보통 Posse List, Hire An Esquire 같은 웹사이트에 업무가 올라오면 여기에 참여하는 방식으로 일을 한다. 이것이 윤리규정에도 불구하고 가능한 이유는 이것을 lawyer-to-lawyer 시장으로 규정하기 때문이다. 즉, 서비스의 구매자가 변호사이기 때문에 가능한 것이다. 즉, 이렇게 채용한 임시직 변호사의 업무를 다른 변호사가 감독해야 하는 것이다. 그리고, 그런 감독 업무를 대개는 사내변호사조직이 하거나, 아니면 사내변호사가 선임한 외부 변호사가 수행한다.&lt;/p&gt;
+
+&lt;p&gt;이 두 가지 경향을 합쳐 보면, 결과는 분명하다. 옛날에는 대형로펌에서 하던 일을 쪼개서 여럿이 나누어서 하는 것이다. 과거 모델은 대형로펌에서 소송을 수행한다면, 파트너가 전략 설정과 소송 수행 등의 중요한 업무를 하고, 그가 고용한 로펌의 주니어 변호사들이 문서검토 업무를 수행하였다. 이런 주니어 변호사들이 1년차가 보통 시간당 $250–300을 청구하였다는 것을 감안하면, 사실상 비용상승의 주범이 이런 사업모델이었던 것이다.&lt;/p&gt;
+
+&lt;p&gt;이제는 심지어 동일한 소송사건을 동일한 대형로펌에 맡긴다고 하더라도, 사내변호사 또는 다른 이런 업무에 능숙한 변호사 (eDiscovery 전문 변호사)를 선임하여 이들이 자료검토를 프로젝트 차원에서 진행하게 하는 것이다. 사실상 상당한 정도의 비용절감 효과가 있을 수 밖에 없다. 게다가, 이런 알바변호사는 결국은 우버 운전사와 비슷한 운명에 처할 것이다. 결국은 자율주행차가 우버 운전사의 역할을 무의미하게 만들듯이, 법률문서 검토 인공지능이 발달함에 따라 이들 알바변호사의 역할도 점점 줄어들 것이다.&lt;/p&gt;
+
+&lt;p&gt;나는 이 시장을 오랫동안 관찰했고, 또 나름 여기 끼어들 기회를 호시탐탐 노리고 있었기 때문인지 이 보고서에 나오는 이야기는 대부분 아는 이야기이다. 그런데, 심지어는 미국 변호사들 조차도 이런 이야기를 하면 “뻥치고 있네”라는 표정으로 뜨아하게 바라보는 경우가 많다. 필요 이상으로 장황하게 내용을 정리한 이유이다. 다음번에는 사내변호사 조직의 변화에 대해서 정리해 보겠다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>작은 이야기를 할 때는 더 이상 작을 수 없고, 큰 이야기를 할 때면 더 이상 클 수 없다</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/guiguzi-2.html"/>
+   <updated>2018-07-28T03:30:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/guiguzi-2</id>
+   <content type="html">&lt;p&gt;이게 문제다. &lt;a href=&quot;/blog/2018/07/guiguzi.html&quot;&gt;앞의 글&lt;/a&gt;에서도 말했듯이 감당이 안된다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;為小無內。 為大無外&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문장을 어떻게 해석할까? 귀곡자 제1편 패합에 나오는 말이다. 김영식은 이렇게 번역한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;작은 일에서부터 착수하면 더 작아질 수는 없는 것이며, 큰 일에서 착수하면 더 커질 수는 없는 것이다. — 김영식, 귀곡자, 31쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이렇게 번역한 이유로 도굉경은 “음을 다하면 안은 없고, 양을 다하면 밖은 없다”고 주를 달았다고 한다. 이걸 찾아보려고 동네 도서관에 가서 귀곡자 책을 2권을 더 빌려 왔다. 또 다른 번역을 보자. 박찬철, 공원국은 이렇게 번역한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;그래서 설득 대상은 한없이 작을 수도 있고 한없이 클 수도 있다. — 박찬철, 공원국, 귀곡자 33쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;내친 김에 심의용은 어떻게 번역했는지 보자.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;어떠한 작은 일도 해낼 수 있고 아무리 큰일도 처리할 수 있다. — 심의용, 귀곡자 교양강의, 214쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;세 명의 독법이 다 다르다. 너무 좋다. 갑자기 살 맛이 난다.&lt;/p&gt;
+
+&lt;p&gt;중국어는 이게 특징이다. 예를 들어 이집트나 그런 곳에서 새로운 고대문자를 발견하면 아무도 못읽는다. 뭔가 몇십 년은 파고 들어야 이게 무슨 이야기인지 독해를 할 수가 있다. 중국어는 다르다. 어디선가 거북이 껍질이나 대나무 죽간에 수천년 전에 씌어진 글씨가 발견되면, 현대인이 독해하는데 아무런 문제가 없다. 이 말은 다른 언어는 몇 차례 변화를 거쳤는데, 중국어/한자는 수천년 동안 별로 바귄 것이 없다는 것이다. 남들은 기계어 쓰다가 어셈블리어 쓰다가 C로 바꿨다가 요즘은 파이썬 사용하는데, 중국사람들은 아직도 어셈블리어를 쓰고 있는 셈이다. 그 특징이 다른 언어에는 있는 조사나 연결사나 그런 것이 (적어도 귀곡자식의) 한자에는 없다.&lt;/p&gt;
+
+&lt;p&gt;그럼 도대체 이게 무슨 뜻인지 어떻게 아느냐고? 그래서 이렇게 독법이 다 다른 것이다. 위의 어셈블리어 이야기를 좀 다르게 이야기하자면, 원래 언어는 말로 하는 것이었다. 글로 남기기 시작한 것은 한참 뒤 이야기이다. 처음에는 말과는 상관 없이 그냥 의미를 기록하였다. 이게 상형문자이고 어셈블리어인 셈이다. 그러다가, 언어가 진화함에 따라 상당 정도 그냥 의미를 포기하고, 가능한 한 말로 하는 언어와 비슷한 형태를 받아들이기 시작하였다. 이게 고등언어이다. 중국어는 (적어도 고대중국철학을 볼 때 읽는 한자는) … 그냥 어셈블리어이다. 기대를 하지 말아야 한다.&lt;/p&gt;
+
+&lt;p&gt;그러면 어떻게 이게 그 뜻인지 아느냐고? 어차피 모른다. 그래서 선생이 필요한 것이다. 이게 그 뜻이라고 말해줄 수 있는… 다른 말로 하자면, 텍스트만으로는 충분하지 않고 반드시 선생이 있어야 하는 것이다. 누군가가 텍스트의 의미를 말로 풀어 주어야 한다는 뜻이다. 텍스트는 어차피 참고자료일 뿐이다. 그렇지만, 그건 다 공자나 맹자같은 주류 텍스트일때 이야기이다. 아니면, 이렇게 그냥 때려잡는 것이다.&lt;/p&gt;
+
+&lt;p&gt;다시 본문으로 돌아가자면, 어차피 모르는 한자는 없다. 그래서 이 구절을 골랐다. 일단 심의용 번역은 좀 오바가 심하다. 그럼에 비해서는 뭔가 심오한 맛도 떨어진다. 그러니까, 이 문장에서 “해낼 수 있다”를 읽는 것은 좀 지나치다. 박찬철, 공원국은 이것을 설득 대상에 대한 것이라고 한다. 이 독법은 앞뒤 맥락을 살펴보면 좀 더 말이 되지만, 뭔가 우아함은 떨어진다. 그리고, 이 두 번역의 사소한 문제는 그냥 앞의 문장의 (그게 무엇이든) 부연설명일 뿐이고, 그 자체로는 전달하는 의미가 없어 보인다는 것이다. 그러니까, 이렇게 하면 일의 크기와 상관없이 해낼 수 있다거나, 이렇게 하면 큰 사람도 작은 사람도 상관없이 설득할 수 있다는 것은 (그게 무엇이든) 앞에서 말한 것의 중요성을 강조하고, 다시 한 번 약을 판 것일 뿐이다. 독립적 의미는 없다. 그나마 김영식의 번역은 독립적 의미가 있다. 적어도 이와 크게 시작하려면 대박 크게 하고, 작게 시작하려면 그냥 한없이 쫀쫀하라는 교훈이라도 주는 인상이 있다.&lt;/p&gt;
+
+&lt;p&gt;앞의 문장을 읽어 보자. 어차피 때려잡기라면 그냥 앞뒤 맥락이 가장 중요하다. 받아쓰기 귀찮으니 일단 김영식의 번역을 보자.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;성정이 양인 사람과 말할 경우에는 숭고한 내용에 의탁해야 하고, 성정이 음인 사람과 말할 경우에는 비근하고 세세한 내용에 의탁해야 하니, 비천한 언사로는 지향이 작은 사람을 대응하고, 고상한 언사로는 지향이 원대한 사람을 대응한다. — 김영식, 상동 30쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;물론 이 말도 각자 번역이 다 다르다. 그렇지만, 대체로 앞의 “양”과 “바깥” 그리고 “음”과 “안”이 대응하는 것 같다. 양인 사람과 말할 때에는 숭고한 내용 즉 큰 이야기를 해야 하고, 음인 사람과 말할 때에는 비근하고 세세한 내용 즉 작은 이야기를 해야 한다. 여기에 이어서 나오는 이야기임을 감안하면, 나같으면 이렇게 번역하겠다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;작은 이야기를 할 때에는 더이상 작을 수가 없고, 큰 이야기를 할 때에는 더이상 클 수가 없다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;뭔가 약간 장자 느낌이 있지만, 그것도 마음에 든다.&lt;/p&gt;
+
+&lt;p&gt;변호사 업계도 마찬가지다. 변호사들의 논쟁이나 협상 전략 등에 대해 이야기들 많이 하는데, 솔직히 말하자면 변호사끼리 이야기할 때에는 더 이상 작을 수가 없다. 앞에서 &lt;a href=&quot;/categories/lawyering&quot;&gt;일못변&lt;/a&gt; 시리즈에서 맨날 콤마 이야기하고, 밑줄 이야기하고, m-대시 n-대시 이야기를 하는 이유는 아주 작은 이야기이기 때문이다. 작은 이야기를 할 때에는 더 이상 작을 수가 없다. 그럼에도, 우리끼리는 작은 이야기를 더 좋아한다. 왜냐하면, 이것은 증명이 너무 쉽기 때문이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;m-대시를 써야 하는 데에서 n-대시를 쓰다니, 너 초등학교 어디 나왔어?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 말을 증명하는 것이 얼마나 어려울지, 또 증명에 성공하면 얼마나 파급효과가 클지 하는 것을&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이런 경우에는 제조물책임법이 적용되면 안되고 전통적인 과실의 법리에 따른 배상을 적용하여야 합니다. 그러므로, 여기에서는 과실에 대한 입증이 필수적입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이것을 증명하기가 얼마나 어려울지 또 입증에 성공하면 얼마만큼의 파급효과가 있을지와 비교해 보라. 파급효과가 아니라 하품이 파급되는 정도에 대해서 이야기해야 할 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;그렇지만, 요즘은 m-대시, n-대시 틀리는 변호사 만나기 쉽지 않다. 국보급이다. 그래서, 걸리면 그냥 밥이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;주:&lt;/strong&gt; 이것은 알다시피 &lt;a href=&quot;https://en.wikipedia.org/wiki/Ad_hominem&quot;&gt;argumentum ad hominem&lt;/a&gt; 그러니까 인신공격이다. 그래서? 효과는 아주 좋다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[더워서 철학] 미성년자, 이상주의자, 결벽증자 출입금지</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/guiguzi.html"/>
+   <updated>2018-07-26T02:30:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/guiguzi</id>
+   <content type="html">&lt;p&gt;덥다. 미치게 덥다. 너무 더우면 사람이 미친짓을 한다. 내가 요즘 하는 미친짓은 철학책 읽기이다.&lt;/p&gt;
+
+&lt;p&gt;철학과를 졸업했지만, 그것과는 상관 없다. 내가 요즘들어 철학 특히 동양철학을 가끔씩 읽기 시작한 이유는 언젠가 외국인과 대화를 하다가 뭔가 사자성어를 도저히 설명할 방법이 없었다. 예를 들면, 오월동주같은 것 (적과의 동침? “Sleeping with the enemy”?). 생각해 보니 우리는 고전처럼 생각하지만 도대체 삼국지를 영어로 뭐라 하는지도 모르겠고 (“The Romance of Three Kingdoms”이다) 조조나 유비나 관우를 어떻게 말해야 하는지 (또 말한다고 한들 알아 들을지) 고민했던 적이 있었다. 협상이나 문화의 괴리를 그렇게 크게 느낀 것도 처음이었다. 또 적어도 중국과 우리는 공통점이 더 많다는 생각에 안도하면서도, 중국인 만나면 삼국지 이야기 제대로 할 수 있을까라는 고민도 (조조라고 하면 알아 들을까?)…&lt;/p&gt;
+
+&lt;p&gt;진나라가 중국을 통일하기 전 시대를 전국시대라고 한다 (영어로는 “Warring States Period”). 진나라나 초나라는 당시 (중국 한족 입장에서는) 오랑캐였다. 결국 진나라가 초나라를 이기면서 (그러니까 오랑캐가 오랑캐를 이기면서) 최초로 중국이 통일되었다. 이게 참 묘한 이야기이다. 게다가 더 기묘한 것은 천하를 제패하자마자 그냥 망했다. 그래서 한나라가 정권을 장악하게 된다. 이것이 초한지에서 다루는 이야기이다. 진나라가 망하고 나서 초나라와 한나라가 싸우는 이야기. 장기의 초와 한도 여기에서 나왔다. 한나라가 정권을 잡고, 유교가 지배사상이 되었다. 그 이전을 대체로 제자백가라 한다. 나는 유교를 싫어한다. 딱히 도덕적이지도 않고, 군자적이지도 않아서 그런 것도 있지만, 제자백가의 다양성을 더 좋아한다. 유교가 중국을 하나로 이천년간 엮은 것은 맞겠지만, 나는 그런 획일성과 가식을 싫어한다. 진나라 이야기가 훨씬 재밌다.&lt;/p&gt;
+
+&lt;p&gt;당시 대륙의 미래를 두고 합종책과 연횡책이 있었다. 소진이라는 사람이 제창한 것이 합종책이다. 장의가 이에 대응하여 제안한 것이 연횡책이다. 당시 일곱국가 가운데 가장 서쪽에 있는 오랑캐가 진나라였다 (가장 남쪽의 오랑캐는 초나라). 이 진나라를 견제하기 위하여 나머지 여섯 나라가 힘을 합치자는 것이 합종이다. 한 마디로 세로로 뭉쳐서 진나라를 견제하자는 것이다 (진나라와 나머지 여섯 나라 사이에 세로로 줄을 긋자는 뜻으로 보인다). 장의는 이 세로주의에 대항하여 가로주의를 주창한다. 연횡이다. 진나라 옆에 있는 나라는 위에서부터 조, 위, 한나라이다 (맨 아래 초나라도 있다). 그러니까, 결국 합종이란 조, 위, 한, 초가 진나라에 대응하여 연합전선을 형성하자는 것이다. 나머지 두 나라 연과 제는 어차피 너무 멀리 있어서 강건너 불구경… 이게 천재적인 것은 원래 외교적으로 가장 안정된 시스템은 3개의 국가가 있는 경우라고 한다. 적의 적은 친구인 것이다. 3개를 넘어서면 일단 헷갈리기 시작한다. “그럼 적의 적의 적은?” 지금의 중동을 보라.&lt;/p&gt;
+
+&lt;p&gt;진나라가 그만큼 위협적이어서 소진이 합종책을 내세웠는지 아니면 그 반대인지 모르겠지만, 단 하나의 적을 내세운 것은 천재적이었다. 여기에 비하면 장의의 연횡책이라는 것은 개념적으로는 그저 합종책을 깨부수는 것이었다. 그가 제안한 것은 여러 나라가 각자 자기 이익을 따라 움직이는 것, 그러니까 반진 통일전선의 해체였다. 그는 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“사실 합종이라는 것은 백마를 죽여 혈맹을 맺고 천하를 모두 형제로 만들기 위한 것이었습니다. 그래서 한 부모의 형제들이 모여 단결한 것입니다. 그런데 이익을 좇아 서로 뺏고 심지어 골육상잔을 벌이는 이유는 무엇이며, 또 이렇게 서로 이해관계가 다른 나라들이 뒤섞여 있는 이유는 무엇입니까? 이렇게 많은 나라가 합치는 것은 그저 잠시일 뿐입니다.” — 박찬철, 공원국 지음, “귀곡자,” 225쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그는 이 말을 하기 위해 장장 4년을 위나라에 머물렀다고 한다.&lt;/p&gt;
+
+&lt;p&gt;그나저나, 애초에 전국시대를 끝내는 프레임을 짠 소진은 원래 주나라 사람인데, 공부는 제나라에 가서 했다. 주나라와 진나라와 조나라에서 모두 퇴짜맞은 다음 연나라에서 관심을 보인다. 그렇게 해서, 연나라의 지원을 받아 조, 한, 위, 제, 초를 돌면서 설득해서 기원전 333년 반진 동맹을 형성한다 (&lt;a href=&quot;https://namu.wiki/w/%EC%86%8C%EC%A7%84(%EC%A0%84%EA%B5%AD%EC%8B%9C%EB%8C%80)&quot;&gt;나무위키 소진&lt;/a&gt; 참고).&lt;/p&gt;
+
+&lt;p&gt;장의는 소진의 도움으로 진나라에서 일하게 되는데, 역설적으로 그의 가장 큰 공은 소진의 종횡을 깬 것이다. 연횡은 합종의 안티테제였을 뿐이다. 연횡으로 인해 진나라가 천하를 통일하는데, 연횡은 합종이 없었다면 불가능한 전술이었다. 둘은 친구이다. 게다가 둘다 같은 스승에게서 배웠다. 귀곡자이다. 이들처럼 떠돌아다니면서 전술을 전도하고 다니는 사람들을 종횡가라고 한다. 귀곡자는 그러니까 종횡가의 우두머리이다. 이렇게 보면, 그는 전국시대의 실세이자 전국시대의 로드맵을 만들고, 진나라 통일의 교두보를 만든 인물인 셈이다. 그의 사상을 흔히 더러운 술책으로, 음모와 모략과 술책과 술법과 심지어 도술로 간주한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;‘망언으로 세상을 어지럽히고’ (유종원의 변귀곡자) ‘모두 하찮은 사내나 뱀과 쥐들의 지혜’ (송렴의 귀곡자변)라고 혹평당하기도 했다. — 김영식 옮김, 귀곡자 16쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;점점 좋아지려고 한다. 나중에는 도술과 신선방술지사와 점치는 사람들까지도 자기네 편이라고 우긴다. 어쩌면 철학사상 가장 매력적인 사람일 것이다. 이런 사람은 진지하게 공부해 봐야 한다. 그의 책 제1편, 열고 닫음 (패합)을 보면, 좀 어렵다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;입을 열어 자기 생각을 보이는 것은 상대의 마음과 함께하는 것이고, 입을 닫아 자기 생각을 감추는 것은 상대의 성의와 달리하는 것이다. — 위 책 26쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;라고 해 놓고는 바로 아래에서,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;만약 열어서 움직이고자 한다면 계획의 주밀함을 귀히 여겨야 하고, 만약 닫고서 가만히 있고자 한다면 은밀함을 귀히 여겨야 한다 … 열어서 움직이는 것은 상대의 실정을 헤아리기 위함이며, 닫고서 가만히 있는 것은 상대의 성심과 맺어지기 위함이다. 모두가 상대 역량의 경중을 달아보기 위한 것으로 그런 후에야 모략의 표준을 확정하게 되니, 성인은 그래서 이 때문에 숙고한다. — 위 책 26–27쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;뭔가 모순되는 것 같다. 음양과 천하의 도로 언제 입닥치고 있을지 설명해 주고 있는 것이다. 덤으로 언제 말할지도… 그리고, 어떻게 말할지도:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;성정이 양인 사람과 말할 경우에는 숭고한 내용에 의탁해야 하고, 성정이 음인 사람과 말할 경우에는 비근하고 세세한 내용에 의탁해야 하니, 비천한 언사로는 지향이 작은 사람을 대응하고, 고상한 언사로는 지향이 원대한 사람을 대응한다. — 위 책 30쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;사실은 성정이 음이면서 자기는 성정이 양이라고 생각하는 사람한테는?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;작은 일에서부터 착수하면 더 작아질 수는 없는 것이며, 큰 일에서부터 착수하면 더 커질 수는 없는 것이다. — 위 책 31쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이제는 일하는 방법까지도 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;양기로써 활동하는 사람은 덕행으로 서로 감화해야 하며, 음기로써 조용히 있는 사람은 드러낸 모양으로 서로 이뤄줘야 한다. — 위 책 31쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;뭔가 당연한 것 같으면서도 뭔가 심오하다. 좀 감당이 안된다.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>변호사가 ICO 업무를 해야하는가?</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/lawyer-in-ico.html"/>
+   <updated>2018-07-25T01:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/lawyer-in-ico</id>
+   <content type="html">&lt;p&gt;요즘 소셜네트워크나 뉴스를 보면 좀 불편한게, ICO 업무를 수행하였음을 “자랑”하는 로펌이 점점 늘어나고 있다. 이게 도대체 무엇이며, 과연 변호사가 하는 역할은 무엇인가? 무엇보다도 이걸 해야 하는가? 변호사는 어떤 역할을 해야 하며, 어떻게 투자자를 보호해야 하는가? 이를 위해 로펌에서 지켜야 할 절차는 무엇인가? 이런 문제에 대한 대답은 커녕 진지한 질문도 없는 것 같아 불편하다. 어떤 때는 머리칼이 쭈뼛 선다.&lt;/p&gt;
+
+&lt;p&gt;0. 스마트계약(smart contract)은 개념상 변호사가 필요 없다. 왜냐하면, 일반계약이 하는 일을 코드가 자동으로 이행하게 하기 때문이다. 그럼, 도대체 변호사는 뭘하는걸까?&lt;/p&gt;
+
+&lt;p&gt;1. 맨처음부터 이야기를 해 보자면, 비트코인이나 기타 크립토애셋(cryptoasset)에 투자하는 사람들이 모두 테크노리버테리언(technolibertarian)이어서이거나 아니면 아나키즘이야말로 인류의 미래를 믿기 때문은 아닐 것이다. 한 마디로, 크립토애셋 투자자들은 대박을 바란다. 이들이 보기에 기타 거래소에 비해 비트코인 거래소가 갖는 장점은 24시간 개장해 있으며, 사이드브레이크니 뭐니 하는 거래 상한선, 하한선에 대한 규제가 없다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;2. ICO는 또 뭐냐? Initial Coin Offering이라고 한다. 비상장회사의 상장을 뜻하는 IPO와 (일부러) 비슷한 이름을 내세웠다. 그 차이는 하늘과 땅이다. 일단 상장하는 곳이 기존의 증권거래소가 아니라, 코인거래소이다. 이들은 증권거래소만큼 엄격한 규칙을 따르지 않는다.&lt;/p&gt;
+
+&lt;p&gt;이런 규칙을 따르지 않는 것이 경쟁력이라고 자랑하는 경우도 많지만, 이런 규칙은 대부분 투자자를 보호하기 위한 것이다.&lt;/p&gt;
+
+&lt;p&gt;3. 그리고, IPO에서 주식을 사는자는 회사의 지분을 받는 반면, ICO에 참여하는 자는 동전을 받는다. 그것도 가상동전을… 주식이나 지분은… 없다. 이론적으로 회사의 주식은 회사의 가치가 올라가면 올라가고, 내려가면 내려간다. 동전은 회사의 가치와는 무관하게 동전 자체의 수요공급 법칙에 따를 뿐이다.&lt;/p&gt;
+
+&lt;p&gt;4. 여기까지 보면, 이것은 창업자들에게는 꿈의 신세계이다. 이 말은 이것은 투자자에게는 악몽이라는 뜻이다.&lt;/p&gt;
+
+&lt;p&gt;5. 변호사는 ICO를 하는 자, 즉 창업자와 계약한다. 그렇다고 하여, 테이블의 반대편에 있는 자 즉 투자자를 완전히 무시해도 되는가? 당연 아니다. IPO의 경우에는 법에 투자자를 보호하는 여러 장치가 있으므로, 창업자가 너무 멀리 나가면 굳이 창업자와 각을 세우지 않으면서도 투자자를 보호할 수 있다. 법이란 것은 따지고 보면 지켜야 하는 것이니까… 그리고, 고객이 법을 위반하지 않도록 하는 것이 변호사의 임무이니까… 그렇다면, 이런 협상의 역학관계는 ICO에서는 깨어질 수 밖에 없다. 투자자를 보호하는 법이 없다보니, 사기나 투자자에게 아주 불리한 내용을 창업자가 강제할 경우, 이것을 저지할 방법이 … 모호하다 (없다고는 말 못하겠다).&lt;/p&gt;
+
+&lt;p&gt;6. 그렇다면, 여기에서 변호사는 무엇을 하는 것일까? 아마도 여러 국가의 법률환경에 대한 리서치, 어쩌면 크립토애셋이 특정 국가의 법률상 주식이 아니라는 (따라서 규제를 받지 않는다는) 의견서 (그런가?), 어쩌면 코인거래소와의 협상…&lt;/p&gt;
+
+&lt;p&gt;7. IPO와 비교해 보라. 변호사의 역할은 아주 제한적이다. 당연하다. 애초에 스마트컨트랙트 아닌가. 창업자의 독주를 막을 방법이 없다. 즉, 변호사의 역할은 거의 “사기”에 합법성의 껍질을 씌우는 장식 이상이 아닐 경우가 많을 것이다. 예를 들어, 변호사가 한 일은 그저 여러 국가의 법률환경을 리서치했을 뿐일 수도 있는데, 창업자는 투자자를 만나서 “보세요, 이 로펌에서도 이 ICO를 공식적으로 인정했단 말이죠”라고 말할 수 있는 것이다.&lt;/p&gt;
+
+&lt;p&gt;8. 만약 로펌이 제대로 일을 한다면 코드를 “검증”해야 한다. 예를 들어, 마케팅 자료 (묘하게도 이 업계에서는 이걸 백서라고 한다)에서 공급을 제한한다고 규정하였다면, 변호사는 최소한 실제로 이것이 코드로 구현되어 있는지 확인해야 한다. 그렇지 않은 경우도 많다. 심지어는 ICO를 하는 자가 코드를 임의로 바꿀 수 있도록 되어 있는 경우도 많다. 이것은 명백한 사기이다. 변호사가 오로지 백서만 보고, 적법하다고 의견서를 쓴다면, 나중에 어떻게 감당하려고 하는 걸까?&lt;/p&gt;
+
+&lt;p&gt;9. 그러니까, 변호사가 할 일은 백서의 내용이 현행법에 위배되는지만 보아야 하는 것이 아니고, 코인의 코드가 백서와 일치하는지도 확인해야 한다. 그럴 역량이 있는가?&lt;/p&gt;
+
+&lt;p&gt;10. 심지어는 이 모든 것이 다 일치하더라도, 결국은 수요가 없어서 망할 수도 있다. 이것은 딱히 변호사 책임은 아닐 것이다. 그렇지만, 이 모든 것이 일치함에도 불구하고, 애초에 창업자는 이걸 제대로 키울 마음이 없고, 그냥 한탕할 의도였다면? 예를 들어, 싱가폴에 ICO를 한다고 하여, 투자자를 모으고, 싱가폴에 회사를 설립하여 … 이러고는 백서고 뭐고 모조리 무시하고 그냥 모은 돈을 가지고 도망가 버렸다면? 코인 자체에 투자자를 보호할 어떤 장치가 있는가? 없다. 주식은 그나마 회사의 자산에 대한 권리 (잔존권리)이다. 코인은… 회사나 창업자나 재산과 관련하여 아무 것도 아니다.&lt;/p&gt;
+
+&lt;p&gt;11. 심지어 스톡옵션처럼 창업자와 로펌 등 자문사가 코인을 특정 기간 뒤에 받도록 하는 경우라면 (“vesting”이라고 한다) 문제는 더 복잡해진다. 이래도 되는가? 적어도 미국 변호사로서는 이것은 거의 확실하게 변호사법 위반일 것이다. 아직은 이런 케이스가 없겠지만…&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>오픈소스 도구를 이용한 법률문서 코딩과 문서작성 자동화</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/document-automation.html"/>
+   <updated>2018-07-19T02:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/document-automation</id>
+   <content type="html">&lt;p&gt;변호사는 자고로 능력이 있어야 하고, 기술을 잘 활용할 수 있어야 한다 (&lt;a href=&quot;/blog/22018/06/technological-competence.html&quot;&gt;지난번 글&lt;/a&gt; 참고). 변호사는 많은 경우 시간당 보수를 청구한다. 그렇다면 기술을 잘 몰라서 과다청구하게 되면 비윤리적인가? 그렇다. 위 글에서도 말한 것처럼 변호사가 코더가 아닌 이상 기술 발전을 아주 잘 알 필요는 없지만, 합리적인 수준에서 기술을 잘 활용할 수 있어야 한다. 옛날에는 부하변호사에게 시켰던 일들—예를 들어, 문서 자동화(document automation 또는 document assembly)을 거의 직접 한다. 기술 발전의 혜택이다. 요즘 (미국) 법조계에서 화두이기도 하다.&lt;/p&gt;
+
+&lt;p&gt;이를 위한 솔루션도 많다. 어떤 블로그 글에서는 직접 하는 것이 가장 좋다고 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이상적으로는 변호사들이 직접 문서를 자동화하는 것이 좋다. 가장 효과적인 시스템은 변호사들이 마이크로소프트 워드를 이용하여 자기 양식을 직접 자동화함으로써 IT 전문가를 활용하여 법률문서 템플릿을 자동화할 필요를 없애는 것이다. 이렇게 하면, 업무를 주제에 대하여 전문성이 없는 사람에게 시킬 때 어쩔 수 없이 발생하는 리스크를 없앨 수 있고 템플릿 유지를 쉽게 한다. 변호사가 자기의 문서 템플릿을 자동화뿐 아니라 &lt;em&gt;유지를&lt;/em&gt; 할 수 있게 하는 문서 자동화 소프트웨어를 사용하는 것만이 편지병합 이상의 무엇을 추구하는 프로젝트에는 유일하게 지속가능한 솔루션이다. — 
+&lt;a href=&quot;http://www.lawtechnologytoday.org/2015/01/document-automation/&quot;&gt;What is document automation?&lt;/a&gt;에서; 번역은 내가&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;나는 그냥 직접 한다. 소프트웨어는 변한다. 유행도 변한다. 그리고 내가 마이크로소프트 워드를 잘 사용하지 않는 이유를 여러차례 이야기했지만, 사실 가장 큰 이유는 문서를 텍스트로 저장해야만 문서자동화뿐 아니라 계약관리와 버전관리에 유용하기 때문이다. 이 과정을 궁금해 하는 고객들도 꽤 있었고, 고객 또는 경우에 따라 다른 변호사와 협업할 때도 유용할 것 같고, 나도 내 나름 정리해 두면 좋을 것 같아 정리해 둔다. 그리고, 지금까지는 [일못변] 시리즈에서 남들 못하는 것 지적질만 했기 때문에, 나는 어떻게 하는지도 정리해야 하겠다고 생각이 들었다. 나름대로는 오랜 시행착오를 거쳐 정립된 나만의 방법이다.&lt;/p&gt;
+
+&lt;p&gt;아래에서는 내가 일을 진행하는 방법을 간략히 정리해 보고자 한다. 편의상 예를 들어, 한 소프트웨어 회사가 앱을 만들었는데 이 앱을 이용하여 미국시장에 진출하고자 하는 경우를 생각해 보자. 상담 결과 법률환경 등에 대한 리서치 결과와 로드맵을 정리한 리서치 의견서와 이를 반영한 약관, 개인정보 사용에 대한 동의 및 &lt;a href=&quot;https://en.wikipedia.org/wiki/Privacy_policy&quot;&gt;Privacy Policy&lt;/a&gt;를 작성하기로 하였다. 참고로, Privacy Policy는 개인정보의 수집과 사용과 관리에 대한 회사의 방침을 기술한 문서이다. 일종의 유행같은 것이다. 새로 나온 핸드폰처럼 꼭 없어도 되지만, 일단 가지려면 제대로 된 걸 가져야 한다. 꼭 있어야 하는 이유는 남들이 다 가지고 있기 때문이다. 이게 회사의 운영 현실과 맞지 않으면 사기로 처벌받을 수도 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;makefile로-로드맵-만들기&quot;&gt;makefile로 로드맵 만들기&lt;/h2&gt;
+
+&lt;p&gt;일단 프로젝트를 시작하면, 나는 가장 먼저 &lt;a href=&quot;https://en.wikipedia.org/wiki/Makefile&quot;&gt;makefile&lt;/a&gt;을 만든다. 예를 들면 다음과 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;MEMO&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;shell&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%F&lt;span class=&quot;nf&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-memo&lt;/span&gt;.pdf
+&lt;span class=&quot;nv&quot;&gt;TERMS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;shell&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%F&lt;span class=&quot;nf&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-terms-and-conditions&lt;/span&gt;.pdf
+&lt;span class=&quot;nv&quot;&gt;CONSENT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;shell&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%F&lt;span class=&quot;nf&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-consent&lt;/span&gt;.pdf
+&lt;span class=&quot;nv&quot;&gt;PRIVACYPOLICY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;shell&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%F&lt;span class=&quot;nf&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-privacy-policy&lt;/span&gt;.pdf
+&lt;span class=&quot;nv&quot;&gt;YAML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; common.yaml
+&lt;span class=&quot;nv&quot;&gt;CONTRACTTEMPLATE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; contractTemplate.tex
+&lt;span class=&quot;nv&quot;&gt;MEMOTEMPLATE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; memoTemplate.tex
+&lt;span class=&quot;nv&quot;&gt;ENGINE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; lualatex
+&lt;span class=&quot;nv&quot;&gt;MEMODRAFT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; memo.md
+&lt;span class=&quot;nv&quot;&gt;TERMSDRAFT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; terms.md
+&lt;span class=&quot;nv&quot;&gt;CONSENTDRAFT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; consent.md
+&lt;span class=&quot;nv&quot;&gt;PRIVACYPOLICYDRAFT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; privacyPolicy.md
+&lt;span class=&quot;nv&quot;&gt;BIBFILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; research.bib
+
+&lt;span class=&quot;nl&quot;&gt;memo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(YAML) $(MEMOTEMPLATE) $(MEMODRAFT) $(BIBFILE)&lt;/span&gt;
+	pandoc &lt;span class=&quot;nt&quot;&gt;--filter&lt;/span&gt; pandoc-citeproc &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(MEMO)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(YAML)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(MEMODRAFT)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$(MEMOTEMPLATE)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pdf-engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$(ENGINE)&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;terms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(YAML) $(CONTRACTTEMPLATE) $(TERMSDRAFT)&lt;/span&gt;
+	pandoc &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(TERMS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(YAML)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(TERMSDRAFT)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$(CONTRACTTEMPLATE)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pdf-engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$(ENGINE)&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;consent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(YAML) $(CONTRACTTEMPLATE) $(CONSENTDRAFT)&lt;/span&gt;
+	pandoc &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CONSENT)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(YAML)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CONSENTDRAFT)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$(CONTRACTTEMPLATE)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pdf-engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$(ENGINE)&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;privacypolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(YAML) $(CONTRACTTERMS) $(PRIVACYPOLICYDRAFT)&lt;/span&gt;
+	pandoc &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(PRIVACYPOLICY)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(YAML)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(PRIVACYPOLICYDRAFT)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$(CONTRACTTEMPLATE)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pdf-engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$(ENGINE)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;makefile&lt;/code&gt;이 무엇인지 아는 사람은 금방 이해했겠지만, 여기에는 프로젝트 전체의 로드맵이 있다. 사실 프로젝트 관리에 &lt;code class=&quot;highlighter-rouge&quot;&gt;makefile&lt;/code&gt;보다 좋은 것은 없다. 모든 결과물에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;$(shell date +%F)&lt;/code&gt;가 붙어 있으므로, 자동으로 맨 앞에 날짜가 추가된다. 예를 들어, 메모 파일의 최종본은 (오늘 컴파일했다면) &lt;code class=&quot;highlighter-rouge&quot;&gt;2018-07-19-memo.pdf&lt;/code&gt;가 된다. 여기에서는 4건의 결과물이 있다.&lt;/p&gt;
+
+&lt;p&gt;그리고, 모든 프로젝트에 공통으로 적용되는 내용 (예를 들어, 고객명, 주소, 날짜 등)은 모두 &lt;code class=&quot;highlighter-rouge&quot;&gt;YAML&lt;/code&gt; 파일 하나에 기록하여 공유한다. 그리고, 두 개의 템플릿이 있다. 계약서용 템플릿이 있고, 메모/의견서용 템플릿이 있다. 엔진은 &lt;code class=&quot;highlighter-rouge&quot;&gt;lualatex&lt;/code&gt;을 사용한다. 출력물을 만드는 것은 &lt;code class=&quot;highlighter-rouge&quot;&gt;pandoc&lt;/code&gt;을 사용한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 다섯 개의 초안을 작성하여야 한다. 이 파일들을 솔직히 &lt;code class=&quot;highlighter-rouge&quot;&gt;tex&lt;/code&gt;으로 작성하는 것이 더 편하다. 마크다운을 아주 좋아하지만, 심각한 문제는 커멘트를 할 수 있는 공식적인 방식이 없다는 것이다. 이 문제는 조금 더 심각한게 &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; 자체에서도 커멘트를 사용할 수 없다. &lt;code class=&quot;highlighter-rouge&quot;&gt;github&lt;/code&gt;이나 &lt;code class=&quot;highlighter-rouge&quot;&gt;gitlab&lt;/code&gt;의 &lt;code class=&quot;highlighter-rouge&quot;&gt;issue&lt;/code&gt; 같은 서비스를 이용해야 한다. 여기에 대해서는 나중에 다시 이야기하겠다. 한 가지 장점이라면, 만약 고객이 소스파일을 원하거나 소스파일로 협업하기를 원할 경우에는 마크다운이 &lt;code class=&quot;highlighter-rouge&quot;&gt;tex&lt;/code&gt; 파일보다는 조금 더 읽기 편하고, 작업하기 편하다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;이제 해야하는 것은 각각의 파일들을 만드는 것 뿐이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;문서자동화&quot;&gt;문서자동화&lt;/h2&gt;
+
+&lt;p&gt;이것만으로도 훌륭한 문서자동화가 가능하다. 문제가 복잡하거나, 계약이 좀 더 복잡하다면, 두 가지 방법이 있다. 첫째는 여러 파일로 나누는 것이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;latex&lt;/code&gt;의 &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;k&quot;&gt;\input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;&lt;/code&gt;을 사용하거나, 아니면 &lt;code class=&quot;highlighter-rouge&quot;&gt;md&lt;/code&gt; 파일을 여럿으로 나누어 위 &lt;code class=&quot;highlighter-rouge&quot;&gt;makefile&lt;/code&gt;에서 순서대로 정렬해 두기만 하면 된다.&lt;/p&gt;
+
+&lt;p&gt;두 번째 방법은 &lt;code class=&quot;highlighter-rouge&quot;&gt;pandoc template&lt;/code&gt;를 만들어 두는 것이다. 이것은 흔히 자주 사용하는 계약, 예를 들어 자문계약서 등의 경우에 유용하다. 항상 포함되는 조항 등은 템플릿을 만들어 여기 포함시켜 두고, 특정 경우에만 적용되는 것은 별도 파일에 기록하는 방식이다.&lt;/p&gt;
+
+&lt;p&gt;나름 꽤나 오랫동안 수정과 변경을 거쳐 정리한 방법이지만, 아주 효율적이다. 나는 이 방법을 통하여 계약서 작성이나 프로젝트 진행 시간을 크게 줄였다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>변호사의 글쓰기</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/lawyers-writing.html"/>
+   <updated>2018-07-18T10:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/lawyers-writing</id>
+   <content type="html">&lt;p&gt;오래전 1–2년차였을때, 나름 큰 로펌에 있을 때, 편지(이메일) 써 달라는 부탁을 많이 받았었다. 이상하게도 여러번 이메일을 보내도 대답도 하지 않던 사람들이 내가 쓰면 답을 하고 일을 한다는 것이었다. 나는 이런 일이 아주 싫었다. 따로 청구를 할 수도 없는 일인데, 시간은 아주 많이 걸렸다. 무슨 일인지도 알아야 하고, 과거 연락한 내용도 다 봐야 하고… 내가 이메일을 보내면 답을 하는 이유는 간단했다. 나는 그게 얼마나 어려운 일인지 알고 있었다. 글로 사람을 움직이는 것은 거의 불가능하다. 그러려면, 나중에야 어찌됐든, 첫 걸음은 무조건 글을 읽게 해야 한다. 그러려면, 첫걸음은 받는 사람이 글을 &lt;strong&gt;읽기 시작하게&lt;/strong&gt; 만들어야 하고, 그 다음에는 &lt;strong&gt;글을 다 읽게&lt;/strong&gt; 만들어야 한다. 답장을 하고싶게 만드는 것은 다음 단계이다.&lt;/p&gt;
+
+&lt;p&gt;변호사에게 글쓰기가 중요한 것은 사람이 행동하게 만드는 글쓰기이기 때문이다. 모든 글쓰기가 다 그런 것 아니냐고 말할 수도 있겠다. 변호사의 글쓰기가 다른 글쓰기와 다른 점은 그 가치가 곧바로 돈으로 — 금전적 가치로 — 환산할 수 있다는 것이다. 글빨로 얼마짜리 판결을 이끌고, 얼마짜리 협상을 진행하고, 얼마짜리 무엇을 강력하게 저항하는 소를 끌고 가듯 끌고 가야 한다. 끔찍하게 싫은 일이다.&lt;/p&gt;
+
+&lt;p&gt;가장 어려운 일은 읽고 싶게 만드는 것이다. 미국에만 있는 특이한 전통 가운데 &lt;a href=&quot;https://en.wikipedia.org/wiki/Amicus_curiae&quot;&gt;amicus brief&lt;/a&gt;라는게 있다. “amicus curiae”라고도 한다. “법원의 친구”라는 말이다. 소송의 당사자가 아니고, 당사자로 참가할 수는 없지만, 소송의 결과에 이해관계가 있는 자가 “사건과 관련이 있는 정보, 전문성 또는 통찰를 제공하는” 준비서면이라고 위키피디어는 규정한다. 누군가 부탁해서 쓰는 것일 수도 있고, 그냥 자발적으로 쓰는 것일 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;영미법에만 특수한 이야기지만, 이게 가능한 이야기는 판례법 국가에서는 판례가 법이기 때문이다. 이 말은 (우리가 사회시간에 배운 것과는 다르게) 법은 판사가 만드는 것이라는 뜻이다. 그러니, 당사자는 아니지만 이해관계가 있는 당사자는 많게 마련이다.&lt;/p&gt;
+
+&lt;p&gt;믿거나말거나 &lt;a href=&quot;http://www.scotusblog.com&quot;&gt;미국 대법원에서 운영하는 블로그&lt;/a&gt;가 있다. 미국 전체에 영향을 끼치는 판결의 경우에는 100건이 넘는 amicus brief를 받기도 한다고 한다 (&lt;a href=&quot;http://www.scotusblog.com/2018/07/empirical-scotus-getting-rid-of-those-amicus-blues/&quot;&gt;Adam Feldman, Empirical SCOTUS: Getting rid of those amicus blues&lt;/a&gt;). 사실 거의 안읽는다고도 한다.&lt;/p&gt;
+
+&lt;p&gt;법정 글쓰기는 아주 까다롭다. 포맷과 구조와 형식을 철저히 맞추어야 한다. 심지어는 폰트와 크기, 행간에 대해서까지, 심지어는 종이 두께까지 규정한 경우도 많다. 이런 것으로 눈길을 끌 수가 없다. 이런 걸로 눈길을 끌려 하면 눈살을 찌푸린다. 잘 쓴 amicus brief의 &lt;a href=&quot;https://www.supremecourt.gov/DocketPDF/17/17-130/37160/20180228234314290_17-130%20tsac%20Utah%20et%20al.pdf&quot;&gt;예&lt;/a&gt;를 보라. 가장 제약이 많은 글쓰기이다.&lt;/p&gt;
+
+&lt;p&gt;당연히 글을 잘썼는지 확인하고 점수를 매기는 소프트웨어가 많이 사용된다. 위에서 인용한 미국 대법원 블로그의 글은 그 중에 하나인 &lt;a href=&quot;https://briefcatch.com/&quot;&gt;BriefCatch&lt;/a&gt;를 이용하여 제출된 준비서면을 분석한 글이다. 이 소프트웨어는 다섯 가지 기준으로 글을 분석해 준다. 글의 흐름 (Flow), 쉬운 영어 (Plain English), 펀치 (Punchiness), 읽는 행복감 (Reading Happiness) 및 문장 길이 (Sentence Length)이다.&lt;/p&gt;
+
+&lt;p&gt;스스로도 이 다섯가지 기준을 항상 염두에 두기만 해도 상당히 영향력 있는 글을 쓸 수 있다. 위 글에서 인용한 &lt;a href=&quot;https://www.lawsitesblog.com/2018/05/putting-justice-gorsuch-to-the-test-of-three-legal-editing-programs.html&quot;&gt;다른 블로그 글&lt;/a&gt;에서는 위 소프트웨어 이외에도 자주 사용하는 두 가지 소프트웨어 &lt;a href=&quot;http://www.intelligentediting.com/&quot;&gt;PerfectIt&lt;/a&gt;과 &lt;a href=&quot;https://www.wordrake.com/&quot;&gt;WordRake&lt;/a&gt; 이야기를 한다.&lt;/p&gt;
+
+&lt;p&gt;굳이 이런 소프트웨어를 쓰지 않더라도 임팩트 있는 글을 쓸 수 있다. 임팩트 있는 글의 첫걸음은 일단 읽기 시작하게 하는 것이고, 그 다음에는 끝까지 읽게 만드는 것이다. 궁극적인 목표는 행동을 하게 하는 것이지만, 그것은 다음 문제이다.&lt;/p&gt;
+
+&lt;p&gt;기억하라. 읽고 싶은 글은 흐름이 부드럽고, 쉬운 영어를 쓰며, 펀치가 있고, 글을 읽는 것이 행복하게 느껴져야 하며, 짧은 문장을 써야 한다. 글로 사람을 움직이는 첫걸음이다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>시카리오와 토마스 프리드만의 탈탈탈냉전</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/sicario.html"/>
+   <updated>2018-07-16T22:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/sicario</id>
+   <content type="html">&lt;p&gt;나는 일년에 보는 영화의 절반 이상을 여름에 본다. 에어컨 때문이다. 아니, 더위 때문이다. 올해도 본격적으로 영화의 계절이 시작되었다.&lt;/p&gt;
+
+&lt;p&gt;“시카리오: 데이 오브 솔다도”를 보러 갔다. 일편 “시카리오: 암살자의 도시”가 너무 인상적이었기 때문이었다. 1편은 너무 잘 만들었고, 여기에 반대하는 사람은 없다. 예상치 못한 놀라움을 주는 영화였다. 2편에 대해서는 호불호가 갈리지만, 나는 좋았다. 뜬금없이 토마스 프리드만의 “Thank You for Being Late”가 생각났다.&lt;/p&gt;
+
+&lt;p&gt;그는 제9장에서 탈탈냉전 이야기를 한다. 그러니까, … 냉전이 끝난 세계가 탈냉전, 탈냉전이 끝난 세계가 탈탈냉전, 탈탈냉전이 끝난 세계가 탈탈탈냉전…&lt;/p&gt;
+
+&lt;p&gt;세네갈의 서북쪽 끝단에는 은디아마게네(Ndiamaguene: 발음이 제대로인가?)라는 마을이 있다. 그는 이 마을이 종점 다음역이라고 한다. 말 그대로 절망이 자리잡은 마을이다. 지구온난화로 말미암아 어떤 것도 자라지 않는다. 언제나 여름이고, 불볕더위이다. 다른 곳으로 갈 수 밖에 없다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;운이 좋은 소수는 리비아를 통해서 스페인이나 독일로 밀수된다. 리비아는 아프리카의 코르크마개같은 역할을 한 것 같다. 미국과 나토가 리비아의 독재자를 무찌르고 — 그러나 신질서를 만들 수 있는 군대를 주둔시키지 않고 떠났을 때 — 사실상 아프리카의 코르크 마개를 따버린 셈이었다. 그 결과 지중해 해안으로 가는 거대한 통로를 만들어 버린 셈이었다. — &lt;em&gt;Thomas Friedman, Thank You for Being Late&lt;/em&gt;에서; 번역은 내가&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;지금 유럽의 이민 위기와 포퓰리즘은 리비아가 망했기 때문이다. 탈탈냉전 시대의 특징은 첫째, 동맹은 적보다 빠르게 우리를 죽일 수 있다. 예를 들어, 그리스가 망하거나 브랙싯 이후 EU가 망하면 아주 골치아프다. 둘째, 적이 망하는 것은 적이 잘되는 것보다 더 위험하다. 예를 들어, 러시아가 망하면 생기는 문제는 핵무기, 마피아, 마약, 사이버범죄의 증대이다. 중국에 대해서는… 음… 그는 이렇게 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;중국이 잘돼봤자 생기는 일은 이웃 국가들을 협박하고, 남지나해에 섬을 더 장악하고, 해외 투자자들에게 더 많은 것을 요구하는 정도일 뿐이다. 반대로 중국이 망하면 미국 주식시장이 망하고, 세계적 경기불황 내지는 그보다 더 심한 일이 생길 수 있다. — 상동&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그러니까, 그가 보기에 탈탈냉전 시대의 가장 큰 문제는 적이 너무 강한 것이 아니다. 그건 냉전시대 이야기이다. 지금은 적이 너무 약해지는게 문제이다. 왜냐하면, 냉전이 끝난 시대에 아무도 망하는 국가를 도와주지 않기 때문이다. 국가가 “해체”되는 것이다. 그는 헨리 키신저의 말을 인용한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;역사적으로 평화의 문제는 힘의 축적에 기인한다. 잠재적인 주도국가가 이웃의 안전을 위협하는 것이다. 우리 시대에 평하는 힘의 해체때문이다. 권위가 붕괴하여 ‘비지배 공간’이 만들어지고 이것이 폭력을 국경과 지역을 넘어서 전파하는 것이다. — 상동&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이게 지금 유럽이 처한 문제이다. 시카리오 2가 묘사하는 멕시코 국경 문제도 동일한 문제이다. 시카리오 1에서 혼란에 빠진 FBI 요원을 누군가 데리고 옥상에 올라가서 혼란에 빠진 멕시코를 보여주면서 이렇게 말한다. “닭의 모가지를 자르면 저렇게 돼.”&lt;/p&gt;
+
+&lt;p&gt;리비아에서 모가지를 자르니 유럽이 몸살을 앓는다.&lt;/p&gt;
+
+&lt;p&gt;문들 우리나라에는 테러리즘과 총기와 마약과 난민문제가 많지 않은 것이 우리나라의 유능한 경찰력 때문이 아니라 북한 때문이라는 생각이 들었다. 정확히 말하자면, 한국으로 들어올 수 있는 육로가 없기 때문에…&lt;/p&gt;
+
+&lt;p&gt;전편에서 목표는 소노라 카르텔을 박멸하고, 마약 카르텔을 근절시키는 것이 아니었다. 그냥 적당히 하고, 또 적당히 타협할 줄 아는 메데인 카르텔의 힘을 다시 복귀시키는 것이었다.&lt;/p&gt;
+
+&lt;p&gt;영화관을 나오니 아직 덥다. 국제정치는 원래 이런 것이다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[독서노트] 애자일 경영은 친위쿠테타</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/agile-management.html"/>
+   <updated>2018-07-16T10:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/agile-management</id>
+   <content type="html">&lt;p&gt;개념을 정확히 구분할 필요가 있다. 애자일(agile)은 프로젝트 관리 방법이다. 지금 읽고 있는 Stephan Denning의 “The Age of Agile”은 경영기법에 대한 것이다. 그는 애자일 방법을 경영 전체에 도입하고자 하는 것이다. 게다가, 그는 이것을 하기 쉬운 스타트업이 아니라, 기존에 관료적으로 운영되는 회사에, 대기업에 애자일을 적용하자고 주창하고 있는 것이다.&lt;/p&gt;
+
+&lt;p&gt;지금 절반을 읽었다. 사실 다 읽었다고 봐도 무방하다. 책은 2부로 나뉘어져 있는데, 두번째 부분은 경영진이 빠지기 쉬운 함정을 나열하고 있다. 1부를 다 읽었다. 1부가 핵심이므로 다 읽었다고 봐도 무방하다. 여전히 저자가 자기가 하는 말이 뭔지 잘 모른다는 느낌을 지울 수 없다. 애자일 경영의 핵심으로 그는 팀중심, 고객중심, 네트워크 중심의 세 가지를 내세우고 있다. 1부는 7장으로 나뉘어져 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;제1장: 적게 일하고 가치를 많이 만들기&lt;/strong&gt; 개요이다. &lt;a href=&quot;/blog/2018/07/age-of-agile.html&quot;&gt;앞의 글&lt;/a&gt;에서 정리했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;제2장: 소규모팀의 법칙&lt;/strong&gt; 팀중심이란 무슨 뜻인지 설명한다. &lt;a href=&quot;/blog/2018/07/agile-2.html&quot;&gt;다른 글&lt;/a&gt;에서 정리하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;제3장: 고객의 법칙&lt;/strong&gt; 고객중심이란 무슨 뜻인지 설명한다. &lt;a href=&quot;/blog/2018/07/agile-2.html&quot;&gt;위 글에서&lt;/a&gt; 정리하였다.&lt;/p&gt;
+
+&lt;p&gt;제3장까지는 좀 실망이었다. 당연 제4장에서는 뭔가 제대로 이야기하리라 생각했지만,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;제4장: 네트워크의 법칙&lt;/strong&gt; 여기에서는 당연 소규모 팀들의 네트워크를 만드는 것에 대해서 이야기하리라 기대했지만 (저자도 그렇게 말하지만), 별로 그렇지 않다. 이 글에서는 여기에 대해서 주로 이야기하겠다. 그 전에,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;제5장: 대규모로 애자일 적용하기: 마이크로소프트 사례&lt;/strong&gt; 기존의 관료조직에 어떻게 애자일 경영을 적용할지에 대한 사례&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;제6장: 운영 애자일에서 전략 애자일&lt;/strong&gt; 컨설턴트가 전략 이야기를 하기 시작하면 일단 경계해야 한다. 그도 무슨 소리인지 모를 가능성이 농후하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;제7장: 조직 문화를 바꾸기&lt;/strong&gt; 전략 못지않게 조심해야 하는게 조직 문화 이야기이다. 다만, 여기에서는 흥미로운 사례가 나오긴 한다. SRI의 시리(애플의 인공지능) 이야기이다.&lt;/p&gt;
+
+&lt;p&gt;제4장에서는 소규모 팀의 네트워크에 대해서 이야기한다고 약속했지만, 제4장의 이야기는 별로 상관이 없다. 그는 맥크리스털(McCrystal) 장군이 이라크전을 어떻게 치뤘는지에 대해서 이야기한다. 그 자체로는 아주 흥미롭다. 이게 어떻게 네트워크의 법칙과 연결되는지는 잘 모르겠다. (그도 네트워크 법칙이라고 스스로 명명한 것이 뭔지 잘 모르겠으므로) 그냥 제5장으로 뭉뚱그린 것으로 보인다. 맥크리스털 장군 이야기는 나름 흥미로우므로, 다음번 독서 과제에 그가 쓴 &lt;a href=&quot;https://www.amazon.com/Team-Teams-Rules-Engagement-Complex-ebook/dp/B00KWG9OF4/ref=sr_1_2_twi_kin_2?ie=UTF8&amp;amp;qid=1531703675&amp;amp;sr=8-2&amp;amp;keywords=team+of+teams&quot;&gt;Team of Teams&lt;/a&gt;를 추가하였다.&lt;/p&gt;
+
+&lt;p&gt;그가 드는 또 다른 사례는 맬콤 글래드웰이 보고한 &lt;a href=&quot;http://newyorker.com/magazine/2005/09/12/the-cellular-church&quot;&gt;새들백교회 이야기&lt;/a&gt;이다. 릭워렌 목사의 새들백교회 이야기는 미국에서는 새로운 것이겠지만, 한국에서는 이미 조용기목사가 개척한 (맞나?) 구역 중심의 조직이다. 3장의 맨 뒤에는 미주리에 있는 의료 소프트웨어 회사 센터 코포레이션(Center Corporation) 이야기가 있는데, 이것은 정말로 흥미롭다.&lt;/p&gt;
+
+&lt;p&gt;제4장과 제5장에서는 어떻게 기존 관료조직을 애자일로 옮아갈지에 대해서 이야기한다. 그가 말하듯이 세 가지 방법이 있다. 첫째는 위로부터의 혁명(top-down big-bang)이다. 둘째는 당연히 아래로부터의 점진적 혁명(gradualist bottom-up approach)이고, 세번째는 이 두 가지의 조합이다. 그는 위로부터의 혁명과 아래로부터의 개혁의 조합이라고 한다. 아래로부터의 점진적 혁명은 망할 운명을 타고났다. 회사는 국가가 아니다. 일개 직원이 개혁을 이야기하면 위에서는 자르면 그만이다. 그는 세번째를 옹호한다. 과연?&lt;/p&gt;
+
+&lt;p&gt;일단 첫번째의 예를 들어 보자. 그가 말하듯이 (별로 분석은 하지 않는다) 대표적인 사례는 마오쩌뚱의 문화혁명이다. 또 다른 예는 스티브 잡스의 애플 장악이다. 그리고 마지막으로 세일즈포스의 변신이다. 그가 이런 예를 드는 이유는 분명하다. 자기가 주창하는 중도론으로 결론을 내기 위해서이다. 그런데, 이것이야말로 애자일로의 경영변신이 무엇인지 가장 정확히 알려 준다. 이것은 소조운동이다 (중국식 표현을 빌리자면). 이것은 홍위병이다. 이것은 친위쿠테타이다. 친위쿠테타란 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%B9%9C%EC%9C%84_%EC%BF%A0%EB%8D%B0%ED%83%80&quot;&gt;위키피디어에 따르면&lt;/a&gt; “합법적으로 권력을 소유한 국가 지도자가 쿠데타를 일으켜, 입법부를 해체하거나 헌법을 무효화하여, 정상적 상황에서는 허용되지 않는 극도로 강력한 권력을 쟁취하는 체제 전복 행위를 말한다. 대부분의 경우 그 지도자는 독재자가 된다.” 지도자는 왜 그런 짓을 할까? 중간관리자가 마음에 들지 않기 때문이다. 과거라면, 왕이 보기에 귀족이 마음에 들지 않기 때문이다. 요즘같으면 대통령이 보기에 국회가 마음에 들지 않기 때문이다. 그러므로, 그는 민중과, 백성과, 평민과, 직원과 손을 잡고 국회를, 언론을, 관료를, 임원을 디스하는 것이다. 결과는 왕 아래, 대통령 아래, 사장 아래 모든 민중, 백성, 직원이 평등하게 되는 것이다. 중간관리자는 없다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Side_effect_(computer_science)&quot;&gt;부수효과&lt;/a&gt;는 독재이거나 (스티브 잡스) 나라가 망쪼가 들거나 (문화혁명) 관료조직의 해체와 자연스러운 구조조정 (새들백교회나 세일즈포스, 아마도)이다.&lt;/p&gt;
+
+&lt;p&gt;자고로, 관료의 힘은 그의 재량권에 있다. 왜 그는 재량권을 가질까? 그만 알고 있는 그 무엇이 있기 때문이다. 관료와 중간관리자와 임원을 직위해제하려면 그의 비밀병기인 “그만 알고 있는” 그 무엇을 없애야 한다. 방법은 두가지이다. 첫째, 왕, 사장, 대통령 말고는 아무도 그것을 모르게 하는 것이다. 독재가 된다. 둘째, 모든 국민, 민중, 직원이 다 알게 하는 것이다. 애자일이라고 한다.&lt;/p&gt;
+
+&lt;p&gt;저자는 당연히 절충안을 제안한다. 성공사례로 마이크로소프트 이야기를 한다 (제5장). 그리고, 그는 SRI International이야기를 한다 (제6–7장. 제6장은 그는 운영 애자일에서 전략 애자일로 넘어가기 위한 설명이라고 하는데, 사실은 제7장의 SRI International과 이 회사를 턴오버하고 시리를 만들게 한 주역인 커트 칼슨(Curt Carlson) 이야기를 하기 위한 전주이다).&lt;/p&gt;
+
+&lt;p&gt;나는 이것이 절충안이라고 생각하지 않는다. 어차피 회사는 국가가 아니므로, 밑으로부터의 혁몀은 불가능하다. 사장과 부장과 차장의 뜻에 거슬러서 애자일 하자고 주장하는 직원은 운이 좋으면 무시당하고, 운이 나쁘면 잘린다. 그가 이것을 절충안이라고 하는 이유는 아래의 동의와 호응을 얻느냐의 문제이다. 스티브 잡스처럼 아래의 감정은 무시하고 그냥 밀어부칠 수도 있고, 아니면 마이크로소프트나 SRI처럼 2–3년에 걸쳐서 천천히 아래의 동의를 얻어 낼 수도 있다. 지도자의 역량과 회사의 성격과 상태에 딸린 문제이다.&lt;/p&gt;
+
+&lt;p&gt;결론적으로, 네트워크화란 중간관리자를 해체하는 전략이다. 구조조정보다는 훨씬 더 순화되어 보이고 구조조정이 유혈사태라면, 그의 애자일 경영은 점진적으로 중간관리자를 무력화하는 명예혁명이다. 결과는 정보를 누가 독점하느냐의 문제이다. 과거에는 이를 중간관리자들이 독점하였다면, 사장이 정보와 의사결정을 독점할 수도 있고, 아니면 모든 직원이 이를 접근하고 공유할 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;그의 결론에는 동의하지 않지만, 그가 말하는 사례들은 아주 흥미롭다. 그 사례들을 그가 제시하듯이 읽으면 어떤 결론도 얻지 못한다. 스스로 찾아 보고, 읽어야 한다. 소위 말하는 비판적 독서를 해야 한다. 나만의 결론을 얻어야 한다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[독서노트] 애자일은 정보흐름을 관리하는 문제이다</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/agile-2.html"/>
+   <updated>2018-07-15T09:30:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/agile-2</id>
+   <content type="html">&lt;p&gt;어린놈이 산전수전 다 겪은 사람에게 이래라저래라 하면 컨설턴트라 한다. 다 늙어서 훈장질하면 멘토라 한다.&lt;/p&gt;
+
+&lt;p&gt;솔직히 나는 컨설턴트에 대해서 그렇게 호의적이지 않다. 물론 다 그렇지 않다는 것은 안다.&lt;/p&gt;
+
+&lt;p&gt;천국에 가는 길을 알려주면 부흥사이다. 천국을 그려 주고, 알아서 찾아가라고 하면 컨설턴트이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;먼로 이노베이션즈의 리처드 셰리던이 설명하듯이 직원들은 일에서 즐거움을 느낀다. 일은 힘을 주고, 열정을 주고, 흥분하게 하는 에너지의 원천이다. 열정은 끊임 없고, 활발하며, 누를 수 없다. 단순한 만족이 아니다. 열정은 뛰어 오르고, 거품을 일으키고, 흘러 넘친다. 전염된다. 아이디어가 앞으로 움직이게 하고, 행동을 자극한다. — Stephen Denning, The Age of Agile, 번역은 내가&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As Richard Sheridan at Menlo Innovation explains, employees experience joy in their work. Work becomes an energizing, ebullient, effervescent source of energy. Enthusiasm is restless, kinetic, and irrepressible. It is more than contentment: It leaps, bubbles, and overflows. It is contagious. It moves ideas forward and catalyzes action.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;정말 아름다운 묘사이다. 영어가 너무 인상적이어서 영어도 같이 써 봤다. 특히 두 번째 문장을 보라. “e”로 시작하는 단어들의 향연이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“&lt;strong&gt;energizing, ebullient, effervescent&lt;/strong&gt; source of &lt;strong&gt;energy&lt;/strong&gt;”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이사야가 울고 가겠다. 영어는 자고로 이렇게 써야 한다. 사소한 문제는 어떻게 거기에 가는지에 대해서 알려 주지 않는다는 것이다. 상황마다, 조직마다 다 다르다고 한다. 제2장에서 먼로 이노베이션즈에 대해서 자세히 기술하고 있지만, 그가 하는 말은 이 회사는 예외라는 것이다. 애자일의 일반적인 방법론을 따르지 않는다는 것이다. 그리고, 그는 외부 컨설턴트를 믿지 말라는 말도 한다.&lt;/p&gt;
+
+&lt;p&gt;그는 또 피터 드러커를 인용하여 이렇게 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;사업이 무엇인지를 결정하는 것은 고객이다. 왜냐하면 고객이야말로, 홀로, 물건이나 서비스에 대해 지불할 의사를 가짐으로써 경제적 자원을 부로 바꾸고, 사물을 상품으로 바꾸기 때문이다. 사업체가 자기가 무엇을 생산한다고 생각하는지는 가장 중요한 것이 아니다. 특히 사업체의 미래와 성공에는 가장 중요하지 않다. 고객이 자기가 무엇을 산다고 생각하는지, 고객이 무엇이 ‘가치’라고 생각하는지가 결정적이다. 이것이 그것이 어떤 사업인지, 무엇을 생산하는지 또 성장할지를 결정한다. — 상동&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;역시 피터 드러커이다. 문제는 고객의 마음속에 무엇이 있는지 어떻게 아느냐는 것이다. 심리 상담사도 아니고… 점성술사도 아니고…&lt;/p&gt;
+
+&lt;p&gt;그는 제2장과 제3장에서 전통적인 관료주의를 비판한다. 그 근저에는 이런 것들 — 고객의 마음 속 — 을 가장 잘 아는 사람이 관료주의 사닥다리의 맨 위에 있고, 따라서 가장 중요한 결정은 그가 내려야 한다는 것이다. 그는 제3장에서 애자일 경영을 코페르니쿠스 혁명에 비교한다. 그리고 제3장의 절반 정도를 코페르니쿠스 혁명과 과학혁명을 기술하는데 할애한다. 코페르니쿠스 혁명 이후 회사의 특징에 대해 설명하면서,&lt;/p&gt;
+
+&lt;p&gt;4. 조직의 모두가 고객과의 분명한 연결선을 가진다.&lt;/p&gt;
+
+&lt;p&gt;5. 회사는 고객에 대해 정확하고 온전한 지식을 가지도록 노력한다.&lt;/p&gt;
+
+&lt;p&gt;6. 직원들은 의사결정을 할 권한을 가진다.&lt;/p&gt;
+
+&lt;p&gt;결국 관료주의에서 애자일 팀중심으로 넘어가는 것은 조직내 정보관리의 문제라는 것이다. 위의 리스트를 거꾸로 읽어 보라. 직원이, 팀이 의사결정을 한다는 것은 의사결정에 필요한 정보가 있다는 것이고, 또 고객이 무엇을 원하는지 안다는 것이다. 피터 드러커의 비전이 빅 데이터와 만나서 현실이 된 셈이다.&lt;/p&gt;
+
+&lt;p&gt;또 다른 가능성이 있다. 이것을 도박으로 생각하는 것이다. 통계에는 대수의 법칙이라는 것이 있다. 많이 하면 통계치에 수렴한다는 것이다. 예를 들어, 도박을 하러 갔는데 대부분의 카지노처럼 49:51로 하우스가 이길 확률이 높다면, 한 판에 가진 모든 돈을 거는 것이 유리하다. 대수의 법칙이 적용되기 전에 승부를 보는 것이다. 반대로 51:49로 내가 이길 확률이 높다면 가진 돈을 잘게 쪼개서 가능한 많이 승부를 보는 것이 좋다. 대수의 법칙이 적용되기까지 버티는 것이다.&lt;/p&gt;
+
+&lt;p&gt;고객에 대해서 모른다면, 그냥 여러번 해 보는 것이다. 이것이 애자일의 원칙이다. 아주 작은 단위로 프로젝트를 잘게 쪼개고, 조그만 프로젝트를 여러번 할 것. 그리고, 많이 할 것. 언젠가는 걸릴 것이다. 언젠가는 나도 구글이나 애플처럼 대박을 낼 것이다. 이런 희망을 버리지 말 것.&lt;/p&gt;
+
+&lt;p&gt;따지고 보면, 사업은 도박이다.&lt;/p&gt;
+
+&lt;p&gt;제3장 뒤의 박스 3-3에는 이런 원칙을 정리해 두었다.&lt;/p&gt;
+
+&lt;p&gt;1. 타게팅을 잘 하고,&lt;/p&gt;
+
+&lt;p&gt;2. 계속 실험하고, 이것 관련해서 경영컨설턴트 폴 눈즈(Paul Nunes)의 충고는 이렇다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이런 환경에서는 계속 실험하고, 시장에서 학습하고 감지하고 다양한 종류의 옵션을 만드는 것이 선험적으로 ‘최고’를 결정하는 것보다 낫다. 적어도 그렇게 할 수 있는 능력이 되는 한은. 실험과 수정의 비용이 낮은 소프트웨어 산업에서는 다른 산업에서보다 더 진실이다. 킥스타터 같은 사이트는 심지어는 아직 만들지도 않은 온갖 종류의 제품을 제안함으로써 이런 실험을 할 수 있다는 것을 입증하였다. 그 때문에 우리는 시장 실험이 필요하다고 하는 것이다. — 상동&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;3. 스타트업과 협업하라. 뭐든 다 하지 말라. 여기에 대한 경고는 아주 짧지만,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;단순히 스타트업을 (기존) 관료체제에 엮어 넣지 말라. 스타트업이 하는 방식을 회사에서 포용하라.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이건 무슨 뜻인고 하면, 이왕 카지노에 들어선 이상, 유리하다고 생각하면 (아니면, 승률에 대해서 전혀 정보가 없지만, 게임을 해야만 한다면) 친구들에게 돈을 다 나눠줘서 가능한 많은 게임에 참여시키라는 것이다. 어차피 혼자 하는 것은 회수에서 제한이 있다. 나아가, 더 중요한 것은 자신의 베팅 스타일을 강요하지 말라. 그러면, 이길 가능성을 줄인다. 그리고, 건너뛰어서,&lt;/p&gt;
+
+&lt;p&gt;6. 짧은 단위로 혁신하라. 앞에서 설명했으므로 생략.&lt;/p&gt;
+
+&lt;p&gt;8. 실망할 준비를 하라. 어차피 모든 판을 이기지는 못한다.&lt;/p&gt;
+
+&lt;p&gt;일단 3장까지는 다 읽었다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[독서노트] 애자일 경영</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/age-of-agile.html"/>
+   <updated>2018-07-14T13:10:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/age-of-agile</id>
+   <content type="html">&lt;p&gt;1996년 톰 크루즈의 &lt;a href=&quot;https://en.wikipedia.org/wiki/Mission:_Impossible_(film)&quot;&gt;미션 임파서블&lt;/a&gt;이 나왔을 때 충격받았었다. 영화 전체를 마치 광고처럼 찍을 수 있다니! 지금은 관례가 된 듯하지만, 그때 느꼈던 충격 때문에 가끔씩 이 영화를 다시 본다.&lt;/p&gt;
+
+&lt;p&gt;블록체인에 관심이 많지만, 절대로 앞의 2페이지 이상을 넘어가지 못하는 책이 있다. 돈 탭스콧과 알렉스 탭스콧의 &lt;a href=&quot;https://www.amazon.com/Blockchain-Revolution-Technology-Cryptocurrencies-Changing/dp/1101980141/ref=tmm_pap_swatch_0?_encoding=UTF8&amp;amp;qid=&amp;amp;sr=&amp;amp;dpID=511OTnicK-L&amp;amp;preST=_SY344_BO1,204,203,200_QL70_&amp;amp;dpSrc=detail&quot;&gt;블록체인 혁명&lt;/a&gt;이다. &lt;a href=&quot;https://www.amazon.com/gp/product/B000QBYEH8/ref=dbs_a_def_rwt_bibl_vppi_i1&quot;&gt;위키노믹스&lt;/a&gt;때부터 그랬다. 뭔가 참을 수 없는 어떤 참기 어려운 기류가 그의 책에는 흐른다. 마치 MBA 출신 컨설턴트가 뭔가 엄청난 IT 기술에 대해서 쓴 글을 읽을 때 드는 느낌이랄까… 화려한 수사와 언변에 감동하면서 나의 무의식은 “너 사실은 아무 것도 모르지?”라고 저자에게 묻고 있는 느낌이랄까…&lt;/p&gt;
+
+&lt;p&gt;앞의 &lt;a href=&quot;/blog/2018/07/agile-law.html&quot;&gt;애자일에 대한 글&lt;/a&gt;에서 소개한 책, Stephen Denning의 &lt;a href=&quot;https://www.amazon.com/Age-Agile-Smart-Companies-Transforming/dp/9387383180/ref=tmm_pap_swatch_0?_encoding=UTF8&amp;amp;qid=&amp;amp;sr=&quot;&gt;The Age of Agile&lt;/a&gt;을 읽고 있다. 처음부터 비슷한 회의가 든다. MBA 출신 컨설턴트가 개발자들끼리 하는 이야기를 엿듯고 “이거 대박인데”라고 하면서 떠드는 것 같다. 스테픈 데닝은 왜 보틈-업(bottom-up) 방법론에 대해서 책을 쓸 때도 탑다운(top-down) 접근법을 취해야 하는걸까? 이것이 첫번째 회의이다.&lt;/p&gt;
+
+&lt;p&gt;유리구슬같은 화려한 경영컨설턴트의 용어선택은 — 미션 임파서블과는 다른 의미에서 — 광고를 연상케 한다. 나의 무의식이 주는 또 다른 질문은 “넌 대체 뭘 팔고 싶은거니? 결론이 뭐니?”이다.&lt;/p&gt;
+
+&lt;p&gt;각설하고… 날도 더워 죽겠는데, 끝까지 다 읽기로 결심한 이상 끝까지 다 읽을 것이다. 그에게 애자일은 세 가지 경영 원칙이다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;팀중심&lt;/li&gt;
+  &lt;li&gt;고객중심&lt;/li&gt;
+  &lt;li&gt;네트워크 중심&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그는 스포티파이 이야기로 시작한다. 음악추천 프로그램에서 시작하여 이들이 신생 애자일 팀중심이기 때문에 짧은 시간에 제품 특징을 완성할 수 있었고, 이게 엄청나게 부러웠던 327년 된 은행 바클레이즈는 이걸 따라했다. 성공했는지는 모르겠지만, 목표는&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;바클레이즈가 수백만명의 고객들이 실시간으로 더 나은 재무 판단을 내릴 수 있도록 하는 알고리즘의 지능과 노하우를 온전하게 활용할 수 있게 하기까지는 할 일이 많다. 이를 위해서는 그들이 처한 서로 다른 상황과 맥락과 기대에 대한 더 깊은 이해 뿐 아니라 그들의 수요를 짧은 시간 내에 대규모로 충족시킬 수 있는지에 대한 통찰이 필요하다. 수년간 지속적으로 구현한 이후에야 바클레이즈는 애질리티 (Agility)의 문화를 조직 전체에 임베딩하였다고 주장할 수 있을 것이다. — 제1장, 번역은 내가&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;일단 의문이 든다. 광고는 너무 길면 쪼개서 봐야 된다는 판단과 그리고 이런 책은 회의적인 시각에서 접근해야 한다는 믿음으로 일단 제1장까지만 읽고 정리해 본다. 어차피 대부분의 경영학 책은 탑다운 접근법을 취하므로, 일단 제1장을 다 읽고 나면 나머지는 많은 경우 무시해도 좋다. 각설하고, 의문은 이것이다. 스포티파이와 바클레이즈가 성공한다면 애자일 접근법 덕분인가, 아니면 자기네가 가지고 있는 데이터를 아주 영리하게 활용하였기 때문인가? 만약 둘 다라면 (대부분의 컨설턴트는 이렇게 답할 것이다), 어떤 것이 원인인가? 많은 데이터를 기계학습과 데이터분석을 통해 제대로 활용하기 위해서 애자일이 필요한가 (그렇다고 대답할 것이다), 아니면 반대로 애자일을 제대로 하려면 빅데이터가 필요한가 (대부분은 아니라고 대답할 것이다. 애자일을 하려면 빅데이터가 필요하다면 애자일 하겠다는 회사 숫자가 확 줄어들 것이니까)?&lt;/p&gt;
+
+&lt;p&gt;그리고, 그렇다면, 작은팀에 권한을 위임한다는 것은 데이터에 대한 접근권을 작은 팀들에게 모두 위임한다는 뜻인가? 당연 그렇다. 다르게는 할 방법이 보이지 않는다.&lt;/p&gt;
+
+&lt;p&gt;스테픈 데닝을 꼭 그렇게까지는 말하지 않지만, 비슷한 이야기를 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;애자일 경영에 대한 한 가지 일반적인 오해는 이것을 조직을 운영하는 접근법이 아니라 기술 솔루션 — 디지털화 — 로 보는 것이다. 애자일에서는 분명히 디지털 기술을 사용하여 즉각적이고, 마찰이 없으며 (고객에게) 개별화된 가치를 대규모로 제공하게 하지만, 이러한 이득은 애자일 &lt;em&gt;경영&lt;/em&gt;으로 인해 가능한 것이다. 탑다운 관료가 디지털 기술, 기계학습, 플랫폼, 블록체인 기술 또는 사물인터넷을 사용하면 제대로 된 결과가 나오지 않는 것이 전형적인 상황이다. 그 이유는 부분적으로는 사내추진 혁신은 많은 경우 고객이 원하지 않거나 지불할 의사가 없는 변화를 낳기 때문이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이것 이외에도 핵심은 경영스타일이라기보다는 데이터라는 정황증거는 애자일 접근법의 출발점이라고 할 수 있는 VUCA (변동성이 심하며, 불확실하고, 복잡하며 모호한 상황: volatile, uncertain, complex, and combiguous)이라는 표현에서도 드러난다. 바로 통계와 확률이 풀고자 하는 문제 아닌가?&lt;/p&gt;
+
+&lt;p&gt;위의 세 가지 원칙 문제로 돌아가 보자.&lt;/p&gt;
+
+&lt;p&gt;팀중심이란 말 그대로 권한을 위임받은 — 즉 의사결정권이 있는 — 소규모 수평 조직이다. 내 의심은 팀에 더 중요한 것은 권한의 위임이 아니라 의사결정의 근거가 되는 데이터에 대한 접근권일 것이라는 점이다.&lt;/p&gt;
+
+&lt;p&gt;고객중심이란 이들이 의사결정을 할 때 전통적인 “제품소유자 (product owner)”가 아니라 고객을 판단의 기준으로 삼아야 한다는 것이다. 과거 워터폴 방식 소프트웨어 개발에서 의견이 충돌할 때 결국은 프로젝트를 준 사람, 소위 고객이 뭘 원하는지 아는 사람, 내지는 고객이 뭘 원하든 상관 없이 최종적 의사결정을 내릴 수 있는 사람이 있었다면, 이제는 팀에서 (외부의 도움 없이) 의사결정을 할 때 궁극적으로 판단의 기준은 고객이 되어야 한다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;네트워크 중심이란 대형조직을 관료주의가 아니라 팀단위로 조직하면, 이런 팀들간에 어떻게 상호작용할지 하는 네트워크의 설계가 조직설계의 핵심이 되어야 한다는 말이다.&lt;/p&gt;
+
+&lt;p&gt;광고로 도배된 여성지 읽는 느낌을 여전히 지울 수 없다. 미장원에서 이런 잡지를 읽다 보면, 이 잡지를 읽는 대가로 내가 돈을 받아야 하는 것은 아닌지 하는 느낌이 드는 것과 비슷하다. 그렇지만 다 읽을 것이다. 일단 날도 덥고, 이미 열은 받을 대로 받아 있으므로…&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[독서노트] 테라노스의 영광과 몰락</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/bad-blood.html"/>
+   <updated>2018-07-13T22:20:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/bad-blood</id>
+   <content type="html">&lt;p&gt;사실 한국 돌아오는 비행기에서 읽으려고 절반을 남겨 두었었는데, 비행기에서는 손도 대지 않았다. 너무 우울했다. John Carreyrou의 &lt;a href=&quot;https://www.amazon.com/Bad-Blood-Secrets-Silicon-Startup/dp/152473165X&quot;&gt;Bad Blood: Secrets and Lies in a Silicon Valley Startup&lt;/a&gt; 이야기이다.&lt;/p&gt;
+
+&lt;p&gt;이야기 때문이 아니었다. 망한 스타트업 이야기가 뭐 그렇게 흥미진진하겠느냐고 생각할 수도 있겠지만, 이전에 엔론에 대한 이야기를 읽을 때에도 이렇지는 않았다. 집에 돌아와서 쉬면서 나머지 절반을 읽으면서 그 이유를 알았다. 이 책은 테라노스의 몰락에 대한 이야기일 뿐 아니라, 이것을 취재한 이야기이고, 그 취재의 결과 테라노스가 망한 이야기이다. 그리고, 그 과정에서 저자가 받은 핍박이 밑바닥에 흐르고 있다. 그래서 그렇게 우울했던 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Theranos&quot;&gt;테라노스&lt;/a&gt;는 &lt;a href=&quot;https://en.wikipedia.org/wiki/Elizabeth_Holmes&quot;&gt;엘리자베스 홈즈&lt;/a&gt;가 2003년 스탠포드대를 중퇴하고 설립한 회사이다. 1학년 마치고 중퇴했다. 위키피디어에서는 7억달러 이상을 투자받았다고 하는데, 위 책에서는 9억달러 (약 1조원)을 투자받았다고 한다. 2014년 최고의 영광을 누릴 때 평가액이 100억달러 (약 10조원)에 이르렀다. 그리고 위 책의 저자는 2015년 10월 16일 월스트리트저널에 &lt;a href=&quot;https://www.wsj.com/articles/theranos-has-struggled-with-blood-tests-1444881901&quot;&gt;Hot Startup Theranos Has Struggled With Its Blood-Test Technology&lt;/a&gt;라는 기사를 싣는다. 그 기사의 결과 테라노스는 망하고, 엘리자베스 홈즈의 개인재산도 약5조원에서 거의 0원으로 폭락한다.&lt;/p&gt;
+
+&lt;p&gt;엘리자베스 홈즈는 존 케리루를 죽이고 싶었을 것이다. 저자는 한 블로거로부터 처음으로 이 이야기에 대한 팁을 2월에 받았다고 한다. 그는 그후 약 8–9개월을 테라노스의 사기를 취재하는데 보낸다. 책의 절반은 그가 취재한 이야기이고, 그 과정에서 엄청난 핍박과 협박을 받는다. 주로 미국에서 최고 유명한 변호사라는 데이빗 보이스(David Boies)로 부터. 그러니, 존 케리루도 엘리자베스 홈즈가 그렇게 사랑스럽지는 않았을 것이다. 이 책에서 이 문제는 전부 엘리자베스 홈즈 때문이라고 단언한다.&lt;/p&gt;
+
+&lt;p&gt;엘리자베스 홈즈는 존 케리루가 보기에는 마녀이다. 그녀가 꼬신 사람에는 스탠포드 엔지니어링 교수 채닝 로버츠슨으로 시작하여, 월그린즈와 세이프웨이의 사장, 제임스 매티스와 조지 슐츠, 그리고 헨리 키신저와 데이빗 보이스, 결국은 루퍼트 머독에까지 이른다. 이것도 나중에 이야기가 밝혀지고 나서는 실리콘 벨리의 바이오/메디컬 벤처 투자자들이 없다는 점이 지적되기도 했다. 그렇지만, 헨리 키신저와 루퍼트 머독이 투자자라잖아! 이 책에서는 그녀가 루퍼트 머독의 투자를 권유한 것은 오로지 위의 기사를 죽일 생각에서라고 했다. 그녀가 잘못 본 것은 루퍼트 머독의 부의 수준이었다. 사고가 나고 나서, 그는 1억달러(1천억원)의 투자금을 투자한 회사 주식을 1달러에 테라노스에 되팔고, 다른 곳에서 벌어들인 수익에서 비용처리하고 잊어버렸다. 1천억원 그까이거…&lt;/p&gt;
+
+&lt;p&gt;내 생각에는 그녀는 최고의 세일즈맨이었다. 그녀는 열심히 제품을 팔러 다녔다. 문제는 제품이 나오는 것보다 먼저 팔았다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;테라노스의 제품은 여러가지 혈액 검사를 책상 위에 놓을 수 있는 작은 기계 하나로, 피 한 방울만 가지고 (마치 간이 혈당검사하듯이) 하는 것이었다. 제품이야말로 그녀가 진짜 마녀일지 모르겠다는 생각을 하게 한다. 스티브 잡스를 흠모하던 엘리자베스 홈즈는 단지 제품이 나오기도 전에 미리 다 팔아버렸다는 것이다. 그리고, 이게 그냥 소프트웨어가 아니라 의료장비였다는 것이었다.&lt;/p&gt;
+
+&lt;p&gt;로펌이 어떻게 기자와 취재과정을 괴롭히는지도 나름 흥미롭다. 저자에게 팁을 주었던 조지 슐츠의 손자 타일러 슐츠는 단지 기자에게 이야기를 했다는 이유만으로 보이스의 로펌에서 엄청난 압박에 시달리고, 결국 변호사 비용으로 약4억5천만원 이상을 쓰게 된다. 결국은 이겼다고 하더라도, 상처뿐인 영광이다. 이 과정은 두 번이나 퓰리처상을 받은 저자에게도 고통스러웠던 것 같다. 책의 기저가 아주 우울하다.&lt;/p&gt;
+
+&lt;p&gt;상당히 초창기에 회사를 사직한 저스틴 맥스웰은 사임 이메일에서 이렇게 말했다고 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;당신에게 반대하는 사람을 믿으십시오&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[…] believe in the people who disagree with you […]&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;기자라면 취재과정에 대해서 내밀한 이야기를 읽을 수 있을 것이다. 또 스타트업을 하는 사람이라면, 특히 바이오/제약 스타트업을 하는 사람이라면 반드시 읽어 보아야 하는 책이다. 어떤 스타트업은 너무 성공해서 망하기도 한다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>죽으면 계약위반</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/breach-by-dying.html"/>
+   <updated>2018-07-13T14:30:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/breach-by-dying</id>
+   <content type="html">&lt;p&gt;린지 더들(Lindsay Durdle)은 5월 31일 37세의 나이에 유방암으로 사망하였다. 그리고, 페이팔은 그 이야기를 듣고 계약 위반이라고 소송도 불사하겠다고 공문을 보냈다. 페이팔에 따르면, 그녀는 페이팔에서 £3,240.72의 크레딧을 사용하였는데, 죽음으로써 페이팔과의 약정 제15.4(c)를 위반하였으며, “이 위반은 치유(remedy)가 불가능하다”고 하였다. 참고로, 죽음은 치유가 불가능하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://loweringthebar.net&quot;&gt;Lowering the Bar&lt;/a&gt;는 나름 제15.4(c)조가 무었인지 알아 보기 위해 영국 페이팔 사이트를 찾아 보았는데, 자꾸 미국 페이팔 사이트로 가는 바람에 찾지 못했다고 한다. 미국 약관 제12조에도 “죽으면 계약위반 (you will be in default if you pass away)”이라는 말이 있다고 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;죽으시려면 어떻게 가장 잘 죽는지에 대해서 조언해 줄 수 있는 자격을 갖춘 변호사와 상담하기 전에는 절대로 죽지 마시기를 강력히 제안합니다. — &lt;a href=&quot;http://loweringthebar.net/2018/07/breached-contract-by-dying.html&quot;&gt;Company Says Customer Breached Her Contract by Dying&lt;/a&gt;, 번역은 내가&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I would strongly advise you not to die before consulting a qualified and licensed attorney who can counsel you on the best way to do that.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;물론이다. 변호사와 미리 상담하기 전에는 절대 죽지 말라!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>2만원으로 주차위치 찾고 배터리 검사</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/anker-charger.html"/>
+   <updated>2018-07-13T14:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/anker-charger</id>
+   <content type="html">&lt;p&gt;미국에 한달 있으면서 아마존에서 꽤 지른 것 같다. 그 중에 마음에 드는 것에 대해서 조금씩 포스팅해 보겠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B075RV7KRM/ref=oh_aui_detailpage_o04_s00?ie=UTF8&amp;amp;psc=1&quot;&gt;Roav by Anker 30W Car Charger with Quick Charge 3.0, SmartCharge Spectrum with Car Locator, Dedicated App, Car-Battery Monitor, Quick Charge 3.0 and PowerIQ USB Ports and 16000 Color Led Light&lt;/a&gt;라는 긴 이름을 가진 놈은 기본적으로는 차량용 핸드폰 USB 충전기이다. 두 대를 충전할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이 외에 할 수 있는 것은 차량 위치 찾기와 차량 배터리 상태에 대해 알려 주기, 그리고 주변 LED 색깔을 16,000 색 가운데 고를 수 있다. 블루투스로 핸드폰과 연결되는데, 핸드폰과의 연결이 끊어지면 (그리고 앱에서 설정하면) 주차한 위치를 저장한다. 그렇게 해서 주차한 위치를 알려 준다. 여러 층으로 된 주차타워 등에서 어느 층인지는 알려 주지 않는다. 아쉽다. 지금까지는 주로 주차를 하고 나면 사진을 찍어 두었는데, 아마도 그럴 필요가 없을 듯 하다. 19.99달러, 그러니까 약 2만원으로 누릴 수 있는 호사이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Roav Spectrum&lt;/code&gt;이라는 앱을 다운로드받아야 한다.&lt;/p&gt;
+
+&lt;p&gt;사실 &lt;a href=&quot;https://www.amazon.com/gp/product/B079FYG5TC/ref=s9_acsd_hps_bw_cr_x__a_w&quot;&gt;Roav Viva&lt;/a&gt;를 사려고 했었는데, 알렉사가 한국에서 얼마나 잘 먹힐지 몰라서 안샀었다. 59.99달러라는 비용도 약간 고민했었다. 후회중이다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>변호사가 교회오빠처럼 행동하면...</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/agile-law.html"/>
+   <updated>2018-07-13T07:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/agile-law</id>
+   <content type="html">&lt;p&gt;의사는 하루 종일 아픈 사람만 본다. 출근해서 퇴근할 때까지. 변호사는 하루 종일 사고친 사람만 본다. 그리고, 사고를 치거나 당할 가능성이 높은 사람을 보며 지낸다. 후자를 예방 법무(preventive lawyering)이라 한다.&lt;/p&gt;
+
+&lt;p&gt;의사도 그런 일을 한다. 예방주사처럼. 전제는 일단 환자가 자기에게 예방이 필요하다는 것을 알아야 한다. 법무에서도 마찬가지이다. 많은 경우 이 일을 사내법무팀이 한다. 많은 경우 예방법무 전체를 사내법무팀이 하기도 한다. 사고를 치거나 당할 가능성이 높은 상황을 관리하는 일을 사내 법무팀이 하고, 정작 사고가 나면 외부 변호사를 불러서 수습/해결하는 경우도 많다.&lt;/p&gt;
+
+&lt;p&gt;문제는 사내법무팀이 없거나, 다른 일로 바쁜 경우이다. 일단 고객이 먼저 자기가 사고를 치거나 당할 가능성이 높은 상황에 처해 있다는 것을 인지해야 한다. 이게 말처럼 쉬운 일은 아니다. 예상치 못한 상황은 말 그대로 예상치 못한 상황에서 닥쳐 오는 것이다. 스타트업 변호 업무가 쉽지 않은 가장 큰 이유이다.&lt;/p&gt;
+
+&lt;p&gt;간단한 예를 들면, 사업모델 자체가 불법이거나 지뢰밭인 경우를 보자. 우버나 에어비앤비처럼 이것이 규제의 문제일 수도 있고, 좀 더 근본적인 문제일 수도 있다. 폰지사기나 ICO같은 경우에는 거의 출발부터 지뢰밭일 가능성이 높다. 고객이 원하는 것이 불법이라면 변호사는 어떻게 해야 하는가? 여기에 대해서는 다음에 정리하겠다. 여기서는 이런 상황을 체계적으로 방지하기 위해서 어떤 방식을 사용할 것인지에 대해서만 고민해 보겠다. 프로젝트 관리 방법론에 대한 이야기를 할 수 밖에 없다.&lt;/p&gt;
+
+&lt;p&gt;나는 애자일을 믿지 않는다. 근본적인 이유는 나는 사람이 변한다고 믿지 않기 때문이다. 나는 사람이 더 좋아질 수 있다고 믿지 않는다. 적어도 일을 할 때에는 이런 가정은 치명적이다. 물론 살인자도 개과천선할 수 있다. 그렇지만, 변호사 업무를 하면서 이렇게 미래에 대한 낙관적인 기대를 바탕에 깔고 가면, 결과는 치명적일 수 밖에 없다. 사고를 예방하는 것이 아니라, 직간접적으로 사고에 일조하는 결과를 낳을 수 밖에 없다.&lt;/p&gt;
+
+&lt;p&gt;애자일 접근법의 출발점에는 사람이 변한다는 가정이 있다. 그것도 개인이 아니라 단체가, 조직이, 팀이, 회사가 변할 수 있고, 그것이야말로 소프트웨어 프로젝트의 핵심이라고 믿는다. 나도 그럴 수 있으면 좋겠다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;대규모 소프트웨어 개발 프로젝트는 고비용, 지체 및 부담스러운 결과로 악명 높다. 애자일은 작고, 혁신적이며 여러 분야를 넘나드는 팀에 초점을 맞추자는 발상이다. 매니페스토의 원칙에 따르면 “개인과 상호작용”이 “프로세스와 도구”보다 더 중요하며, 변화에 적응하는 것이 원래 계획대로 밀어 붙이는 것보다 낫다고 한다. — The Economist, &lt;a href=&quot;https://www.economist.com/business/2018/07/05/the-fashion-for-agile-management-is-spreading?fsrc=scn/fb/te/bl/ed/thefashionforagilemanagementisspreadingbartleby&quot;&gt;The fashion for agile management is spreading&lt;/a&gt;에서 인용, 번역은 내가&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;서로가 서로에게 친절하고, 내가 당하고 싶지 않은 일은 남에게 시키지 말고, 한 마디로 모두가 모두에게 교회오빠처럼 행동하면 다 좋아질 것이라고 한다. 나도 그런 믿음을 가졌으면 좋겠다. 직업병일 수도 있겠지만, 나는 세상은 그렇게 호락호락하지 않다고 생각한다. 슬프게도 믿음은 아무에게나 오는 선물은 아니다.&lt;/p&gt;
+
+&lt;p&gt;저자도 이런 주장에 회의적인 것 같다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;왜 그랬는지 몰라도 팀이라는 개념에는 “스크럼”이라는 별칭이 붙었다. 이 별명을 붙인 사람은 분명히 진짜 럭비게임을 본 적이 없는 사람이다. 현실의 스크럼은 16명이 온 힘을 다해 서로 밀어 붙이다가 어떤 결과도 낳지 못하고 보통은 쓰러지거나 아니면 파울 플레이로 심판이 페널티를 주는 것으로 끝난다. — 상동&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 저자가 이 글을 쓴 이유는 스포티파이(Spotify) 팀의 경이로운 결과를 보고 회사 전체 차원으로 애자일 방법론을 도입하려는 시도가 있는데, 이를 경계하는 글이다. 구체적인 프로젝트라면 몰라도 팀 전체에 이걸 적용하는 것이 과연 유효할지라는 질문이다. 저자도 문제의식에는 동의한다. VUCA (변동, 불확실, 복잡성, 모호성: volatile, uncertain, complex and ambiguous)한 세상에서는 사내 스타트업 형태의 팀이 필요하다는 것이다. 저자는 애자일 팀도 (당연히 스타트업도) 아주 많이 망한다고 한다. 스타트업이 망하는 것은 잘 알려진 사실이지만, 애자일 팀도 많이 망하는가? 당연히 그럴 것 같다. 이쪽도 생존편의(survival bias)가 만연할 수 있다. 또, 저자는 애자일이 도입되면 전통적인 워터폴(waterfall)에 대응하는 CEO 중심의 대기업의 조직과 수천만 달러씩 받는 CEO가 문제라는 점이 부각될 것이라고 한다. 분명히 가장 큰 저항이 여기에서 올 수 있다. 그는 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;영구혁명은 이론적으로는 자극적이지만 실제로는 혼란으로 이어질 수 있다… 따지고 보면 체조선수는 럭비 포워드 선수의 몸을 하고 있지 않다. — 상동&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;저자는 두 권의 책을 언급한다. 한권은 Stephen Denning, “The Age of Agile”이고, 다른 책은 Simon Hayward, “The Agile Leader”이다.&lt;/p&gt;
+
+&lt;p&gt;나는 이 글의 저자처럼 애자일 방법론에 회의적이지는 않다. 나는 인간의 본성에 대해서 회의적이다. 업무상 어쩔 수 없다(고 변명해 본다). 요즘 DevOps에 관심이 많다. 새로운 시대, 대형로펌이 저무는 시대에 변호사가 꼭 알아야 하는 것이 프로젝트 관리라고 생각하기 때문이다. 이제 엠대시와 엔대시, 콤마나 폰트 이야기는 잠시 접어 두고 여기에 대해서 조금씩 더 정리해 보려 한다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>변호사를 위한 키보드</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/legalboard-keyboard.html"/>
+   <updated>2018-07-10T15:30:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/legalboard-keyboard</id>
+   <content type="html">&lt;p&gt;지금까지 &lt;a href=&quot;/categories/lawyering.html&quot;&gt;일못변&lt;/a&gt; 시리즈에서 주로 구두점과 같은 사소해 보이는 문제들만 써 왔는데, 사실 오래전부터 관심을 가지고 있었던 키보드 &lt;a href=&quot;https://www.legalkeyboards.com/&quot;&gt;LegalBoard&lt;/a&gt; 이야기를 해 보겠다. 이 75달러짜리 키보드는 보통 키패드의 맨 오른쪽에 있는 숫자키에 변호사가 주로 사용하는 단축키를 모아 놓았다. 대표적인 예는&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;§, ¶, © 같은 기호&lt;/li&gt;
+  &lt;li&gt;밑줄, 이탤릭 또는 두꺼운 글씨체&lt;/li&gt;
+  &lt;li&gt;변경내용 추적 켜고 끄기&lt;/li&gt;
+  &lt;li&gt;목록 만들기&lt;/li&gt;
+  &lt;li&gt;각주와 커멘트 달기, 그 다음에는 본문으로 돌아가기&lt;/li&gt;
+  &lt;li&gt;찾기, 그 다음에는 원래 자리로 돌아가기&lt;/li&gt;
+  &lt;li&gt;행간 조정&lt;/li&gt;
+  &lt;li&gt;small caps 켜고 끄기&lt;/li&gt;
+  &lt;li&gt;citation과 자주 쓰는 용어&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이 정도면 사실 일못변 시리즈에서 이야기하는 것들을 제대로 따르는 것이 얼마나 고통스러운지 알 것이다.&lt;/p&gt;
+
+&lt;p&gt;나는 이것을 쓰지 않을 것이다. 첫째, 이것은 마이크로소프트 워드용인데 나는 그걸 주력으로 쓰지 않는다. 둘째, 마이크로소프트 윈도우용인데 나는 그걸 주력으로 쓰지 않는다. 셋째, 기계식이 아니라 멤브레인식이다. 그렇지만, 여기에서 말하는 내용 때문에 욕먹기 싫지만, 마이크로소프트 워드를 쓴다면 방법은 정교한 단축키 시스템을 개발하거나 아니면 이런 키보드를 사는 것도 방법이겠다. 다음부터는 키보드 트릭이나 구두점이 아니라 좀 더 진지한 이야기를 해 볼까 한다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 10] 밑줄이라는 원죄</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/underline.html"/>
+   <updated>2018-07-08T16:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/underline</id>
+   <content type="html">&lt;p&gt;고백하자면, 나도 밑줄이라는 원죄에서 자유롭지 못하다. 얼마전 작성한 계약서에서도 밑줄을 썼다.&lt;/p&gt;
+
+&lt;p&gt;코더들은 밑줄을 싫어한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt;에서도 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;i&amp;gt;&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;b&amp;gt;&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;u&amp;gt;&lt;/code&gt;는 이미 오래전에 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;으로 바뀌었다. &lt;a href=&quot;https://daringfireball.net/projects/markdown/syntax&quot;&gt;마크다운&lt;/a&gt;과 내가 요즘 주력으로 쓰고 있는 &lt;a href=&quot;https://pandoc.org/MANUAL.html&quot;&gt;판독 마크다운&lt;/a&gt;에서도 밑줄을 지원하지 않는다. 그렇지만 모든 변호사가 성경책처럼 다루는 — 그러니까 모두 고이 모셔두고 아무도 읽지 않지만 블루북에서 그러라고 했다고 하면 모두 아무 말 하지 않는 — &lt;a href=&quot;https://www.legalbluebook.com/&quot;&gt;블루북&lt;/a&gt;은?&lt;/p&gt;
+
+&lt;p&gt;내가 저항한 이유이다. 어떻게 감히 블루북에 저항한단 말인가?&lt;/p&gt;
+
+&lt;p&gt;Matthew Butterick은 Typography for Lawyers에서 &lt;a href=&quot;https://typographyforlawyers.com/underlining.html&quot;&gt;말한다&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;인쇄한 문서에서는 밑줄을 쓰지 말라. 절대로. 추하다. 그리고 내용을 읽기 어렵게 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In a printed document, don’t underline. Ever. It’s ugly and it makes texts harder to read.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그 이유도 납득한다. 옛날 타자기를 쓰던 시대의 구시대적 유물이라는 것이다. 그리고, MS 워드에서는 밑줄이 참 예쁘지 않다. 그렇다고 하더라도, 밑줄을 쓰지 않고 어떻게 판례를 인용한단 말인가?&lt;/p&gt;
+
+&lt;p&gt;나에게 이것은 참 어려운 일이었다. 마크다운은 밑줄에 적대적이다. 나는 보통 포맷은 LaTeX으로 하고, 내용은 판독 마크다운을 사용하는 업무 프로세서가 가장 편안하다. 물론 돌아갈 방법은 있다. 나는 &lt;a href=&quot;https://ctan.org/pkg/soul&quot;&gt;soul&lt;/a&gt; 패키지를 사용한다. LaTeX의 여러 패키지에서 밑줄을 어떻게 처리하는지 예는 &lt;a href=&quot;https://alexwlchan.net/2017/10/latex-underlines/&quot;&gt;Four ways to underline text in LaTeX&lt;/a&gt;을 참고하라. 기본 패키지에서도 MS 워드에서처럼 아래로 내려오는 소문자 (“descender”라고 한다. 예를 들면 j, g, y)를 침범하지는 않지만, 밑줄이 고르지 않다. 그래서 &lt;strong&gt;soul&lt;/strong&gt; 패키지를 사용한다.&lt;/p&gt;
+
+&lt;p&gt;문제는 이렇게 할 경우 pdf 출력을 하면 문제가 없지만, MS 워드 파일로 변환하면 (가끔씩 이것을 요청하는 나쁜 사람들이 있다) 판독 마크다운의 구문이 아닌 것들은 인식을 못하고 아예 생략한다. 2–30 페이지 계약서에서 이걸 일일이 찾아서 수정하는 것도 큰 일이다. 그래서 나도 밑줄을 안썼으면 좋겠다. 그렇지만 블루북은? 나도 요즘은 (영어의) 외래어, 예를 들어 라틴어는 이탤릭을 사용한다. 그렇지만, 판례명이나 상호참조는?&lt;/p&gt;
+
+&lt;p&gt;최근 알아 내었다. 심지어는 (분명히 블루북을 염두에 둔 제목일) 레드북의 저자 Bryan Garner도 밑줄을 쓰지 말라고 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;밑줄은 추하다. 특히 컴퓨터로 작업하여 사무실 프린터로 출력하였을 때에는. 줄이 너무 두껍고 폰트에 너무 가깝다. 사실 밑줄이 흔히 문자의 아래삐침을 침범하기 때문에 읽기도 어렵다 […] &lt;em&gt;블루북&lt;/em&gt;에서 법원 문서에서 판례명을 밑줄치라고 하는 것에 대해서만은 이런 반동적인 지침을 무시하고 이탤릭을 사용하라.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Underlining is ugly, especially on computers and office printers. The line is too thick and too close to the type. In fact, it can be hard to read because it typically obliterates the descenders on the letters &lt;em&gt;f, g, j, p, q,&lt;/em&gt; and &lt;em&gt;y&lt;/em&gt; […] To the extent that &lt;em&gt;The Bluebook&lt;/em&gt; specifies underlining case names in court papers, override that retrograde guidance and italicize. (The Redbook, 79–80)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;정확히 내게 필요한 말이다. 나는 사실상 Bryan Garner처럼 권위있는 사람이 이런 말을 해주길 기다렸던 것 같다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 9] m-대시, n-대시, 하이픈</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/mdash.html"/>
+   <updated>2018-07-07T21:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/mdash</id>
+   <content type="html">&lt;p&gt;m-대시는 영문소문자 m자만큼 긴 대시이다. n-대시는 n자만큼 긴 대시이다 (그러므로, m-대시보다 짧다). 그리고, 하이픈은 가장 짧다.&lt;/p&gt;
+
+&lt;p&gt;이런걸 누가 신경쓴다고 그래? 이런 것에 신경쓰는 사람들이 소수 있다. 그 소수의 사람들 대부분이 법조계에 모여 있다 (그리고 나머지는 출판계에?).&lt;/p&gt;
+
+&lt;p&gt;일례로 “Red Book”의 저자 Bryan Garner는 자그마치 10페이지가 넘는 지면을 이것을 설명하는데 할애하고 있다. 그렇게까지 깊게 공부하기 어려운 사람을 위해 가장 기본적인 내용을 요약하자면,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;m-대시는 제대로 된 구문과 구문을 구분하는 문장부호이다&lt;/li&gt;
+  &lt;li&gt;n-대시는 숫자와 숫자를 이을 때 쓴다 (범위)&lt;/li&gt;
+  &lt;li&gt;하이픈은 단어와 단어를 이을 때 쓴다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;100 페이지 문서를 사람들에게 줘 보라. 아무도 읽지 않아도 그것을 받은 변호사는 읽는다. 어떨 때에는 변호사 보수는 아무도 읽고 싶어 하지 않는 글을 읽어 주는 대가로 받는 것 아닌가라는 생각이 들 정도이다. 그러므로, 어쩌면 그래서 변호사는 이런 것에 극도로 예민하다. 이것을 정확히 구분하지 못하면, 저절로—말 그대로 본의 아니게— 눈살이 찌푸려지고, 글을 작성한 사람을 우습게 보게 된다. 그러지 않기 위해서는 엄청난 의지가 필요하다.&lt;/p&gt;
+
+&lt;p&gt;정말 자세히 알고 싶으면 위 책을 참고하라.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>민트 19로 업그레이드</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/mint-upgrade-to-19.html"/>
+   <updated>2018-07-07T13:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/mint-upgrade-to-19</id>
+   <content type="html">&lt;p&gt;나는 리눅스 민트를 사용한다. 19가 나왔다길래 업그레이드했다. &lt;a href=&quot;https://community.linuxmint.com/tutorial/view/2416&quot;&gt;설명&lt;/a&gt;을 읽고 그대로 하면 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;스냅샷-만들기&quot;&gt;스냅샷 만들기&lt;/h2&gt;
+&lt;p&gt;별로 만들고 싶지는 않았지만,&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;timeshift
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;timeshift&lt;/code&gt; 스냅샷 만들기 완성&lt;/p&gt;
+
+&lt;h2 id=&quot;lightdm&quot;&gt;LightDM&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/X11/default-display-manager
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lightdm&lt;/code&gt;이 나오므로 패스&lt;/p&gt;
+
+&lt;h2 id=&quot;업그레이드&quot;&gt;업그레이드&lt;/h2&gt;
+
+&lt;p&gt;업그레이드 자체는 일련의 다운로드 명령이다. 모두 꽤 오래 걸린다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;mintupgrade
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mintupgrade check
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mintupgrade download
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mintupgrade upgrade
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;시간이 오래 걸려서 그렇지 문제 없이 깔끔하게 해결되었다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[링크] 미국 사회에 적응하기</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/small-talks.html"/>
+   <updated>2018-07-06T14:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/small-talks</id>
+   <content type="html">&lt;p&gt;어떤 글은 읽는 것만으로 기분이 좋아진다. 새로운 정보가 있는 것도 아니고, 새로운 통찰이 있는 것도… 아니 통찰은 분명히 있다. 무엇보다도 글솜씨만으로 기분을 좋게 하는 글이 있다.&lt;/p&gt;
+
+&lt;p&gt;그런 글을 만날 가능성이 가장 높은 곳이 &lt;a href=&quot;https://www.newyorker.com&quot;&gt;뉴요커&lt;/a&gt;이다. 늙어서 감동이 적어져서 옛날만큼 자주 그런 글을 맞닥뜨리지는 않지만, 그래서인지 그런 글을 만나면 기분이 더 좋아진다.&lt;/p&gt;
+
+&lt;p&gt;어제는 미국 독립기념일이었다. 독립기념일에 미국의 정신을 기념하는 글을… 인도인이 썼다. 그리고, 정말 미국의 핵심을 잡아 내었다. Karen Mahajan은 이렇게 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;동양에는 우정 없는 친밀함이 있고, 서양에는 친밀함이 없는 우정이 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the East […], there’s intimacy without friendship; in the West, there’s friendship without intimacy. — &lt;a href=&quot;https://www.newyorker.com/culture/culture-desk/my-struggle-with-american-small-talk&quot;&gt;My struggle with American small talk&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그 반대이려나? 이 말만으로도 이 글은 짜릿하다. 덤으로,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;잡담의 야생에서 지낸 이 시간 동안 나는 또 왜 미국인들은 장사가 수반되는 우정을 그렇게나 높게 평가하는지 궁금했다. 현금을 건네는 것은 미국 자본주의의 거룩한 의식인가? 그리고 미국 생활의? 미국에 있으면서 돈을 쓰지 않는 날 나는 이상하게도 우울해진다. 이것은 나에게는 가장 중요한 사회적 작용 형태이다. 혼자 살거나 가족과 떨어져 사는 수백만의 미국인들에게도 그렇다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;During these years in the small-talk wilderness, I also wondered why Americans valued friendliness with commerce so much. Was handing over cash the sacred rite of American capitalism—and of American life? On a day that I don’t spend money in America, I feel oddly depressed. It’s my main form of social interaction—as it is for millions of Americans who live alone or away from their families.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이민 문제가 묘하게 미국 사회를 자극하는 날 다 커서 인도에서 이민온 뉴요커 저자의 말이다. 독립기념일에 읽었다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 8] 상담이 끝나고 나서</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/non-engagement-letter.html"/>
+   <updated>2018-07-04T04:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/non-engagement-letter</id>
+   <content type="html">&lt;p&gt;변호사가 고객보다 더 원하는 것은 바로 더 많은 고객이다.&lt;/p&gt;
+
+&lt;p&gt;그래서, 대부분의 변호사는 최초 상담 1–2시간 정도는 무료로 제공한다. 동방예의지국답게 이런 무료변론은 다음과 같이 끝난다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;잠재고객: 감사합니다. 꼭 연락 드리겠습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;변호사: 네, 연락 주세요.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어느 정도 경험이 있는 변호사라면, 그 고객은 연락하지 않을 것이라는 것을 안다. 대부분의 변호사는 그냥 잊어버린다. 아주 소수는 나중에 연락 한다. 그리고, 진짜 고객이 된다. 이게 문제다.&lt;/p&gt;
+
+&lt;p&gt;변호사와 고객간의 관계는 특별한 관계이다. 일단 자문/대리 관계가 성립하고 나면, 변호사는 최소한 다른 사람에게 그 고객에 대해 이야기를 하지 말아야 하며 (비밀유지 의무 및 특권), 고객의 상대방을 대리하지 않아야 하며 (쌍방대리 금지), 그리고 최선의 노력을 다해서 유능하게 그를 대리하여야 한다.&lt;/p&gt;
+
+&lt;p&gt;상상해 보자. 그렇게 잠재고객이 떠나고 나서 다른 사람이 왔다. 그는 앞의 잠재고객과 싸우는 사람이다. 예를 들어, 먼저 상담한 사람이 이혼하고자 하는 아내였고, 두번째로 온 사람은 이혼에 반대하는 남편이다. 가능성은 낮지만, 변호사는 앞의 아내와의 상담에서 취득한 정보를 사용할 수 있는가? 그보다 전에 변호사는 아내와 대리관계가 없다고 믿고 남편과 계약을 할 수 있는가?&lt;/p&gt;
+
+&lt;p&gt;만약 아내가 대부분의 잠재고객과 달리 “꼭 연락드리겠다”는 말이 단순히 예의가 아니라 진심이었다면? 변호사와 고객 모두 주의해야 하는 지점이다.&lt;/p&gt;
+
+&lt;p&gt;미국 판례이지만, 이런 경우가 있었다.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; 이 사건은 이혼소송은 아니고, 의료과실사고이다. 남편이 의료과실로 사망하였고, 아내는 2011년 10월 한 변호사와 상담한다. 그리고, 그렇게 “꼭 연락드리겠다”는 말과 함께 상담은 끝났다. 그리고, 2012년 8월 정식으로 자문계약을 체결한다. 그 사이에 소멸시효가 지났다.&lt;/p&gt;
+
+&lt;p&gt;누구 책임인가? 변호사는 당연히 고객이 자문계약을 체결한 시점에 변호사 관계가 시작되었다고 주장하고, 고객은 최초상담 시점에서 변호사 관계가 시작되었다고 주장한다. 법원은 고객 편을 들었다. 사실 그렇게 간단하지는 않다. 항소심법원이 말한 것은 이런 경우 변호사 관계가 언제 시작되었는지는 “고객의 합리적인 믿음”을 포함한 증거를 검토하여 배심원이 판단하여야 하는 문제라고 판결하였다.&lt;/p&gt;
+
+&lt;p&gt;변호사 입장에서라면, 심각한 리스크이다. 그냥 그렇게 “꼭 연락드릴게요”와 “아, 네”로 끝낼 문제가 아닌 것이다. 변호사는 정확하게 변호사-고객 관계가 아직은 성립되지 않았다는 점을 명시적으로 통지하여야 한다. 변호사라면 서면으로 통지하여야 한다. 적어도 이메일로라도… 그러자면, 최초상담시 적어도 이름과 이메일 정도는 알아내야 한다.&lt;/p&gt;
+
+&lt;p&gt;신중한 변호사라면, 서면 통지를 통해서&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;아직은 변호사-고객 관계가 성립되지 않았으며,&lt;/li&gt;
+  &lt;li&gt;따라서 변호사는 아무 일도 하지 않을 것이며,&lt;/li&gt;
+  &lt;li&gt;그럼에도 고객의 비밀은 보호할 것이며,&lt;/li&gt;
+  &lt;li&gt;언제 변호사-고객 관계는 시작되는지 (예를 들어 자문계약의 체결 또는 자문료 지불)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;정도는 말해 주어야 한다. 그리고, 좀 더 신중한 변호사라면&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;고객이 언제까지는 결정해야 하는지 (소멸시효 등을 감안하면)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;도 말해주는 것이 좋다. 그렇지만, 이것을 알기 위해서는 상당히 많은 정보가 필요하다. 최초 상담에서 그 정도는 알아야 하는가? 그것은 각자 판단할 문제이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;각주&quot;&gt;각주&lt;/h2&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Fechner v. Volyn. 상세한 정보는 Mark Fucile, &lt;a href=&quot;https://nwsidebar.wsba.org/2018/06/28/confirming-when-representation-begins-matters/&quot;&gt;Confirming When Representation Begins Matters&lt;/a&gt; 참고. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>언번들링, 대서소, 알바변</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/ghostwriting.html"/>
+   <updated>2018-07-03T14:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/ghostwriting</id>
+   <content type="html">&lt;p&gt;음악산업은 번들링, 그러니까 싱글판을 없애고 7–8곡씩 묶어서 파는 관행 때문에 망했다고 한다. MP3 때문이 아니라… 교육산업이 망한다면 번들링, 그러니까 졸업장을 따기 위해서는 필요한 것 뿐 아니라 필요도 없는 교양을 가르치는 것 때문일 것이라고 한다. coursera 때문이 아니라…&lt;/p&gt;
+
+&lt;p&gt;법률산업이 망한다면 아마도 번들링 때문일 것이다. 그럴 일은 없다. 이미 언번들링은 대세니까… 번들링이란 무엇인가? 패키지로 파는 것이다. 인수합병 거래의 계약서를 작성하는 곳에서 실사도 한다. 계약서를 작성하는 변호사가 협상도 한다. 소장을 작성하는 변호사가 법정변론도 한다. 일부만 쪼개서 맡길 수는 없는가?&lt;/p&gt;
+
+&lt;p&gt;문제 없다. 대부분의 경우에는… 한 가지 예외가 있는데, (한국식으로 말하자면) 셀프소송하는 사람을 위해서 소장 등의 법정문서를 대리작성해주는 것이 허용되는가라는 질문이다. 한국에서는 이미 대서소에서 그런 일을 하고 있지 않았던가?&lt;/p&gt;
+
+&lt;p&gt;대표적인 사례에는 다음의 예가 있겠다.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;법원 절차와 법원에서의 행동규칙 등에 대해서 코칭&lt;/li&gt;
+  &lt;li&gt;전략 코칭 또는 롤플레이&lt;/li&gt;
+  &lt;li&gt;함께 대리하기&lt;/li&gt;
+  &lt;li&gt;리서치 수행&lt;/li&gt;
+  &lt;li&gt;문서 검토&lt;/li&gt;
+  &lt;li&gt;계약서 작성&lt;/li&gt;
+  &lt;li&gt;소장, 준비서면, 확인서, 명령서 등 작성&lt;/li&gt;
+  &lt;li&gt;대서소&lt;/li&gt;
+  &lt;li&gt;제한된 법정 대리&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이 글의 저자는 형사나 파산 등의 경우에는 적절하지 않을 수도 있다고 경고한다. 다른 사람은 고객이 누구인지 확인해 볼 필요가 있다고도 조언한다.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; 또 그는 다른 글에서 대체로 다른 변호사를 위해서 소장이나 준비서면을 “대서”하는 것은 괜찮지만, 셀프소송하는 고객을 위해 대서하고 그 사실을 명기하지 않으면 법원을 호도했다는 이유로 처벌을 받을 수도 있다고 한다.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;가장 좋은 것은 자기가 속한 주의 공식적인 의견을 확인하는 것이다. ABA에서는 &lt;a href=&quot;https://www.americanbar.org/groups/delivery_legal_services/resources.html&quot;&gt;Unbundling Resource Center&lt;/a&gt;라는 좋은 페이지를 유지하고 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.americanbar.org/groups/delivery_legal_services/resources/pro_se_unbundling_resource_center/ethics_opinions.html&quot;&gt;이 페이지&lt;/a&gt;에서 확인할 수 있는 것처럼, 미국변호사협회는 일반적으로 셀프소송하는 고객을 위해 대서소업을 하는 것을 허용한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;변호사는 자기가 하는 지원의 성격이나 범위에 대해 공개하지 않고 또 이를 공개하도록 하지 않고, “스스로” 법정에 출두하는 소송당사자에게 법적 지원을 제공하고, 제출문서를 작성하는 것을 지원할 수 있다. (&lt;a href=&quot;https://www.americanbar.org/content/dam/aba/administrative/delivery_legal_services/ls_del_aba_07_446_2007.pdf&quot;&gt;ABA Formal Opinion 07-446 (2007)&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그렇지만, 그 페이지에서 확인할 수 있는 것처럼 주별로 규칙이 다 다르다. 헷갈리면 자기가 속한 주의 경우에 대해서 알아 보라.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/2018/07/future-of-biglaw.html&quot;&gt;앞의 글&lt;/a&gt;에서 대형로펌에 대한 대안으로 언번들링에 대해서 잠깐 언급하였는데, 궁금할 사람을 위해 부연해 보았다. 다음 글에서는 진짜로 궁금할 사람을 위해 언번들링과 뗄레야 뗄 수 없는 관계에 있는 알바변 (contract attorney)에 대해서 정리해 보겠다.&lt;/p&gt;
+
+&lt;h2 id=&quot;각주&quot;&gt;각주&lt;/h2&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;William Vogeler, Esq., &lt;a href=&quot;https://blogs.findlaw.com/strategist/2016/12/best-practices-for-unbundled-legal-services.html&quot;&gt;Best Practices for Unbundled Legal Services&lt;/a&gt;에서 인용. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;George Khoury, Esq., &lt;a href=&quot;https://blogs.findlaw.com/strategist/2018/06/should-you-ghostwrite-for-a-pro-se-litigant.html&quot;&gt;Should You Ghostwrite for a Pro Se Litigant?&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;George Khoury, Esq., &lt;a href=&quot;https://blogs.findlaw.com/strategist/2017/09/can-you-really-ghostwrite-a-pleading-for-a-client.html&quot;&gt;Can You Really Ghostwrite a Pleading for a Client?&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>왜 프로페셔널 블로깅을 하는가?</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/why-professional-blogging.html"/>
+   <updated>2018-07-03T08:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/why-professional-blogging</id>
+   <content type="html">&lt;p&gt;이게 다 &lt;code class=&quot;highlighter-rouge&quot;&gt;.lawyer&lt;/code&gt; 도메인 때문이다. 괜찮아 보여서 샀다. 지금 산지 약2년 정도 된 것 같다. 이메일을 셋업하고 나니 왠지 블로깅을 하고 싶어 졌다.&lt;/p&gt;
+
+&lt;p&gt;프로페셔널 블로깅은 위험하다. 첫째, 욕을 하지 못한다. 욕을 하면 개인적으로도 힘이 솟고 (카타르시스), 계속 끌고 나갈 힘이 생긴다. 그리고 트래픽도 발생한다. 프로페셔널 블로그에서는 그럴 수 없다.&lt;/p&gt;
+
+&lt;p&gt;둘째, 블로그를 보고 일을 맡기는 경우는 (경험상) 거의 없다. 법률 업무는 무엇보다도 B2B이지, B2C가 아니다. 온라인 브랜드도 필요 없다. 온라인 사이트는 이력서 같으면 된다. 이력서 때문에 사람 뽑을 일은 없다. 뽑지 않을 이유를 주지 않는 것이 유일한 목적이다.&lt;/p&gt;
+
+&lt;p&gt;셋째, 시간이 많이 든다. 글 하나 쓰는데 평균 2–3시간 걸린다.&lt;/p&gt;
+
+&lt;p&gt;그럼 왜 프로페셔널 블로그를 하는가?&lt;/p&gt;
+
+&lt;p&gt;모든 변호사가 마찬가지이겠지만, 최초 상담을 했다고 해서 꼭 일로 이어지지 않는다. 실제 비율은 아마 10% 정도일 것이다. 나머지 90%는 시간 낭비이다. 이 90%만 없애더라도 사실 꽤나 보람차고 의미 있고 풍요로운 삶을 살 수 있을 것이다.&lt;/p&gt;
+
+&lt;p&gt;나는 내 나름의 방식과 원칙과 고집이 있다. 모든 고객에게 이런 방식과 원칙과 고집이 맞지는 않을 것이다. 의도는 최초 상담을 요청하는 고객에게 이 블로그를 보여 주고 그래도 하고 싶다면, 나와 맞는 것 같다고 생각한다면 서로 훨씬 더 편해질 것이다. 그렇지 않다면, 다른 변호사를 찾아 가는 것이 서로 편하다. 이것이 내가 이 블로그를 하는 이유이다.&lt;/p&gt;
+
+&lt;p&gt;또 한 가지 이유는 시간이 부족하다보니, 블로그를 하다 보면 꼭 수첩을 가지고 다니게 된다. 흥미로운 주제가 나오면 적어 둔다. 그리고, 다른 일을 할 때에도 시간을 의식하게 된다. 사실 먹고 사는 데에는 하루 총시간의 1/3 이상을 쓰면 안된다. 그보다 적으면 더 좋다.&lt;/p&gt;
+
+&lt;p&gt;… 이렇게 생각하니 마음이 편해졌다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 7] 변호사의 사업감각?</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/lawyers-business-acumen.html"/>
+   <updated>2018-07-03T04:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/lawyers-business-acumen</id>
+   <content type="html">&lt;p&gt;다른 변호사와 함께 일을 하다 보면 내가 경악하는 것이 하나 있다. 간단한 예로 대출계약을 협상하고 있다고 생각해 보자. 여기에서는 대출이자를 10%로 정해 놓았다. 꼭 이렇게 커멘트를 하는 변호사가 있다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이런 이자율은 지나치게 높을 수 있으며, 귀사에 불리할 수 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;도대체 뭘 하자는걸까? 변호사의 동기는 단순하다. 자기가 이런 종류의 거래를 잘 알고 있다는 것을 과시하는 것이다. 꼭 이런 변호사가 있다. 자기 행위가 어떤 해악을 끼치는지 모르는 것이다. 말 그대로 딜 킬러(deal killer)이다.&lt;/p&gt;
+
+&lt;p&gt;왜 나쁠까? 장기적으로 고객에게 좋을 것이 없다. 혹시 해당 거래가 감사나 소송의 대상이 되었다고 생각해 보라.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;심지어는 거래를 담당하는 변호사도 이렇게 말했는데…&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이런 주장을 쉽게 상상해 볼 수 있다. 더 나쁜 것은 그 고객도 그 정도는 이미 알고 있을 것이라는 점이다. 만약 그것도 모르는 고객이라면 첫째, 그 변호사는 그 고객을 대리하는 것을 사임해야 하며, 둘째, 그 고객은 그런 일을 하면 안된다.&lt;/p&gt;
+
+&lt;p&gt;그런데, 변호사가 진짜로 그렇게 생각한다면? 실제로 그 변호사는 이런 업무에 대해서 잘 알고 있고, 그 고객의 사정도 잘 알고 있고, 그럼에도 진심으로 그것이 “사업적으로” 불리한 계약이라고 생각한다면? 그럴 때 쓰라고 알렉산더 그레이엄 벨은 1875년 전화기를 발명하였다. 그리고, 진심으로 그렇게 생각한다면, 대안을 제시할 수 있는가? 예를 들어, 은행에서 빌려 보라는? 그리고, 고객은 그런 걸 다 알면서 그런 선택을 하는 경우일 수도 있다는 생각은 해 보았는가? 전화를 하거나 직접 만나 보면, 지금껏 몰랐던 배경을 알게 될 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;동기가 순수하다는 것은 이해한다. 나도 옆에 앉은 저 변호사만큼은 이런 일을 해 봤고, 이런 종류의 일을 잘 안다는 것을 보여 주겠다는 것이다. 누가 비난할 수 있겠는가? 문제는 이런 커멘트가 보여주는 것은 그 변호사는 이로 인하여 사실상 이런 종류의 일을 실무적으로는 별로 해 본 적이 없다는 것과 언제 입 다물고 있어야 할지 모른다는 것이다. 그리고 잠재적으로 딜 킬러로 다른 변호사와 고객의 블랙리스트에 오른다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;사업감각이라는 것은 무엇보다도 언제 입닥치고 있어야 하는지 아는 것이다. 그 다음으로, 사업감각이라는 것은 어떤 방식으로 소통할지를 아는 것이다. 그리고, 고객의 행동의 결과를 예측하려 하기 전에 자기 행동의 결과를 생각해 보는 것이다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 6] 금액만으로 고문계약 협상하기</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/lean-start.html"/>
+   <updated>2018-07-02T17:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/lean-start</id>
+   <content type="html">&lt;p&gt;나는 변호사들도 프로젝트 관리 기법을 배우고 실천해야 한다고 생각한다. 나는 개인적으로 애자일(agile)은 좀 너무 cheesy하다고 생각하고, 린(lean) 방법론은 지나치게 제조업 중심이라고 생각한다. 그렇지만, &lt;a href=&quot;https://www.law.com/lean-adviser/static/lean-adviser?&amp;amp;cmp=source-Editorial_medium-Article_campaign-What_Clients_Really_Want&quot;&gt;린한 방법을&lt;/a&gt; 주창하는 사람들도 있다. 가끔씩 블로그에 글을 올린다. 오늘 글은 &lt;a href=&quot;https://www.law.com/2018/05/31/lean-adviser-what-do-clients-really-want/&quot;&gt;외부 변호사에게서 고객이 원하는 것&lt;/a&gt;이라는 글을 읽다가 정리해 본다.&lt;/p&gt;
+
+&lt;p&gt;일못변의 가장 큰 증상이 모든 문제는 “얼마”로 귀결되는 것이다. 금액을 제시하고 고객이 동의하면 사실상 자문계약은 된 것이다. 그런가?&lt;/p&gt;
+
+&lt;p&gt;위 글에서는 고객이 원하는 것을 다섯 가지로 나눈다. 믿을 수 있음 (reliability), 투명함 (transparency), 쓸모 있음 (utility), 평안함 (tranquility) 그리고 관계 (relationship). 나는 이 가운데 적어도 앞의 두 개는 자문/대리계약을 체결하는 과정에서 확립되어야 한다고 생각한다. 따져 보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; 위 글의 저자는 믿을 수 있음을 세 가지로 나눈다. 제대로 된 결과, 예산 그리고 제때 수행하기. 제대로 된 고문/대리계약은 이 세 가지가 포함되어 있어야 한다. 그리고, 제대로 된 고문/대리계약을 협상하고 나서, 여기에 대해서 서로 이해가 분명하고 일치하지 않는다면, 그것은 서로 파국으로 가는 지름길이다. 저자는 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;믿을 수 있다는 것은 일관된 성과를 내는 것이고 […] 이것을 위해서는 도구가 필요하다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;적어도 계약서에 서명하고, 악수를 하고 나면, 고객과 변호사 모두가 원하는 결과에 합의하여야 한다. 그리고, 우리가 하는 일은 언제나 불확실성이 있으므로, 여러가지 경우에 어떤 여러가지 결과가 나올 것인지에 대해 모두 명확히 이해하고 있어야 한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 예산은 얼마인지 확정되어야 한다. 변호사나 고객 모두가 간과하는 것은 이것을 “비용”으로 이해하게 되는 것이다. 내가 보는 한은 자문/대리 계약을 체결하고 나서 고객이 변호사 보수를 비용으로 인식하고 있는 한은 그것은 실패한 협상이다. 원하는 결과에 대해 우선 합의하였다면, 고객은 비용뿐 아니라 이익을 볼 수 있어야 한다. 그리고, 시간도 중요하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; 투명성이라는 것은 일의 진행상황을 고객이 알고 있어야 한다. 이것은 계약서에 명시할 필요는 없을 수도 있지만, 중요한 진행상황을 고객에게 알리고, 어떤 의사결정은 고객이 내려야 하는지에 대해서 자문/대리의 전과정에서 명확히 하여야 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; 쓸모가 있다는 것은 저자에 따르면,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;고객에게 두꺼운 법학 논문을 의견서로 보내는 것은 학술적 가치와 무관하게 고객의 문제를 해결하지 못한다. 고객에게 유용한 것은 법적 기반에서 사업에 대해 조언하는 것이고, 동시에 대안과 제안과 리스크에 대한 평가가 수반되는 것이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;법은 법이다. 아무리 모호한 것이 많아도 법은 법이다. 여기에 대해서는 어느 정도 유능한 변호사라면 결론이 다를 수 없다. 사업부분에 대해서 어떻게 접근하는지야말로 각 변호사를 차별화하는 것이다. 여기에 대한 접근법과 개입의 정도는 변호사별로 다를 수 밖에 없다. 최적의 조합을 찾는 것이 자신의 경쟁력을 높이는 길이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; 저자는 평안함이란 “간섭하지 않고, 포함시키기”라고 규정한다. “고객이 관심 있는 것은 변호사가 아니라 프로젝트이다.”&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5.&lt;/strong&gt; 고객이 원하는 것은 일관성이다. 고객이 원하는 것은 계속해서 함께 일하고 싶은 변호사이다. 저자는 이렇게 조언한다. “특정 산업분야에 특화되지 말고, 해당 고객에게 특화되라.”&lt;/p&gt;
+
+&lt;p&gt;더 알고 싶은 사람은 위의 링크를 따라가 보라. 개인적으로 나는 약간 다른 방식의 프로젝트 관리방법을 선호한다. 나도 나만의 업무 방식과 비밀이 있지 않겠는가? 여기에 대해서는 다음에 이야기하겠다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>대형로펌의 미래</title>
+   <link href="http://hyunkim.lawyer/blog/2018/07/future-of-biglaw.html"/>
+   <updated>2018-07-01T10:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/07/future-of-biglaw</id>
+   <content type="html">&lt;p&gt;한국에서는 대형로펌이라고 하고, 미국에서는 크래배스 시스템(Cravath System)이라고 한다. 미국의 대형로펌 &lt;a href=&quot;https://www.cravath.com/&quot;&gt;Cravath, Swane &amp;amp; Moore LLP&lt;/a&gt;에서 개척한 사업모델이어서 그렇다. 똑똑하고 유망한 로스쿨 막 졸업한 변호사를 대량으로 뽑아서 일을 시키고, 7년 정도가 지나면 그중에 80% 정도를 내 보내는 시스템이다. 한국에서라면 군대식 로펌이라고 해도 될 것 같다.&lt;/p&gt;
+
+&lt;p&gt;1920년에 개척되었고, 1970 후로부터 폭발적인 성장을 하다가 2007년 경제위기를 “계기로” 하향세에 접어 들었다고 한다. Bernard A. Burk, David McGowan의 &lt;a href=&quot;https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1680624&quot;&gt;Big But Brittle: Economic Perspectives on the Future of the Law Firm in the New Economy&lt;/a&gt;에서 나오는 이야기이지만, &lt;a href=&quot;http://www.thefacultylounge.org/2018/06/a-glimpse-at-the-future-of-biglaw.html&quot;&gt;A Glimpse at the Future of BigLaw&lt;/a&gt;에 잘 요약되어 있다. 100페이지가 넘는 논문을 읽기 그러면 뒤의 블로그 포스팅을 읽어도 된다.&lt;/p&gt;
+
+&lt;p&gt;저자는 이 시스템이 붕괴되기 시작한 계기는 당연히 2007년 경제위기이겠지만 기술의 발전 및 이에 따른 지식경제의 대안적 관리 시스템의 발달 그리고 사내변호사 조직의 발달이 큰 역할을 했다고 한다. 자세한 내용은 논문을 읽어 보면 알 수 있으므로 간략히 넘어가고, 여기에서는 무시할 수 없는 한 가지만 이야기하고자 한다. 그러기 전에 잠깐,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;또 그들은 가장 가격 변동성이 낮은 일을 하며, 전통적으로 수익성이 좋은 사업에 집중한다. 예를 들면, 대규모 금융 및 자본시장 거래와 소송, 고급 화이트컬러 형사사건 방어, 독점금지법 및 지식재산 분야이다. 그 외의 더 넓은 영억에 포함되는 “준엘리트” 회사는 그보다는 수익성이 덜하며 (그렇지만 아주 수익성이 높다), 더 넓은 업무영역에 닿아 있다. 이것은 전통적으로 레버리지가 낮으며 가격변동성이 높은 분야인 근로와 노동, 부동산, 신탁과 재산관리 및 슈퍼엘리트들이 초점을 맞추는 분야 등이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;They also engage heavily in the most price-insensitive work and concentrate in traditionally super-profitable area: large-scale financial and capital markets transactions and litigation, high-end white-collar criminal defense, antitrust, and intellectual property. The other, a broarder realm of “semi-elite” firms, is less (but still very) profitable, and reaches out to a broader practice base, including traditionally less leveraged and more price-elastic specialties such as labor and employment, real estate, and trusts and estates as well as the prestige practices where the super-elite tend to focus. (id., 27)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;공교롭게도 대형로펌에서 일한 시간은 아주 짧았지만, 나는 위의 슈퍼엘리트 시장의 업무로 분류되는 일을 다 해봤다. 그렇기 때문에, 위 논문의 저자들이 잠시 지나가는 말로 했던 그렇지만 내가 보기에는 가장 중요한 한 가지 요인에 대해서 조금은 아는 체 할 수 있다. 게다가, 내가 3년 정도의 짧은 시간 이외에는 거의 대형로펌의 바깥에서 지내면서도 이런 종류의 일을 다 해 보았다는 것은 무슨 뜻인가? 슈퍼엘리트 대형로펌의 시대가 저물고 있다는 뜻이다.&lt;/p&gt;
+
+&lt;p&gt;위 논문의 저자는 이들의 고객은 상당히 비중 있는 기업조직과 부유한 “산업계의 수장”들이라고 한다. 그들은 지속적으로 법률적 수요가 있으며, 다양한 종류의 기술과 경험을 갖춘 전문가 뿐 아니라 상당한 수의 능력 있는 부하들이 할 수 있는 종류의 일을 필요로 했다고 한다 (8쪽). 내가 중요하게 생각하는 것은 바로 다음 문장이다. “그들은 사내변호사가 거의 없거나 아예 없었다.”&lt;/p&gt;
+
+&lt;p&gt;이게 왜 중요한가? 피터 드러커는 중간관리자 또는 요즘말로 경영자(manager)라는 계층의 직군은 2차대전 이전에는 없었다고 한다. 2차대전 이전의 회사에는 회사의 소유주와 근로자만 있었을 뿐이다. 2차대전 이후에 중간관리자가 생기는데, 그것은 2차대전에 참전한 군인들에게 정부에서 무상 (대학) 교육과 같은 복지혜택을 부여하였고, 몇 년이 지나자 이들이 양산되기 시작하면서 중간관리자 계층이 회사에 생겼다고 한다. 흥미로운 관찰이다. 그러니까, 중간관리자 계급은 회사에 그런 업무가 필요해서 생긴 것이 아니라 (즉, 초과수요 때문에 만들어진 것이 아니라), 그걸 할 수 있는 사람이 많아지니 (즉, 과잉공급 때문에) 만들어졌다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;이 경향이야말로 앞에서 말한 1960–70년대 크래배스 시스템의 약진과 확장을 설명하는 동인일 것이다. 동시에 이것이야말로 2010년 이후 크래배스 시스템의 몰락을 설명하는 동인일 것이다.&lt;/p&gt;
+
+&lt;p&gt;2010년 이후에는 이 시스템을 광범위하게 도입한 것이 로펌이 아니라 회사 법무팀이기 때문이다. 이제는 한 때 1,000명을 넘게 고용하였던 대형 법무법인의 시대가 저무는 것이다.&lt;/p&gt;
+
+&lt;p&gt;물론, 이것만으로 대형법무법인의 시대의 종언을 설명하지는 못한다. 그 배후에는 상당한 정도의 기술발전이 자리잡고 있기 때문이다. 이런 기술발전은 로펌과 이어 사내 법무팀의 상당한 구조변화를 가져 오기 때문이다. 이것을 위 저자는 아웃소싱 (outsourcing), 인소싱 (insourcing), 다운소싱 (downsourcing)이라 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이런 경향에는 소송 또는 거래의 통상적인 과제를 “아웃소싱”하기, 사내의 업무를 전체 비용을 부담해야 하는 어소시에트로부터 비용부담이 적은 직원 (한국이라면 사무장), 외주전문 변호사 또는 비변호사 전문가에게 맡기는 “다운소싱”하기, 그리고 “상품화”할 수 있거나 (즉 표준화할 수 있거나) 또는 고객에게 고유한 지식이 필요한 반복적인 작업을 사내 직원에게 맡기는 “인소싱” 등이 포함된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;These trends include “outsourcing” routine tasks within a lawsuit or transaction; “downsourcing” such work within the firm from full-cost associates to low-cost staff, contract lawyers, or non-lawyer specialists; and “insourcing” to in-house staff recurrent tasks that are commoditized or dependent on client-specific knowledge. (id, 5)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;예를 들어 보자. 한국 회사가 해외에서, 이를테면 미국에서 소송을 하면 엄청난 양의 번역이 필요하다. 미국 또는 한국의 대형로펌에 맡길 경우 거의 시간당 250–300달러(한화로 약 25만–3십만원)을 청구하는 (2009년에서 2010년 기준이다), 로스쿨을 막 졸업했고 변호사 자격은 땄지만 아무 것도 모르는 어소시에이트에게 맡긴다. 그 말은 100페이지 문서 하나를 번역할 경우, (한 사람이 한 시간에 번역하는 양이 약 2페이지라고 하면) 1천만원이라는 뜻이다. 번역할 내용이 1만 페이지라면 10억이다. 어떻게 이런 비용이 정당화되는가?&lt;/p&gt;
+
+&lt;p&gt;이 질문에 대답하려면 우선 과거에는 어떻게 정당화되었는지 이해하여야 한다. 과거에는 대형로펌이 소위 여러 서비스를 번들링했기 때문이다. 첫째, 1960년대 이전에는 사내변호사 시스템이 거의 전무했다는 점을 떠올려 보자. 그렇다면, 대기업의 입장에서는 다른 종류의 일이 발생할 경우 이왕 일을 맡긴 로펌에 연락하게 된다. 예를 들어, 공정거래법 위반으로 업무를 맡긴 기업에 부동산 임대차 업무도 맡기는 것이다. 로펌 입장에서는 당연히 대형화할 수 밖에 없다. 여러 전문성을 골고루 갖추어야 하니까…&lt;/p&gt;
+
+&lt;p&gt;그런데, 1970년대 이후 사내법무팀이 활성화되면서 각 분야별로 다양한 법무법인에 일을 맡기게 된다. 부동산 임대차는 그걸 전문적으로 잘 하는 회사에 맡기고, 특허출원은 그걸 잘 하는 회사에 맡기는 식으로…&lt;/p&gt;
+
+&lt;p&gt;여기에서 한 걸음 더 나아가서 이제는 부가가치가 높은 일은 특정 로펌에 맡기지만, 부가가치가 낮은 일은 다른 로펌에 맡기는 경향이 발생하기 시작한 것이다. 예를 들어, 지식재산과 관련된 소송을 한다고 가정해 보자. 부가가치가 높은 — 즉 해당 분야에 전문성이 높은 — 특정 로펌의 파트너는 요즘은 시간당 수천 달러를 청구한다. 그는 그럴 가치가 있다. 재판 결과의 사활을 좌우하는 전략을 수립하고, 기타 핵심 역할을 수행하므로… 그리고, 이런 일은 아무나 대체할 수 없으므로… 그런데, 이보다는 부가가치가 떨어지는 — 즉 대체로 누구나 할 수 있는 예를 들면 단순한 증거 검토 및 번역 등 — 을 과거에는 그 로펌에 맡겼지만 (번들링이라 한다), 이제는 이것들을 따로 떼서 가격 경쟁력이 높은 회사에 맡기는 것이다. 그러면 프로젝트가 너무 복잡해 지지 않는가? 그 업무 프로세스를 도대체 누가 관리하나? 이것을 사내 변호사가 담당하는 것이다.&lt;/p&gt;
+
+&lt;p&gt;한 마디로 프로젝트 관리 업무를 사내 변호사가 담당하는 것이다. 과거에는 대형 엘리트 로펌에 맡겼던 일인데…&lt;/p&gt;
+
+&lt;p&gt;이 말은 요즘 엄청나게 양산되는 변호사들이 다 먹고 살기 위해서 배워야 할 기술은 프로젝트에 편입되어 일하기이고, 중소형 로펌들이 꼭 배워야 하는 기술은 프로젝트 관리 기술이라는 것이다.&lt;/p&gt;
+
+&lt;p&gt;이것은 물론 나의 견해이다. 혹시 반박하고 싶으면 이메일을 보내 달라. 다만, 그 전에 위에서 인용한 Bernard A. Burk, David McGowan의 &lt;a href=&quot;https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1680624&quot;&gt;Big But Brittle: Economic Perspectives on the Future of the Law Firm in the New Economy&lt;/a&gt;은 먼저 읽어 보기 바란다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>스마트 컨트랙트 또는 덤 로이어 (Smart contract or dumb lawyer)</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/smart-contract.html"/>
+   <updated>2018-06-29T18:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/smart-contract</id>
+   <content type="html">&lt;p&gt;변호사라면 스마트 컨트랙트 내지는 영리한 계약 이야기를 들으면 기분이 나빠진다. 일자리 뺏길까봐 그런 것은 아니다. 그건 먼 옛날 이야기이고 … 또 변호사는 먼 미래에 대해서 그렇게 걱정하지도 않고 기대하지도 않는다. 정작 기분나쁜 것은 누군가 자기네가 스마트 컨트랙트를 만들었다고 하면,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;뭐야, 그럼 지금까지 내가 만든 것은 덤 컨트랙트라는거야? 그리고, 덤 컨트랙트를 만든 나는 덤 로이어라는거야?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;라는 반응이다. 잠시 숨을 가라앉히고,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; “원자의 가운데에는 원자핵이 있고, 그 주위를 전자들이 돌고 있지. 마치 태양계의 행성들이 태양 주위를 돌듯이…”&lt;/p&gt;
+
+&lt;p&gt;이런 이야기를 들어 보았을 것이다. 들어가 봤어? 어떻게 알아? 아, 그건, 그게 아니고, 여러가지 실험을 해 보니까 그럴 거라는 거지…&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Rutherford_model&quot;&gt;러더포드 모델&lt;/a&gt;이라고 한다. 이건 그냥 모델일 뿐이다. 그러니까, 현실은 이럴 것이라고 상상해서 그린 것일 뿐이다. 모델이 바뀐다고 해서 모델에 대응하는 현실이 바뀌는 것은 아니다. 솔직히 현실은 모델 따위는 신경도 쓰지 않는다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; 옛날에는 누가 땅문서를 들고 나가서 집안 재산을 다 팔아먹었다는 등의 이야기를 들었을 것이다. 도대체 집문서가 왜? 그따위 종이쪼가리 가지고 가서 팔았다고 해서 그게 뭐? 옛날에는 땅문서로 매매를 했지만, 요즘은 다 전산화가 되어 있어서 사실상 중요한 것은 등기소의 데이터이다. 위의 모델과는 달리 옛날에는 땅과 종이가 1:1로 매핑이 되어 있었던 것이고, 요즘은 등기소의 데이터와 1:1로 매핑이 되어 있는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; 모델과 매핑은 다르다. 디지털 세계의 특징은 무한복사가 가능하다는 것이다. 그러니까 컴퓨터는 모델링에는 엄청난 힘을 자랑하지만, 매핑은 글쎄… 이 문제를 해결한 것이 &lt;a href=&quot;https://en.wikipedia.org/wiki/Satoshi_Nakamoto&quot;&gt;사토시 나카모토&lt;/a&gt;의 유명한 논문 &lt;a href=&quot;https://bitcoin.org/bitcoin.pdf&quot;&gt;Bitcoin: A Peer-to-Peer Electronic Cash System&lt;/a&gt; (2009)이라는 논문이었다. 이 논문의 핵심 주제가 이중지급을 어떻게 방지할 것인가에 대한 것이었다. 여기서 “이중지급”이라는 문제를 “복사”라고 바꾸고 생각해 보라. 디지털 세계에서 디지털 세계를 디지털 세계답게 만드는 특징을 제거하자는 것이다.&lt;/p&gt;
+
+&lt;p&gt;가장 쉬운 방식은 등기소와 같은 중앙집중 저장소를 만드는 것이다. 그렇지 않으면? 이것이 바로 비트코인이다. 화폐는 중앙집중식이다. 한국은행에서 발행하면 화폐이다. 중앙의 절대권자가 없는 화폐 시스템은 어떻게 가능할까? 사토시 나카모토의 해법은 돈 자체에 돈의 거래 이력을 저장하자는 것이다. 그러니까, 거래이력을 저장한 파일이 바로 돈인 것이다. 거래이력 자체를 돈이라고 부르자는 말이다. 내가 가지고 있는 천원짜리 만원짜리 지폐가 돈인 이유와 사실상 다를 것이 없다. 이것을 암호화하고, 그 암호화된 내용을 누군가가 풀면 그것을 거래의 증명으로 삼자는 것이다. 옛날에는 은행에 금을 맡겨 두면 은행에서 증명서를 발행하였다(고 한다). 그 증명서를 은행에 주면 금과 바꾸어 주니 사실상 화폐의 역할을 하는 셈이다. 증명서 대신 내지는 증명서에 거래 이력을 모조리 적어 놓으면? 그게 바로 수표에 “이서”하는 것이다. 다른 사람에게 줄 때마다 그 사실을 화폐 자체에 적어 놓는 것이다.&lt;/p&gt;
+
+&lt;p&gt;복사방지는 매핑으로 가는 첫걸음이다. 비트코인은 복사가 안되지만 — 그러니까 파일은 복사가 되지만, 거래 이력 자체는 고유하다는 뜻 — 아직은 현실과 매핑되어 있지 않다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; 이 문제를 해결하고자 하는 것이 스마트 컨트랙트이다. 프로그래밍 코드를 삽입하여 어떤 조건이 성취되면 그 코드가 실행되도록 하는 것이다. 이 이야기를 처음 한 사람은 &lt;a href=&quot;https://en.wikipedia.org/wiki/Nick_Szabo&quot;&gt;Nick Szabo&lt;/a&gt;라고 한다. 1997년 그는 이렇게 썼다.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;많은 종류의 계약 조항들을 (예를 들면, 담보, 채권, 재산권의 명시 등) 우리가 다루는 하드웨어와 소프트웨어에 삽입함으로써 계약의 위반자로서는 계약 위반의 비용을 높일 수 있다 (원한다면 위반이 불가능할 정도로). 대표적인 현실의 예를 들자면, 이것은 스마트 컨트랙트의 원시 조상이라고 할 수 있는데, 평범한 자동판매기이다. 손해를 볼 가능성이 있지만 제한적인 범위 내에서 (돈 상자 속의 금액은 기계의 작동을 망가뜨리는 비용보다 적어야 한다) 이 기계는 동전을 받고, 단순한 작동방식으로 — 이 방식은 컴퓨터과학 신입생의 유한오토마타 설계 문제이다 — 표시된 가격에 따라 잔돈을 거슬러주고 제품을 준다. 자동판매기는 주인과의 계약이다. 동전이 있는 사람이라면 누구나 주인과의 거래에 참여할 수 있다. 잠금장치와 기타 보안장치들은 보관된 동전과 내용을 공격자로부터 보호하고, 이로써 다양한 분야에서 자동판매기를 활용할 수 있게 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Many kinds of contractual clauses (such as collateral, bonding, delineation of property rights, etc.) can be embedded in the hardware and software we deal with, in such a way as to make breach of contract expensive (if desired, sometimes prohibitively so) for the breacher. A canonical real-life example, which we might consider to be the primitive ancestor of smart contracts, is the humble vending machine. Within a limited amount of potential loss (the amount in the till should be less than the cost of breaching the mechanism), the machine takes in coins, and via a simple mechanism, which makes a freshman computer science problem in design with finite automata, dispense change and product according to the displayed price. The vending machine is a contract with bearer: anybody with coins can participate in an exchange with the vendor. The lockbox and other security mechanisms protect the stored coins and contents from attackers, sufficiently to allow profitable deployment of vending machines in a wide variety of areas.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;5.&lt;/strong&gt; &lt;a href=&quot;https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=381790&quot;&gt;Jeffrey M. Lipshaw&lt;/a&gt;는 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;예를 들어 5만 평방피트의 사무실공간을 10년간 임대할 때 발생할 수 있는 우발상황들의 입출력을 정리할 수 있는 프로그램의 경우, 계약은 물리 세계를 매핑하거나 대체하는 부동산 사업과 법률의 복잡한 세계를 가상으로 창조할 수 있어야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[…] say in connection with a program that can sort out the puts and takes of ten years’ worth of contingency in a 50,000 square foot office lease, the contracts needs to be able to create virtually a complex world of real estate business and law that either maps on or substitutes for the physical version. (p. 7)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그보다 더 심각한 문제는 이런 복잡한 디지털 &lt;a href=&quot;https://en.wikipedia.org/wiki/Multiverse&quot;&gt;평행우주&lt;/a&gt;가 서로의 간섭 없이 무한히 생성되고 현실과는 독립적으로 존재할 수 있다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;6.&lt;/strong&gt; 복제방지 기술을 만들었다고 해서, 매핑 문제가 해결된 것은 아니다. 또, 매핑 문제가 해결된다고 해서, 수많은 대안우주 가운데 진짜 우주와 1:1로 매핑이 되지 않는 한은 그것도 문제이다. 그러니까, 시스템 내에서의 복제 문제를 해결했다고 하더라도, 시스템 자체의 복제 문제는 해결되지 않았다는 것이다. 수많은 가상화폐 내지는 암호화폐의 난립을 보라. 그 가운데 — 적어도 아직은 — 현실의 화폐와 1:1로 매핑된 것은 없다. 그러므로, 지금의 암호화폐는 본질적으로 &lt;a href=&quot;https://en.wikipedia.org/wiki/Libertarianism&quot;&gt;자유지상주의&lt;/a&gt; 또는 &lt;a href=&quot;https://en.wikipedia.org/wiki/Anarchism&quot;&gt;아나키즘&lt;/a&gt;에 더 가까운 것이다. 비록 “돈 때문에” 정부를 불신하는 것이긴 해도 … (내 돈이 네 돈보다 더 낫단 말이야!)(조금 있으면 돈 때문에 하는 공산주의가 나올 수도? 혹시 기본소득이?)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;7.&lt;/strong&gt; 1995년 8월 9일 &lt;a href=&quot;https://en.wikipedia.org/wiki/Netscape&quot;&gt;넷스케이프&lt;/a&gt;가 상장했을 때 사람들은 그야말로 광기에 휩싸였다. 웹브라우저가 왜? 한 가지 이론은 (내 생각은) 인터넷 초창기에 사람들이 인터넷과 웹브라우저를 혼동했던 것 같다. 혹시 지금도?&lt;/p&gt;
+
+&lt;p&gt;Jeffrey M. Lipshaw, &lt;a href=&quot;https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3202484&quot;&gt;The Persistence of “Dumb” Contracts&lt;/a&gt;를 읽다가 생각나서 몇 마디 적어 보았다.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Nick Szabo, &lt;a href=&quot;https://web.archive.org/web/20150328060814/http://szabo.best.vwh.net/smart_contracts_idea.html&quot;&gt;The Idea of Smart Contracts&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>기계식 키보드</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/mechanical-keyboard.html"/>
+   <updated>2018-06-29T14:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/mechanical-keyboard</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;살 안찌는 샌드위치가 뭐야?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;샌드위치 반쪽&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;“애널라이즈 디스”의 대사이다. 손목터널증후군? 오십견? 제일 좋은 것은 컴퓨터를 멀리하는 것이다. 멀리할 수 없다면, 돈을 주고 좋은 키보드를 사야 한다. 멤브레인 키보드는 피하라.&lt;/p&gt;
+
+&lt;p&gt;멤브레인? 번역하면 “막”이라고 나온다. 이 세상에는 두 가지 종류의 키보드가 있다. 멤브레인과 기계식. 멤브레인은 키보드 (전체) 밑에 멤브레인이 — 그러니까 막이 있다. 그걸 수많은 키들이 공유하는 것이다. 기계식은 스위치와 키가 각자 “기계식으로” 연결되어 있다.&lt;/p&gt;
+
+&lt;p&gt;그래서 좋은 점은 첫째는 느낌이 좋다는 것, 둘째는 소리가 좋다는 것, 그리고 마지막으로 끝까지 안눌러도 된다는 것이다. 스위치를 누를 때마다 소리가 나고, 또 중간쯤 누르면 “느낌이 오기” 때문에 손을 떼도 되고, 그래서 피로감이 덜하고, 빠르게 누를 수 있다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;대표직인 기계식 키보드는 체리 MX라고 하는데, 보통 여기에는 각 키에 스프링과 금속 연결고리가 있다. 이것들이 어떻게 연결되는지에 따라 느낌과 소리가 다른데, 뚜껑을 열면 대체로 보이는 색깔로 구분할 수 있다. 따라서, 색깔로 이것들을 부른다. 크게 블랙과 브라운의 변형이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;체리-mx-블랙-선형&quot;&gt;체리 MX 블랙: 선형&lt;/h2&gt;
+&lt;p&gt;선형이라는 것은 “느낌이” 별로 없다는 것이고, 따라서 소리도 별로 없다. 게이머들이 좋아한다. 부드러운 느낌과 눌러 지는 지점과 떼는 지점이 같이 때문에 같은 키를 다른 스위치보다 더 빠르게 누를 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;체리-mx-레드-선형&quot;&gt;체리 MX 레드: 선형&lt;/h2&gt;
+&lt;p&gt;블랙과 비슷하지만 키의 저항이 적으므로 훨씬 더 부드럽고 빠른 느낌을 준다. 게이머들이 좋아한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;체리-mx-브라운-가벼운-촉감&quot;&gt;체리 MX 브라운: 가벼운 촉감&lt;/h2&gt;
+&lt;p&gt;키를 누르면 중간쯤 지점에서 부드럽지만 “느낌이” 온다. 게이머들은 더블탭이 빨라서, 타이피스트들은 촉각이 오기 때문에 좋아하지만, 소리는 블루만큼 좋지 않다.&lt;/p&gt;
+
+&lt;h2 id=&quot;체리-mx-블루-클릭감과-소리&quot;&gt;체리 MX 블루: 클릭감과 소리&lt;/h2&gt;
+&lt;p&gt;클릭감과 소리 때문에 좋아하는 사람이 많고, 클릭감과 소리 때문에 싫어하는 사람도 많다.&lt;/p&gt;
+
+&lt;h2 id=&quot;체리-mx-클리어&quot;&gt;체리 MX 클리어&lt;/h2&gt;
+&lt;p&gt;브라운보다는 촉각이 강하고, 블루만큼 클릭감이 높지 않다. 이 둘의 중간이다.&lt;/p&gt;
+
+&lt;p&gt;그러니까, 게이머들은 블랙이나 레드를 선호하고, 브라운, 블루, 클리어는 대체로 타이피스트들이 좋아한다. 가장 가벼운 느낌이 브라운, 그 다음이 클리어 그리고 블루가 가장 느낌이 강하다.&lt;/p&gt;
+
+&lt;p&gt;내가 이번에 지른 키보드는 &lt;a href=&quot;https://www.daskeyboard.com/daskeyboard-4-ultimate/&quot;&gt;다스 키보드 4 얼티메이트&lt;/a&gt;이다. 체리 MX 브라운이다. 무각인이다. 마치 해피해커 키보드처럼. 순전히 건강때문에 샀다.&lt;/p&gt;
+
+&lt;p&gt;정보는 &lt;a href=&quot;https://www.daskeyboard.com/blog/mechanical-keyboard-guide/&quot;&gt;다스 키보드의 기계식 키보드 가이드&lt;/a&gt;를 보고 참고하였다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>알렉사가 세계를 정복한 것은 시리가 멍청하기 때문이다</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/alexa.html"/>
+   <updated>2018-06-29T07:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/alexa</id>
+   <content type="html">&lt;p&gt;“매트릭스”의 네오와 “매트릭스 2”의 네오가 싸우면 누가 이길까?&lt;/p&gt;
+
+&lt;p&gt;이 세상에는 물을 필요도 없는 질문이 있고, 대답할 가치도 없는 대답도 있다. 당연히 매트릭스 2의 네오가 이긴다.&lt;/p&gt;
+
+&lt;p&gt;이 세상에 물을 필요가 없는 질문도 가끔은 물을 필요가 있다. 그 이유를 알아야 하기 때문이다. 매트릭스 2의 네오는 매트릭스 1의 네오와 다르게 오프라인을 지배하는 힘을 가졌다.&lt;/p&gt;
+
+&lt;p&gt;시리는 구글만큼 똑똑하지 않다. 할 줄 아는 것도 별로 없다. 그저 좋은 것이라고는 예쁜 집(아이폰) 뿐이다. 인공지능에게 무엇을 기대하겠는가? 일정관리, 알람 등등… 여기에는 차별화 요인이 없다. 셋 다 똑같다. 오로지 엔터테인먼트만 하면, 인공지능일 필요 없다. 음악 앱과 영화 앱으로 충분하다.&lt;/p&gt;
+
+&lt;p&gt;구글은 매트릭스의 네오이다. 온라인에서는 최강자이지만, 오프라인에서는 그냥 희멀건 죽 먹고, 뒤통수에 구멍 뚤린 네부카네자호의 일개 승무원일 뿐이다. 심지어는 온라인에서도 엔터테인먼트에서는 힘을 못쓴다. 음악이나 영화 등등.&lt;/p&gt;
+
+&lt;p&gt;알렉사는 매트릭스 2의 네오이다. 일단 엄청난 물류 관리능력이 있다. 7000대의 트럭과 40대의 항공기. 그리고 엄청난 창고 관리 능력. 또 음악이나 영화나 오디오북에서 상당한 강자이다. 클라우드에서도 아주 강하다. 오프라인에서 절대 강자이면서, 엔터테인먼트와 온라인에서도 무시할 수 없는 존재인 것이다.&lt;/p&gt;
+
+&lt;p&gt;약 3주간 알렉사를 사용한 경험을 한 마디로 요약하자면, 아마존에게 이제 필요한 것은 자기 고유의 핸드폰이다. 전화를 위한 디바이스가 아니고, 컨텐츠를 소비하기 위한 디바이스가 아니고, 손에 들고 다니는 인공지능 비서 핸드폰.&lt;/p&gt;
+
+&lt;p&gt;시리가 살아남은 이유는 네오가 너무 사랑하기 때문이다. 적어도 지금까지는… 트리니티인 것이다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 5] 하드 스페이스를 아시나요?</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/hard-spacing.html"/>
+   <updated>2018-06-28T18:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/hard-spacing</id>
+   <content type="html">&lt;p&gt;계약서를 작성하는 일이 늘상 있는 일은 아니다. 계약을 협상하더라도, 대개는 기존의 계약서를 수정하거나 (예를 들어, 시리즈 A 계약서에 기초해서 시리즈 B 계약을 협상), 또는 상대방이 계약서를 작성하고 이쪽에서는 그저 그렇게 작성한 계약서에 커멘트를 하고, 초안을 수정하여 돌려 보내는 식으로 하기 마련이다. 그렇지만, 진짜로 중요한 계약서라면, 진짜로 중요한 거래라면, 계약서를 우리쪽에서 작성해야 한다. 이 문제에 대해서는 나중에 다시 다루기로 하고,&lt;/p&gt;
+
+&lt;p&gt;변호사를 고를 때에도 누가 계약서를 작성하느냐에 따라 고려사항도 더 많아지고, 일반적으로 비용도 증가한다. 당연한 것 아닌가? 나는 주로 계약서를 작성하는 일을 선호한다. 꼭 돈 때문만이라기보다는, 그게 훨씬 더 지적 도전도 크고, 또 성취감도 높기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;계약서를 협상하고, 남이 작성한 계약서에 수정을 가하는 일은 대체로 아무 변호사나 할 수 있겠지만, 내가 계약서를 작성하는 쪽이 되면 문제는 틀려진다. “도대체 이 변호사가 이 일을 할 수 있을까? 그걸 어떻게 알까?”&lt;/p&gt;
+
+&lt;p&gt;나만의 — 단축키와 같은 — 간단한 휴리스틱, 능력이 되는지 파악하는 가장 쉬운 방법은 제목과 같은 질문을 하는 것이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;하드 스페이스를 아시나요?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;물론, 하드 스페이스는 변호사의 계약서 작성 능력과는 상관이 없다. 하드 스페이스를 안다고 해서 계약 작성과 협상 능력이 좋은 변호사라고 할 수는 없다. 그렇지만, 이걸 모르는 사람이 좋은 계약서를 작성할 수는 없다. 이것은 기본이다. 이 말은 타이프세팅에서 사용하는 말이다. 스페이스 내지는 공백문자가 하드하다는 것은 “이 자리에 공백문자는 들어가되, (자동) 줄바꿈을 하면 안된다”는 말이다. 알다시피, 모든 워드 프로세서는 글이 너무 길어지면, 자동으로 줄바꿈을 한다. 그렇지만, 어떤 경우에는 줄바꿈을 하면 어색해지는 경우가 있다. 이럴 때에는 하드 스페이스를 기준으로 앞의 단어와 뒤의 단어 사이에서 줄바꿈이 생기지 않도록 하는 것이다. HTML에서는 “NBSP”라고 한다. “나눌 수 없는 공백(non-breakable space)라는 뜻이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/2018/06/track-changes.html&quot;&gt;앞의 글&lt;/a&gt;에서 마이크로소프트 워드의 “변경내용 추적” 기능을 사용하지 않을 것을 강력히 권고했지만, 그렇다고 마이크로소프트 워드의 사용을 금지할 수는 없다. 다만, 누군가가 마이크로소프트 워드를 사용하여 계약서를 작성하겠다고 한다면, 적어도 마이크로소프트 워드에서 하드 스페이스를 입력하는 방법은 알고 있어야 한다. 내친 김에 그것도 한 번 물어 보자.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;마이크로소프트 워드에서 하드 스페이스는 어떻게 입력하죠?&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;모든 (미국) 변호사들이 항상 가지고 다니고, 항상 읽고, 항상 따라야 하는 책, 브라이언 가너의 레드북에서는 법률 문서에서 하드 스페이스는 특별히 중요하다고 말한다.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; 그리고, 그는 사용하는 워드 프로세서에서 하드 스페이스를 넣는 방법을 숙지하고 있어야 한다고 한다.&lt;/p&gt;
+
+&lt;p&gt;왜 이딴 것으로 그렇게까지 심각하게 따지느냐고? 로스쿨 다닐 때 형사사건 클리닉을 했었다. 언젠가 튜터가 이렇게 말했다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;형사사건에서 변호사가 왜 중요한지 알아? 피고가 어떤 말을 해도 아무도 귀기울여 듣지 않기 때문이야. 피고가 말하면 아무도 듣지 않기 때문에, 너는 그 사람을 대신해서 — 대변해서 말하는거야. 그가 하는 말에 믿음을 주고, 신빙성을 부여하는 것이 네가 하는 일이야.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그 말을 들으면서 문득 “보해사” 이야기가 생각 났다. 성경에서는 성령을 보해사라고 하는데, 그 단어가 영어로는 “advocate”라는 걸 아는 사람은 거의 없는 것 같았다.&lt;/p&gt;
+
+&lt;p&gt;믿음을 주기 위해서는 기본을 지켜야 한다. 어떤 때에는 말의 내용보다 어떻게 말하는지가 더 중요하다. 그래서 어떤 때에는 말의 내용보다 문법이 중요하고, 문법보다 구두점이 더 중요하다. 기본이라는 것은 지키면 아무도 모르지만, 지키지 않으면 금방 눈에 띄는 법이다.&lt;/p&gt;
+
+&lt;p&gt;나는, 에헴, LaTeX을 사용하므로 이런 문제가 없다. 변호사라면 굳이 마이크로소프트 워드를 쓰지 말라고 할 마음은 없지만, 적어도 하드 스페이스를 어떻게 입력하는지는 알고 있어야 한다. 그렇지 않으면, 의도하지 안은 곳에서, 뜻밖의 상황에서 실수를 하게 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;629-추가&quot;&gt;6/29 추가&lt;/h2&gt;
+
+&lt;p&gt;하드 스페이스를 입력하는 외에도 마이크로소프트 워드를 쓰는 변호사가 알아야 하는 기술에는 다음과 같은 것들이 있다.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각주 생성 및 수정&lt;/li&gt;
+  &lt;li&gt;하이퍼링크 삽입&lt;/li&gt;
+  &lt;li&gt;스타일 적용과 수정&lt;/li&gt;
+  &lt;li&gt;교차참조(cross-references) 삽입과 업데이트&lt;/li&gt;
+  &lt;li&gt;페이지 브레이크 넣기&lt;/li&gt;
+  &lt;li&gt;하드 스페이스 넣기&lt;/li&gt;
+  &lt;li&gt;문서 속성 정리/제거&lt;/li&gt;
+  &lt;li&gt;문서비교 만들기&lt;/li&gt;
+  &lt;li&gt;문단 번호 자동 삽입 및 줄번호 입력&lt;/li&gt;
+  &lt;li&gt;절과 문단 부호 삽입&lt;/li&gt;
+  &lt;li&gt;목차 및 인용한 판례목록 (table of authorities) 자동생성&lt;/li&gt;
+  &lt;li&gt;커멘트 입력과 삭제&lt;/li&gt;
+  &lt;li&gt;헤딩(headings) 사용하기&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;각주&quot;&gt;각주&lt;/h2&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;참고로 답은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + Shift + Space&lt;/code&gt; 이다. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;p. 94, Bryan Garner, The Redbook: A Manual on Legal Style, 3d (West Academic Publishing, 2013) &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://www.lawtechnologytoday.org/2017/06/technology-competence/&quot;&gt;Ivy Grey, How to meet the duty of technology competence&lt;/a&gt;. 내 생각에는 이 정도는 너무 기초이다. 이보다는 훨씬 더 많이 알아야 한다. 특히 마이크로소프트 워드가 주력으로 사용하는 도구라면… &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 4] 변경내용 추적 반대</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/track-changes.html"/>
+   <updated>2018-06-28T12:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/track-changes</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;/blog/2018/06/metadata.html&quot;&gt;지난번 글&lt;/a&gt;에서 메타데이터를 잘못쓰면 얼마나 당황스러운 일을 당하게 되는지, 또 잘못하면 얼마나 엄청난 손해배상을 겪게 되는지 간단히 소개하였다.&lt;/p&gt;
+
+&lt;p&gt;처음으로 마이크로소프트 워드에 “변경내용 추적” 기능이 추가되었을 때, 나는 사실 가장 열광했던 사람 가운데 하나였다. 그런데 지금은 사실 이 기능의 사용을 가장 반대하는 사람 가운데 하나이다. 나는 심지어 마이크로소프트 워드를 가능한 한 사용하지 않아야 된다고 생각한다.&lt;/p&gt;
+
+&lt;p&gt;어느 정도냐 하면 마이크로소프트 워드를 사용하는 사람을 포괄적으로 “일못변” 범주에 넣어버리고 싶지만, 그렇게 하면 현재 활발하게 활동하는 거래전문 변호사의 90%를 일못변으로 비난하는 셈이라 망설이고 있다. 한국으로만 치면 적어도 90%는 확실히 넘을 것이다. 계약서 협상을 할 때 내가 가장 싫어하는 부분 가운데 하나이다. 내가 “변경내용 추적”을 반대하는 이유를 몇 가지 적어 보겠다.&lt;/p&gt;
+
+&lt;p&gt;첫째, 돌아갈 방법이 너무 많다. 예를 들어, 정말 마음에 들지 않는 조항이 있다고 해 보자. 이걸 삭제하면 상대방이 기를 쓰고 반대할 게 빤하다. 그렇지만, 도저히 이걸 그냥 둘 수는 없다. 그럴 때 “변경내용 추적” 기능을 끄고, 삭제한 다음 다시 “변경내용 추적” 기능을 다시 켜면? 먹힌다! 이 말은 심지어 변경내용 추적을 켠 상태에서 상대방이 수정한 내용이라도 엄밀히 말하자면 일일이 다 비교해 보아야 한다는 말이다. 내가 보낸 버전과 과연 일치하는지… 이런 일을 하고 고객에게 비용을 청구할 수 있을 것인가? 쉽지 않을 것이다. 그러면 하지 말아야 하는가? 물론, 상대방에 대한 신뢰의 정도에 달려 있지만, 결국 거래 협상이라는 것은 &lt;strong&gt;불신에서 신뢰로&lt;/strong&gt; 나아가는 과정 아닌가? 어떻게 믿을 것인가?&lt;/p&gt;
+
+&lt;p&gt;또 다른 예를 들어 보자. 내가 하고 싶은 말을 마치 상대방이 하고 싶은 말처럼 꾸며서 할 수 있는가? 물론이다. 마이크로소프트 워드의 변경내용 추적과 커멘트는 모두 작성한 사람별로 다른 색이 부여된다. 환경설정에서 사용자명을 상대방의 사용자로 바꾸고 해 보라. 마치 수정이나 커멘트가 상대방이 한 것처럼 보이게 된다! 대부분의 거래에서는 계약서 초안을 수정하여 돌릴 때 수명에서 많게는 수십 명까지 수신인을 지정하여 보낸다. 그렇다면, 나중에는 심지어 이런 일이 발견된다고 하더라도, 그 이력을 추적하는 것이 그리 용이한 일은 아니다.&lt;/p&gt;
+
+&lt;p&gt;셋째, 마이크로소프트 워드는 변경내용을 지나치게 공격적으로 잡아 낸다. 예를 들어, 포맷의 변경 – 예를 들어 문단 스타일 변경 – 이나 폰트의 변경 등과 같은 내용과는 무관한 내용도 모두 내용의 변경으로 반영된다. 이것은 특히 여러나라의 사람들 사이의 거래에서 특히 골치아프다. 예를 들어, 옛날에 한국의 회사와 대만 회사 사이의 거래 관련 일을 한 적이 있었는데, 각자 한국의 로펌과 대만의 로펌을 선임하였고, 내부적으로는 한국어와 대만어를 사용하였고, 외부로 상대방과 교신할 때에는 영어를 사용하였다. 실제 변경 내용보다 포맷 및 폰트 변경과 관련된 변경내용이 더 많았다! 이걸 피하기 위하여 앞에서 말한 것처럼 포맷이나 폰트와 관련된 변경이 적용될 때에는 “변경내용 적용”을 하거나 또는 아예 애초부터 “변경내용 추적” 기능을 끄고 하는 경우도 있다. 그러면, 의도치 않게 첫번째와 두번째에서 했던 것과 같은 “실수”를 할 수 밖에 없을 수도 있다. 관리비용이 너무 크게 드는 것이다.&lt;/p&gt;
+
+&lt;p&gt;그리고 또 심각한 문제가 여러 차례 수정을 하면 언제 누가 무엇을 어떻게 고쳤는지 확인하기가 쉽지 않다. 흔히 거래를 하다 보면, 나중에는 쟁점이 줄어들게 된다. 당연한 이야기이다. 협상을 진행할 수록 쟁점이 오히려 늘어난다면, 그 거래는 거의 성사되지 않을 가능성이 높다. 그리고, 딱히 창조적이지 않고 서로 고집을 부리는 경우가 많다. 예를 들어, 내가 특정 조항을 넣었는데, 상대방이 삭제했다고 해 보자. 나는 그것을 어떤 변경 없이 (또는 사소한 변경을 가하여) 다시 넣고 싶다. 어떻게 할까? 변경내용 취소를 해야 하나? 위에서 이야기한 이유로 해서 – 즉 협상의 이력이 정확히 반영되지 않는다는 이유로 해서 – 이것은 적게는 상대방에 대한 예의가 아니고, 크게는 심각한 불신을 초래햐게 된다 아니면 그대로 다시 복사-붙여넣기 해야 하나? 해 보면, 삭제한 부분은 보이기는 하지만 복사가 되지 않는다. 상대방이 조항 전체를 삭제했을 때에는 이전 버전 문서를 켜 놓고, 거기에서 다시 복사해서 그대로 붙여 넣거나, 아니면 그 문서를 찾기가 용이하지 않거나 귀찮을 때에는 – 심지어 찾을 수 있다고 하더라도 똑같은 문서의 다른 버전을 여럿 열어 놓고 작업하다보면 원치 않는 실수를 할 가능성도 아주 높다 – “변경내용 취소”한 다음, “복사”하고 “변경내용 취소를 취소” (이런 메뉴는 없다. 그냥 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl-Z&lt;/code&gt; 또는 그냥 취소를 눌러 행위를 취소해야 한다)한 다음 “붙여넣기”를 하는 신공을 발휘해야 한다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 협상이 진행되었다고 해 보자. 즉, 내가 조항을 집어 넣었는데, 상대방은 이걸 삭제하고, 나는 다시 집어 넣고, 상대방은 다시 삭제했다고 해 보자. 변경내용 이력이 엄청나게 복잡해진다. 문제를 더 복잡하게 만드는 것은 이렇게 삭제할 경우에는 애초 작성자가 누구인지는 드러나지 않고, 최종적으로 삭제한 사람만 알 수 있다는 것이다. 변경내용 이력도 복잡해지고, 문서도 지저분해진다. 그러면, 협상 과정에서 상대적으로 쉽게 조율할 수 있는 문제도 아주 심각한 문제이고 서로가 치열하게 다투는 문제인 것처럼 오해하게 된다. 그 와중에 상대방 변호사나 아니면 상대방 담당자가 휴가라도 가서 선수가 교체되었다고 생각해 보라. 새로 온 사람은 그 이력을 정확히 알 수가 없으므로, 그저 엄청나게 심각한 문제이고, 이것이야말로 “deal breaker”라는 신념을 가지게 되므로, 거래가 완성되는 길은 더 요원해진다.&lt;/p&gt;
+
+&lt;p&gt;그리고, 사람에 따라서는 선호도가 다른 점도 있다. 예를 들어, 어떤 변호사는 상대방이 이렇게 수정한 파일을 받으면 변경내용을 모두 적용한 다음 새롭게 clean slate에서 시작하여 자신의 커멘트만 추가하기도 한다. 또 다른 변호사는 이런 접근법을 엄청나게 싫어한다. 협상 과정이 3년이 걸렸건 5년이 걸렸건, 초안이 수십 수백번 왔다갔다했건, 전체의 이력이 다 보이도록 해야만 하지 중간에 이런 식으로 변경내용을 적용하는 것을 아주 싫어한다. 나는 전자이다. 그 이유는 깔끔해 보이기도 하지만, 그보다 더 중요한 것은 그렇게 함으로써 (즉 초안을 받을 때마다 변경내용을 적용함으로써) 협상의 현재 단계를 파악할 수 있기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;그리고, 오랫동안 계약서를 주고받고 하다 보면 언제 누가 무엇을 고쳤는지 한 눈에 파악할 수 없어진다. 물론, 마우스-오버를 하면 관련 정보를 보여 주지만, 일일이 그렇게 할 수도 없고, 또 어떤 조항을 왜 고쳤는지 알 수도 없다. 어떤 경우에는 단순히 특정 조항의 위치를 옮긴 것일 뿐인데도, 도대체 이걸 왜 지웠을까 고민하다가 나중에야 깨닫게 된다. 그냥 자리를 바꾼 것이구나… 얼마나 심각한 시간 낭비인가?&lt;/p&gt;
+
+&lt;p&gt;마지막으로, 채널 관리상의 문제가 발생한다. 회사에서 계약 체결을 협상할 때에는 회사 내에도 여러 담당자가 배정된다. 예를 들어, 법무팀의 담당자, 기획팀의 담당자, 영업 담당자, 심지어는 물류 담당자 등등 … 거기다가 여러 계층의 결재권자들까지… 여기에 외부 변호사가 합류하면… 우리편만 해도 어떨 때는 감당하기 힘들 정도로 많아 질 수 있다. 그러면, 내부적으로 협의할 때에는 커멘트 기능을 이용하던지, 아니면 본문에 커멘트를 추가하여 내부적으로 조율하는 과정을 한 차례 끝내고, 그 다음에 상대방에게 내 보낼 때에는 이것들을 정리하여 새롭게 버전을 만들어야 한다. 아니면, 적어도 내부 토의 사항은 모두 삭제하여 깨끗한 상태로 상대방에게 내 보내야 한다. 엄청나게 복잡하고 실수하기 쉬운 일이다.&lt;/p&gt;
+
+&lt;p&gt;한 마디로 마이크로소프트 워드의 “변경내용 추적” 기능은 사용하지 않아야 한다. 물론, 업계의 사람들 90%가 사용하는 기능을 사용하지 말아야 한다고 주장하는 것 자체가 다소 무례하고 억지스러워 보인다. 그렇지만, 이 기능은 절대로 득보다는 실이 많다.&lt;/p&gt;
+
+&lt;p&gt;그러면 어떻게 하라고? 다음에는 이 문제에 대해서 이야기해 보겠다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[변호사의 장비빨] 노트북과 운영체제</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/os.html"/>
+   <updated>2018-06-26T10:10:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/os</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;변호사가 연필만 있으면 돼지 또 뭐가 필요해?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;나처럼 컴퓨터를 좋아하는 사람으로서는 참 듣기 힘든, 그러나 진실인 지적이었다. 그런 시대는 지나갔다. 조금 있으면 인공지능이 나올텐데, 그러고보면 조금 있으면 변호사에게 장비보다 더 중요한 것은 없는 시대가 올 것이다. 참으로 다행이다.&lt;/p&gt;
+
+&lt;p&gt;자의반 타의반으로 미국에서 오래 머물다보니 지름신이 발동하여 이것저것 사들이고 있다. 이 기회에 나의 장비빨을 자랑해 보는 것도 좋겠다 싶었다. 그래서 이 카테고리를 만들었다.&lt;/p&gt;
+
+&lt;p&gt;무슨 이야기부터 할까? 몇년전까지만 해도 변호사가 맥을 쓰는 것은 거의 불가능했다. 특히 한국에서는. 무엇보다도 일단 맥을 쓰고 싶다고 이야기하면 위에서와 같은 핀잔을 듣기 일쑤였고, 그보다도 과거에는 맥에서 한글 입력이 악몽이었다. 아래아 한글은 아예 없었고, 마이크로소프트 워드는 있다고 해도 한글 입력은 거의 불가능했다. 그럼에도 불구하고, 나는 업무용으로 맥미니를 사용하기 시작했다. 2006년 아니면 2007년이었던 것 같다. 그 이후 (주로 호환 문제 때문에) 윈도우를 주력으로 사용할 수 밖에 없었지만, 2010년 정도에 완전히 맥으로 전향하였다. 가장 큰 이유는 당시 손목터널증후군을 앓았기 때문이다. 글로 먹고 사는 변호사에게 이건 치명적이다. 맥으로 바꾸고 나서 이게 없어졌다. 어쩌면 플라시보 효과일지도 모르겠다.&lt;/p&gt;
+
+&lt;p&gt;내 이론은 이렇다. 운영체제는 사용자에게 특정 행동을 강요한다. 예를 들어 윈도우를 사용하면 마우스를 놓을 수가 없다. 꼭 쥐고 있어야 한다. 두 손으로 쥐지 않는 것이 다행이다. 심지어는 게임을 하지 않더라도, 마우스를 사용하지 않을 수가 없다. 단적인 예를 들어 보자. 컴퓨터에서 마우스를 빼고 부팅해 보라. 무엇을 할 수 있는가?&lt;/p&gt;
+
+&lt;p&gt;맥의 접근법은 조금 다르다. 마우스를 빼고 부팅해 보라. 곤란하기는 해도 윈도우만큼 심하지는 않다. 가장 큰 이유는 맥에서는 모든 소프트웨어의 단축키를 동일할 것을 사용하도록 역사적으로 강제해 왔기 때문이다. 그럼에도, 맥에서는 마우스를 빼고 뭔가 제대로 하기는 힘들다. 그렇지만, 윈도우 사용자처럼 마우스를 꼭 쥐고 있어야 하는 것은 아니다. 마우스 없이는 뭘 하기 힘들다. 그렇지만, 마우스는 손을 위에 두고 가볍게 제스쳐로 행동을 하는 것이다. 혹시나 날아갈까 꽉 쥐고 있는 것이 아니다.&lt;/p&gt;
+
+&lt;p&gt;그리고, 2년전 나는 다시 리눅스로 전향하였다. 어릴때부터 리눅스를 써왔으므로 적응이 어렵지는 않았다. 이때는 손목터널증후군이 아니라 50견이었다. 맥으로 가면서 손목터널증후군은 없어졌는데, 다소 때이르게 찾아온 오십견은 어쩔 수 없어 보였다. 마우스를 포기하는 것만이 최선인 것 같았다. 그래서 리눅스로 전향하였다. 앞에서 마우스를 빼고 부팅해 보는 예를 들었는데, 좀 더 상상하기 쉽고 현실적인 예는 노트북일 것이다. 노트북을 사용하는 이유는 물론 돌아다니면서 사용하기 위해서이다. 윈도우 사용자라면 거의 어김없이 별도로 마우스를 가지고 다닌다. 심지어는 노트북에 트랙패드가 달려 있는 경우에도… 요즘 트랙패드 없는 노트북은 찾기 힘들다. 맥 사용자는 특수한 경우 아니면 거의 따로 마우스를 가지고 다니는 경우가 없다. 트랙패트로 대체 가능하기 때문이다. 리눅스 사용자는 사실 트랙패드도 번거롭다. 글을 쓰다 보면 트랙패드 때문에 커서 위치가 갑자기 점프하고, 따라서 원치 않는 곳에 타이핑을 하는 참사를 겪게 된다. 트랙패드를 제대로 사용하게 해 주는 운영체제는 맥 오에스 밖에 없는 셈인 것이다.&lt;/p&gt;
+
+&lt;p&gt;… 그것이 내가 레노보 X1 카본을 내 주력 노트북으로 선택한 이유이다. 요즘 노트북은 사양이 워낙 좋지만, 내가 노트북을 고를 때 가장 크게 고려했던 것은 해상도도 하니고, 메모리나 CPU도 아니었다. 그런 것들이야 요즘은 어떤 브랜드에서도 기본은 한다. 내가 가장 크게 고려했던 것은 마우스를 가지고 다니지 않을 가능성이었다. 즉 트랙패드였다. 그렇게 보면, 레노보 X1만한 선택이 없다. 트랙패드가 별도로 달려 있지만, 글이 튀는 가능성을 최소화하기 위해 소프트웨어로 이것을 정지시켜도 빨콩을 쓸 수 있기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;공교롭게도 내가 윈도우를 버리고 맥으로 갔을 무렵에는 한글 입력이 큰 문제였다. 마이크로소프트 워드에서 한글 입력은 (딱히 불가능하지는 않지만) 아주 불편하였다. 요즘은 아무런 문제도 없다. 공교롭게도 그런 문제가 없어질 무렵, 나는 리눅스로 전향하였다. 리눅스로 전향한 이유가 딱히 이것 때문은 아니지만, 결국 이 사건은 마이크로소프트 워드와의 애증관계를 상징적으로 보여준다. 여기에 대해서는 다음에 이어서 쓰겠다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[링크] (어려운) 문제해결의 기술</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/hard-problems.html"/>
+   <updated>2018-06-24T18:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/hard-problems</id>
+   <content type="html">&lt;p&gt;옛날에 아들 덕에 &lt;a href=&quot;https://artofproblemsolving.com&quot;&gt;문제해결의 기술&lt;/a&gt; 사이트에 대해서 들었었다. 우연한 기회에 그 사이트에서 &lt;a href=&quot;https://artofproblemsolving.com/articles/hard-problems&quot;&gt;어려운 문제 다루기&lt;/a&gt;에 대한 글을 읽었다. 공감되는 부분이 많아 공유하고자 한다.&lt;/p&gt;
+
+&lt;p&gt;저자 Richard Rusczyk은 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;우리가 어려운 질문을 던지는 이유는 인생에서 풀 만한 가치가 있는 문제는 어려운 문제이기 때문이다. 쉽다면, 여러분이 그 문제를 접하기 전에 다른 누군가가 그 문제를 풀었기 때문이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We ask hard questions because so many of the problems worth solving in life are hard. If they were easy, someone else would have solved them before you got to them.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;명언이다. 그래서, 아무도 풀지 못한 문제를 해결하려면 어떻게 해야 하는가? 그는 다음과 같은 전략을 제시한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; 무엇이든 하라. 안 될거다. 시간 낭비 같을 것이다. 그렇지만, 우연히 뭔가를 찾아낼 가능성도 있고, 심지어 그렇지 않다고 하더라도 시간이 오면 다가올 이기는 아이디어가 나타나는 순간에 여러분의 마음은 준비가 되어 있을 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; 문제를 단순화하라. 숫자를 줄여 보고, 특수한 경우에 대해서 생각해 보라. 제한을 제거해 보라. 제한을 더해 보라. 눈을 약간 낮추어 보고, 그 다음에는 쉬운 문제를 해결하고 나면 눈을 높여 보라.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; 과거에 성공했던 경우에 대해서 생각해 보라. 어떻게 성공했었지? 그걸 응용해 보라.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; 지금껏 시도하지 않았던 방법을 시도해 보라.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5.&lt;/strong&gt; 거꾸로 해 보라. 아는 것에서 시작해서 원하는 것으로 가는 대신, 원하는 것에서 시작해서 거기 가려면 어떻게 해야 하는지 물어 보라.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;6.&lt;/strong&gt; 도움을 청하라. 용기를 내라. 누구나 도움이 필요하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;7.&lt;/strong&gt; 일찍 시작하라. 마지막까지 기다리지 말라. “어려운 문제는 시간의 압박 없이도 충분히 어렵다. 복잡한 아이디어를 충분히 이해하는 데에는 오랜 시간이 든다. 당신이 보기에 미친 것처럼 똑똑해 보이는 사람, 당신보다 훨씬 더 빠르게 아이디어를 내는 사람은 많은 경우 그 문제를 당신보다 오래 생각해 본 사람이다.”&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;8.&lt;/strong&gt; 휴식을 취하라. 그러려면 빨리 시작하라.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;9.&lt;/strong&gt; 다시 시작하라. 원래 하던 전략은 여전히 거기 있을 것이고, 다른 방식을 시도하면서 새로운 통찰을 얻을 수도 있고, 그걸 원래 하던 전략에 적용할 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;10.&lt;/strong&gt; 포기하라. 기한을 정하라. 기한내에 안되면 넘어가라.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;11.&lt;/strong&gt; 남이 준 해답지를 읽을 때에는 적극적으로 읽으라. 문제에 어떤 힌트가 숨어 있었는지, 뭘 잘못했는지 생각해 보고, 이해하지 못하는 게 있다면 배우라. 문제를 풀었다면, 어떻게 풀었는지 생각해 보고, 왜 그렇게 생각했는지 생각해 보라. 중간에 곁길로 샌 것에 대해 생각해 보고, 어떻게 하면 그렇게 하지 않을 수 있었는지 생각해 보라. 어차피 그런 문제에는 또 부딛힐 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;12.&lt;/strong&gt; 다시 해 보라. 리차드 파인만은 머리 뒤쪽에 너댓 개의 문제를 가지고 있다고 했다. 새로운 전략이나 기술에 대해 알게 되면 그는 자기 문제에 그걸 적용할 수 있는지 해 본다고 했다. 그러니 그는 천재인 것이다. 그러니 천재라는 것은 노력과 준비와 도전에 쉽게 응하는 것의 산물인 것이다.&lt;/p&gt;
+
+&lt;p&gt;수학 문제에만 적용되는 것이 아니다. 사업과 인생의 모든 문제에 적용되는 원칙이다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 3] 5조원짜리 변경내용 추적</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/metadata.html"/>
+   <updated>2018-06-22T07:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/metadata</id>
+   <content type="html">&lt;p&gt;십년도 지난 이야기이지만, 2007년 11월 뉴욕타임즈는 머크사가 바이옥스 관련 소송에서 원고에게 48억5천만달러를 지불하기로 했다고 보도하였다 (&lt;a href=&quot;https://www.nytimes.com/2007/11/09/business/09merck.html&quot;&gt;NYT, Merck agrees to settle Vioxx suits for $4.85 billion&lt;/a&gt;. 이유는? 약의 효과를 연구한 보고서에서 부정적인 정보를 삭제하였다는 것이다. 어떻게 알았느냐고?&lt;/p&gt;
+
+&lt;p&gt;이 사실은 문서에 숨어 있는 메타데이터를 통해서 알려 졌다. 예를 들어, 마이크로소프트 워드에는 “변경내용 추적”이라는 기능이 있다. 이 기능을 끈다고 해서 변경내용이 사라지는 것은 아니다. 이런 종류의 보이지는 않지만 파일속에 숨어 있는 자료를 메타데이터라고 한다. 머크의 경우에는 5조원짜리 메타데이터인 것이다. “제가 컴퓨터를 잘 몰라서요”는 더 이상 변명이 아니라는 것이다.&lt;/p&gt;
+
+&lt;p&gt;요즘은 무슨 일을 하건 변경내용을 추적한 마이크로소프트 워드 파일을 달라고 한다. 주의하지 않으면, 이것이야말로 문제의 온상이다. 머크처럼 5조원짜리 사고는 아니라고 하더라도, 이런 경우도 흔하다. 첫째, 과거 큰 로펌에 다니던 변호사가 자기 사무실을 차렸다. 계약서를 써 달라는 고객이 있어 자기가 다니던 회사에서 가지고 온 계약서 양식을 그대로 사용하였다. 그런데, 문서의 “속성”에는 저자로 자기가 다니던 회사의 회사명과 다른 변호사 이름이 적혀 있었다. 적게는 당황스러운 경험이고, 심하게는 이전 로펌에서 저작권 위반 또는 영업비밀 침해 등으로 소송을 걸 수도 있는 상황이다. 다른 경우로는 고객과 토의하면서 얼마에 합의하겠다는 커멘트를 남겼는데, 이걸 지우지 않은 상태에서 그냥 보내는 것이다. 두 경우 모두 겉으로는 보이지 않지만 (숨겨져 있지만) 조금만 컴퓨터를 아는 사람이라면 찾아 낼 수 있는 경우이다.&lt;/p&gt;
+
+&lt;p&gt;전자증거개시(eDiscovery)에서는 메타데이터에 관한 고유의 규칙들이 많다. 소송이 아니라면 대체로 변호사윤리규정에서 이런 문제를 다룬다. 크게는 세 가지 질문이 다루어진다. 첫째, 문서를 내 보내기 전에 메타데이터를 확인하고 지워야 하는가 (발송인의 의무)? 둘째, 상대방이 실수로 지우지 않은 경우, 이를 수령한 변호사는 그 내용을 보아도 되는가 (수신인의 의무)? 셋째, 상대방에게 이런 데이터가 왔다는 사실을 알려야 하는가 (수신인의 의무)?&lt;/p&gt;
+
+&lt;p&gt;여기에 대한 대답은 주별로 다 다르다. &lt;a href=&quot;https://www.americanbar.org/groups/departments_offices/legal_technology_resources/resources/charts_fyis/metadatachart.html&quot;&gt;미국 각주의 메타데이터 관련 윤리 의견서&lt;/a&gt; 페이지에는 이 내용을 깔끔하게 정리해 두었다. 적어도 자기가 속한 주의 정보는 이해하고 있어야 한다. 그리고, 거래나 소송을 할 때에는 상대방이 속한 주의 정보 및 (소송의 경우에는) 민사소송법상의 증거에 대한 규칙 등도 파악하고 있어야 한다.&lt;/p&gt;
+
+&lt;p&gt;대표적으로 미국변호사협회(ABA)의 의견을 보면 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;메타데이터와 관련된 발송인의 의무:&lt;/strong&gt;  없다. 메타데이터와 관련된 명시적 규정은 없지만, 메타데이터를 삭제하거나 (“scrubbing”이라고 한다), 비밀유지의무의 범위에 대하여 협상하거나 또는 파일 포맷을 바꾸어 보내는 방법 등을 사용할 것을 제안한다. 이 설명은 &lt;a href=&quot;/codes/mpre-4_4.html&quot;&gt;MPRE 4.4조&lt;/a&gt;와 관련된 설명이고, &lt;a href=&quot;/codes/mpre-1_6.html&quot;&gt;제1.6조&lt;/a&gt;상의 비밀유지의 의무에 관한 조항도 검토하여야 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;수신인은 메타데이터를 열람하고 “마이닝”할 수 있는가?&lt;/strong&gt; 가능하다. 다만,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;발신인에게 실수로 메타데이터가 포함된 자료가 왔다는 점을 통지하여야 하는가?&lt;/strong&gt; 그렇다. &lt;a href=&quot;/codes/mpre-4_4.html&quot;&gt;MPRE 4.4조(b)항&lt;/a&gt;에서는 상대방이 실수한 것이라는 점을 변호사가 합리적으로 알 수 있는 상황이라면 통지하여야 한다고 명시하고 있다.  그렇다고 해서, 이걸 보지 않아야 한다거나, 발송하는 변호사가 (예를 들어 그걸 삭제해 달라는) 지시를 할 경우 이를 따를 필요는 없다고 명시하고 있다. 한 마디로 보낸 사람 잘못이라는 것이다.&lt;/p&gt;
+
+&lt;p&gt;로펌에서는 메타데이터와 관련한 정책을 확립하여야 한다. 로펌의 정책과 별도로 나는 로펌의 정책에 반하지 않는 한 따르는 규칙이 있다. 무엇보다도 가능하면 마이크로소프트 워드 형태로 파일을 보내지 않는다. 나는 가능한 한 PDF 포맷을 선호한다. 어쩔 수 없는 경우라면 메타데이터를 확인하고 필요하다면 삭제한 이후에 보낸다.&lt;/p&gt;
+
+&lt;p&gt;내가 PDF 포맷을 선호하는 이유는 또 있다. 일단, 나는 마이크로소프트 워드를 사용하지 않는다. 내가 가장 효율적이라고 생각하는 업무 프로세스에는 마이크로소프트 워드가 빠져 있다. 여기에 대해서는 다음에 다시 이야기하겠다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 2] 컴못변 == 일못변</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/technological-competence.html"/>
+   <updated>2018-06-21T08:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/technological-competence</id>
+   <content type="html">&lt;p&gt;변호사는 자고로 능력이 있어야 한다. 믿거나 말거나, 그것은 변호사의 의무이다 (&lt;a href=&quot;codes/mpre-1_1.html&quot;&gt;MPRE 1.1&lt;/a&gt; 참고).&lt;/p&gt;
+
+&lt;p&gt;내가 변호사 일을 시작할 무렵 연세든 변호사님들 중에는 컴퓨터를 쓰지 않고, 직접 펜으로 종이에 글을 쓴 다음 비서에게 타이핑을 하도록 시키는 분들이 있었다. 요즘도 가끔씩은 “내가 컴퓨터를 잘 못 해서요” 내지는 “내가 워드 프로세서를 잘 못 해서요” 내지는 “내가 핸드폰을 잘 못 다뤄서요”라고 말하는 변호사들이 있다. 믿거나 말거나. 믿거나 말거나, 미국에서는 이제 절반이 넘는 주에서 그들은 변호사 윤리를 위반하고 있다. 불법을 자행하고 있는 셈이다.&lt;/p&gt;
+
+&lt;p&gt;변호사는 고객을 대리할 때 유능해야 한다. 대략 31개주에서 “유능함”에는 기술적 역량 (technological competence)가 포함된다고 말하고 있다. 전체 목록은 &lt;a href=&quot;https://www.lawsitesblog.com/tech-competence/&quot;&gt;Tech Competence, by Lawsites&lt;/a&gt;에서 확인할 수 있다. 출발점은 2012년 미국변호사협회에서 표준 변호사윤리규정(Model Rules of Professional Responsibility)을 개정하면서 변호사가 유능하게 고객을 대리하기 위해 필요한 기술에는 “관련 기술과 연관된 장점과 위험을 포함하여 법과 법률 서비스의 변화를 잘 알고 있어야 한다(… stay abreast of changes in the law and its practice, including the benefits and risks associated with relevant technology)”고 규정하였다. 그리고, 이제 절반이 넘는 주에서 이 규정을 채택하였다.&lt;/p&gt;
+
+&lt;p&gt;따라서, 변호사는 “제가 … 를 잘 몰라서요”라는 말을 할 수 없다. 적어도 법정에서나 또는 윤리위원회 앞에서는… 아이비 그레이(Ivy B. Grey)는 말한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;기술적 역량을 갖추지 않으면, 컴퓨터 기술이 없기 때문에 변호사는 고의적으로 고객의 시간과 돈을 낭비하게 된다. 이것은 받아들일 수 없다. 이제는 마이크로소프트 워드와 같은 기술을 효율적으로 활용하지 못하면 고객에게 과다청구를 하게 된다는 사실을 인지할 시간이 왔다. 변호사가 옛날처럼 하면 청구할 시간이 더 많아지기 때문에 기술을 배우지 않는 선택을 한다면, 그들은 고객에게 공정하게 서비스를 제공하는 것이 아니다. (&lt;a href=&quot;http://www.nationaljurist.com/smartlawyer/what-lawyers-duty-technology-competence&quot;&gt;What is a lawyer’s duty of technology competence?&lt;/a&gt; 에서 인용)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위 글에서는 변호사가 역량을 갖추어야 할 분야에는 대략 다음과 같은 영역이 포함된다고 한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;사이버보안 또는 전자적으로 저장된 고객 정보의 보호&lt;/li&gt;
+  &lt;li&gt;전자 증거개시, 여기에는 보존내용의 검토와 전자정보의 제공이 포함&lt;/li&gt;
+  &lt;li&gt;기술을 활용하여 법률 서비스 제공, 예를 들면 자동문서작성, 전자적 법원 일정 조율 및 파일 공유 기술&lt;/li&gt;
+  &lt;li&gt;고객이 어떤 기술을 이용하여 서비스를 제공하고 제품을 생산하는지 이해&lt;/li&gt;
+  &lt;li&gt;법원에서 정보 및/또는 증거를 제시하는 기술&lt;/li&gt;
+  &lt;li&gt;단순한 인터넷 검색 및 기타 온라인에서 사용할 수 있는 조사 도구를 이용하여 인터넷에서 조사 진행&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그리고, 여기에는 인공지능, 블록체인 및 기타 기술들이 장래에는 포함될 수 있다고 한다. 그러니까,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;컴못변 != 일잘변&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;인 것이다. 혹시 독자 여러분이 법률서비스의 고객이라면, 위에서처럼 “제가 … 을 잘 못해서요”라고 말하는 변호사에게 그것은 변호사법 위반이라고 따져 보라. 적어도 미국 30개 이상의 주에서는 여러분이 맞다!&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 1] 과잉변호</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/overlawyering.html"/>
+   <updated>2018-06-20T16:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/overlawyering</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;그만해라. 많이 묵었다 아이가&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;누구나 기억할 것이다. 영화 “친구”의 대사이다. 그러게, 그만 좀 하지…&lt;/p&gt;
+
+&lt;p&gt;변호사가 자기 일을 제대로 안하는 것을 영어로는 “underlawyering”이라고 하고, 반대를 “overlawyering”이라고 한다. 전자는 법적으로 문제도 되고, 소송도 잦지만 후자는 별로 관심을 받지 못하는 것 같다.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;예를 들어 보자. 가전제품 소매업체가 창고를 빌리려고 협상중이다. 양쪽 변호사는 건물에 불이나면 누가 창고에 쌓아 놓은 재고품 손실에 대해 책임져야 하는지에 대해서 싸우기 시작한다. 그까지는 좋다. 그 다음에는 창고업체 변호사가 말한다. 그는 혹시 가전제품 때문에 제조물책임 소송이 걸리고, 창고업체가 (공동) 피고가 될 경우에는 소매업체에서 창고측의 손실에 대해서 면책해야 한다고 주장하기 시작했다. 가전제품 업체는 “미친 거 아냐?”라고 생각하면서, 이렇게 말도 안되는 상황까지 주장한다면야 굳이 그곳과 계약할 필요가 없다고 생각하고 다른 곳을 찾는다.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;또 다른 예를 들어 보자. 미국인이 한국에서 전세를 얻고자 한다. 미국인의 변호사가 전세와 관련된 적용법은 미국 캘리포니아법이 되어야 하고, 모든 분쟁은 미국 캘리포니아 법정에서 다투어야 한다고 주장한다. “미친 거 아냐?”라고 생각하겠지만, 아주 흔하게 생기는 상황이다.&lt;/p&gt;
+
+&lt;p&gt;이런 변호사를 “딜 킬러 (deal killer)”라고 한다. 나도 이런 변호사 만난 적이 꽤 많다. 도대체 왜 그럴까? 위 책의 저자는 상대방 변호사를 “이기고” 싶은 욕망 때문에, 맨 마지막으로 조항 하나를 더하는 바로 그 변호사가 되고 싶은 마음 때문에 그렇게 한다고 한다. “미친 것 아냐?”라고 생각한다면, 물론 그렇다. 그리고, 그게 현실이다. 변호사는 자기가 상대방 변호사를 밟아 버리면 고객이 좋아할 것이라고 생각한다. 절대 그렇지 않다. 고객이 변호사에게 돈을 지불하면서까지 계약을 협상하는 것은 자기 목표가 있기 때문이지, 절대로 상대방 변호사를 밟아버리고 싶기 때문이 아니다. 변호사로서 중요한 것은 고객의 환심을 사는 것도 아니고, 고객이 좋아할 행동을 하는 것도 아니고 (도대체 어떻게 생각해야 일면식도 없는 상대방 변호사를 밟아버리면 고객이 좋아할 것이라거나 목표를 달성했거나 하는 식으로 생각할까?), 고객의 목표를 달성하는 것이다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;도대체 뭐라고 번역해야 할까? 후자는 아마도 “과잉변호” 정도가 맞는 것 같은데, 우리말에서 “오바한다”고 하는 느낌 정도가 맞을 것 같고, 전자는 여기에 대응해서 “과소변호” 정도? &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;이 예는 다음의 책에서 따온 것이다. Stefan Krieger, Richard K., Jr. Neumann and Richard K. Neumann Jr., Essential Lawyering Skills: Interviewing, Counseling, Negotiation, and Persuasive Fact Analysis (Aspen Publishers; 5th edition, 2015) &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>[일못변 0] 곱게 늙기 프로젝트</title>
+   <link href="http://hyunkim.lawyer/blog/2018/06/growing-up.html"/>
+   <updated>2018-06-19T17:00:00+09:00</updated>
+   <id>http://hyunkim.lawyer/blog/2018/06/growing-up</id>
+   <content type="html">&lt;h2 id=&quot;미국에서&quot;&gt;미국에서&lt;/h2&gt;
+&lt;p&gt;미국에 와서 삼일동안 잠만 잤다. 그 다음 삼일간 밥만 해 먹었다. 그러고나니 어느덧 거의 열흘이 지났다. 나머지 3–4일은 뭘 했는지 모르겠다.&lt;/p&gt;
+
+&lt;p&gt;아내는 내게 이 여행이 필요하다고 했다. 나는 아니라고 했다. 아직도 할 일이 얼마나 많은데…&lt;/p&gt;
+
+&lt;p&gt;조금전 이 글을 쓰기 전에 바람도 쐴 겸 바깥에 나갔다 왔다. 밤 열두 시가 지나 있었다. 너구리 또는 그렇게 보이는 꼬리가 두툼하고 등이 굽은 고양이라고 하기에는 조금 크고, 개보다는 좀 작은 것이 한 마리 지나갔다. 엊그제는 산책하다가 사슴 세마리를 보았다. 엄마와 새끼 두 마리인 것 같았다. 그 이틀 전에는 칠면조가 차 위에서 뛰어 놀고 있었다. 역시 아내가 옳았다. 역시 필요한 여행이었다.&lt;/p&gt;
+
+&lt;p&gt;무슨 정글에 온 것은 아니다. 캘리포니아 버클리이다. 동물을 많이 봐서 이번 여행이 옳았다고 말하는 것은 아니다. 이번 여행의 &lt;strong&gt;첫번째 목표는&lt;/strong&gt; 아들과 좋은 시간을 보내는 것이다. 생각해 보면 중년에 접어 들고 대학생 아들과 함께 시간을 보낼 수 있는 기회가 있다는 것이 얼마나 행운인가? 이 과정에서 처음 며칠간 잠만 잘 때에는 가끔씩 잠에서 깨어 아들과 산책하다보면 꼭 뭔가 교훈적인 이야기나 흥미로운 이야기나 통찰력이 있는 이야기를 해 주고 싶었다. 천성적으로 “꼰대 기질”이 있는 사람은 아니다. 그런 것을 극도로 싫어한다. 그럼에도, 아들과 아버지의 관계는 특별해야 하는 것 아닌가? 며칠이 지나 정신이 들었다. 아들과 좋은 시간을 보내는 비결은, 지금도 마찬가지이고, 앞으로도 기나긴 시간을 함께 잘 지내는 방법은 그냥 입 다물고 있는 것이다. 밥이나 잘 해 주고, 가끔씩 게임이나 영화에 너무 탐닉하지 않도록 하고, 그냥 그렇게 룸메이트로 지내는 것이다. 나도 마음이 편해지고, 아들도 마음이 편해진다.&lt;/p&gt;
+
+&lt;h2 id=&quot;인공지능과-법률서비스&quot;&gt;인공지능과 법률서비스&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;둘째 목표는&lt;/strong&gt; 휴식을 가지고 앞으로의 계획을 세우는 것이다. 작년까지 나름 심각하고 시간도 오래 끈 프로젝트 두 개가 끝났다. 올해는 사실상 절반은 휴식중인 셈이었다. 그럼에도 불구하고, 굳이 – 이왕 – 미국까지 왔으니, 앞으로의 방향에 대해서 심각하게 고민하고 방향을 정하기로 했다. 지난 삼년간 나름 중요한 프로젝트를 진행하면서 보기에 세상이 엄청나게 변하고 있었다. 그냥 곁눈질을 했을 뿐인데도, 세상이 나만 두고 정신 없이 진행하는 것이 보였다.  무엇보다도, 이제는 더 이상 법률서비스에서 인공지능이 이제는 호사가의 안주거리가 아니게 된 것이다. 위기의식을 느끼냐고? 그 정도는 아니고 그냥 손에 쥐고 있는 모래가 손가락 사이로 흘러나가는 느낌이다.&lt;/p&gt;
+
+&lt;p&gt;아마도 무력감일 것이다. 조금만 시간을 낼 수 있다면… 하는 아쉬움.&lt;/p&gt;
+
+&lt;p&gt;법률서비스에 인공지능을 도입하는 데 있어 가장 큰 장애는 하드웨어도 아니고 소프트웨어도 – 즉 프로그래밍 기술도 아니다. 데이터이다. 모든 분야가 다 그렇지 않느냐고 말한다면, 꼭 그렇지는 않다. 다른 분야에서 데이터의 문제를 이야기할 때에는 대개 데이터의 품질 문제이다. 위키피디어는 &lt;a href=&quot;https://en.wikipedia.org/wiki/Data_quality&quot;&gt;데이터 질 (data quality)&lt;/a&gt;을 의도하는 목적에 맞는지, 또는 현실을 적절히 반영하는지의 문제이지만, 데이터의 양이 늘어날수록 &lt;a href=&quot;https://en.wikipedia.org/wiki/Data_consistency&quot;&gt;데이터의 일관성 (data consistency)&lt;/a&gt;이 문제가 된다고 한다. 다른 분야라면 당연한 이야기이다. 법률 분야에서는 그렇지 않다. 여기에서는 데이터의 부재가 문제이다. 데이터의 질이 문제가 아니라, 데이터의 양이 문제라는 것이다. 데이터의 본성과 관련된 이야기이다. 단 한 건도 데이터인가? 두 건은? 몇 건이 되어야 의미 있는 데이터라고 할 수 있는가?&lt;/p&gt;
+
+&lt;p&gt;이게 문제가 되는 이유는 두 가지이다. 첫째는 한국에서는 소위 “비책특권”이라 번역하는 &lt;a href=&quot;https://en.wikipedia.org/wiki/Attorney%E2%80%93client_privilege&quot;&gt;변호사의 비밀유지의 특권(attorney-client privilege)&lt;/a&gt;이다. 물론 법적 절차와 교섭과 협상의 결과물은 판결문으로, 의견서로, 계약서로 공개되는 경우가 많지만 (그래도 다른 분야에 비하면 공개되는 건의 비율은 절대적으로 적을 것이다) 그 이외의 정보는, 즉 결과가 아닌 그 결과를 도출하기 위해 겪은 과정에 대한 정보는 공개되지 않는다. 결과만 공개되지, 과정은 공개되지 않는다. 블랙박스이다. 프로그래밍에서 사용하는 표현을 사용하자면, “캡슐화(encapsulation)”된다. 정보가 없다. 그런 정보를 공개하거나 유통할 방법도 없다.&lt;/p&gt;
+
+&lt;p&gt;이보다 더 큰 문제는 – 이 문제도 변호사의 비밀유지 특권의 연장이라고 볼 수 있는데 – 변호사와 고객은 다른 서비스업이나 다른 사업에서는 보기 힘든 특수한 관계를 맺는다는 것이다. 미국 대법원이 1850년에 한 말에 따르면,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;인생에서 변호사와 고객 사이에서보다 많은 신뢰와 믿음이 필요한 사업관계는 거의 없다. 일반적으로 이보다도 더 명예롭고 충실하게 이행되는 관계, 이보다도 많은 보호를 받는 관계, 이보다도 엄격한 도덕과 정의의 원칙의 지배를 받는 관계는 거의 없다… (이하 생략, 원문은 아래 참고)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There are few of the business relations of life involving a higher trust and confidence than that of attorney and client, or, generally speaking, one more honorably and faithfully discharged; few more anxiously guarded by the law, or governed by sterner principles of morality and justice; and it is the duty of the court to administer them in a corresponding spirit, and to be watchful and industrious, to see that confidence thus reposed shall not be used to the detriment or prejudice of the rights of the party bestowing it. Stockton v. Ford, 52 U.S. (11 How.) 232 (1850). – &lt;a href=&quot;https://www.lectlaw.com/def/a113.htm&quot;&gt;Lectlaw.com on attorney-client relationship&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;자뻑은 아니고… 데이터가 많아지려면 서비스가 &lt;a href=&quot;https://en.wikipedia.org/wiki/Commodification&quot;&gt;상품화 (commodification)&lt;/a&gt;되어야 한다. 상품화란, 위키피디어도 말하듯이, 물품, 서비스, 아이디어, 사람을 상품으로, 즉 거래의 대상으로 탈바꿈하는 것이다.&lt;/p&gt;
+
+&lt;p&gt;내가 “상품화”라고 말할 때 의도했던 뜻은 “차별화되지 않은, 시장에서 살 수 있는 물건”이라는 뜻이었다. 이 글을 쓰면서 위키피디어를 보니 이 뜻 이외에도 경제적으로 생각하지 않았던 것에 경제적 가치를 부여하는 과정이라는 뜻으로도 쓰인다고 한다. 이렇게 보면 소비자는 경쟁이 강화됨에 따라 이득을 본다고 한다. 그렇지만, 보건, 보안, 안보 등의 영역에서는 문제가 되기도 한다고 한다. 흥미로운 것은 위키피디어에서는 “상품화”를 &lt;strong&gt;“commodification”&lt;/strong&gt;이라고 쓰기도 하고 (이것은 마르크스주의에서 사회적 가치가 있는 것에 시장 가치를 부여함으로써 관계가 변형되는 것을 뜻한다), 또는 &lt;strong&gt;“commoditization”&lt;/strong&gt;이라고 쓰기도 한다고 한다 (이것은 경제적 가치가 있지만 다른 것과 구별되는 어떤 것이 시장 또는 소비자의 관점에서 다른 것과 차별화되지 않는 단순한 상품이 되는 과정을 뜻한다). 나는 마르크스적인 관점에서 이 말을 한 것은 아니다.&lt;/p&gt;
+
+&lt;p&gt;변호사는 상품인가? 법률서비스는 상품화되었는가? 아직은 아니다. 마르크스적으로 말하자면, 아직은 “인간소외”를 겪지 않은 것이고, 아직은 낭만적인 시장인 것이다. 변호사를 선임할 때, 유일한 기준은 – 아직은 – 가격이 아닌 것이다. 개인적으로 다행이다.&lt;/p&gt;
+
+&lt;p&gt;알파고가 보기에는, 인공지능이 보기에는 불행이다. 상품화가 되지 않으면 데이터라고 할 만한 것이 없다. 데이터가 없다면, 심지어 나도 알파고를 이길 수 있다.&lt;/p&gt;
+
+&lt;p&gt;그렇지만, 대세는 인공지능이다. 그렇다면, 내가 바뀌어야 한다. 상품화할 방법을 진지하게 고민해 보아야 한다. 좋고 싫고의 문제가 아니다. 내가 법률서비스를 보는 관점을 바꾸어야 하고, 고객과 관계맺는 방식을 바꾸어야 한다. 그렇지만 어떻게?&lt;/p&gt;
+
+&lt;h2 id=&quot;블로그-다시-시작&quot;&gt;블로그 다시 시작&lt;/h2&gt;
+
+&lt;p&gt;그리고, &lt;strong&gt;마지막 목표는&lt;/strong&gt; 블로그를 다시 시작하는 것이다. 이전과는 다르게 해야 한다. 전문가로서, 이름을 걸고, 블로그를 운영해야겠다는 생각은 오래전부터 했었다. 이 도메인을 산 지도 자그마치 2년이 지났다. 그보다도 2–3년은 고민했던 것 같다. 이제는 결론을 내려야 한다. 전문가로서 나는 블로그에서 무슨 이야기를 할 수 있을 것인가? 또 무슨 이야기를 하면 안되는가? 어떤 규칙을 만들어야 하고, 어떤 규칙을 따라야 하는가? 사실 전문가로서 이름을 걸고 블로그를 하기 위해 그렇게 오랜 시간 망설이는 이유는 바로 이것이다. 이런 규칙을 정립해야 하는데, 고민할 시간도 없고, 규칙을 만들기에 충분한 조사도 할 수 없기 때문이다. 그것을 정하는 것이 이번 여행의 마지막 목표이다.&lt;/p&gt;
+
+&lt;p&gt;일단 주제는 “일못변”으로 정했다. 그렇게 시작해 보기로 했다. 내가 글쓰기에 심취했을 때, 스스로 되새기던 제일원칙이 있었다. 그것은 바로,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;글쓰기에 정답은 없다. 그렇지만, 글쓰기에 오답은 있다. 아니 아주 많다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;여기에서 우선 변호사로서 일을 잘 하는 방법을 정리해 보고자 한다. 고객 입장에서도 어떤 변호사가 일을 잘 하는 변호사인지 판단할 기준이 될 것이고, 또 변호사와 일을 잘 하는 방법을 배우게 될 것이다. 그렇지만, 제목을 “일잘변” 내지는 일 잘하는 변호사라고 붙이기는 – 주로 내가 사용하는 방법을 정리할 것이기 때문에 – 우선 낯간지럽다. 그리고, 위의 글쓰기의 제일원칙을 응용하자면,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;일 잘하는 방법은 없다. 그렇지만, 일 못하는 방법은 하늘에 별처럼 많다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;적어도 일 잘하는 방법을 알려줄 수는 없다. 망치지 않는 방법은 아마도 글로 적을 수도 있고, 알려 줄 수 있을 것이다. 내 기억에 피터 드러커였던 것 같다. 그는 경영에서 타고난 천재를 “the natural”이라고 했었다. 내 기억에 피터 드러커는 “the natural”을 만드는 것은 교육의 목표가 아니고, “평균적인 사람이 역량과 성과를 내도록 하는 것(… make an average person capable of competence and performance)”이 교육의 목표라고 했던 것 같다. 여기에서 내가 누군가를 교육시키겠다거나 하는 것은 아니다. 언감생심이다. 개인적인 위안은 일잘변에 대해 쓴다는 것은 칭찬을 한다는 것이고, 일못변에 대해 쓴다는 것은 비난을 한다는 것인데, 적어도 비난이 더 짜릿하고 흥미진진하지 않겠는가라는 것이다. 그리고 무엇보다도, 내가 여기에 대해서 쓰기로 결심한 이유는 바로 인공지능이다. 즉, 표준화라는 화두이다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>

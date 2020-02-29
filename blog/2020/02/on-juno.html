@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head prefix="og: http://ogp.me/ns#; dc: http://purl.org/dc/terms/#">
+  
+  
+  <!-- Canonical link to help search engines -->
+  <link rel="canonical" href="http://hyunkim.lawyer/blog/2020/02/on-juno.html" />
+
+  <!-- Basic meta elements -->
+  <meta charset="utf-8" />
+
+  <!-- Enable responsiveness on mobile devices -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
+
+  <title>
+    
+      Juno를 이용하여 아이폰에서 Jupyter Notebook 하기
+    
+  </title>
+
+  <!-- Dublin Core metadata for Zotero -->
+  <meta property="dc:title" content="Juno를 이용하여 아이폰에서 Jupyter Notebook 하기" />
+  <meta property="dc:creator" content="Hyun Kim" />
+  <meta property="dc:identifier" content="http://hyunkim.lawyer/blog/2020/02/on-juno.html" />
+  
+  
+  
+  <meta property="dc:source" content="hyunkim.lawyer" />
+
+  <!-- Open Graph metadata -->
+  <meta property="og:title" content="Juno를 이용하여 아이폰에서 Jupyter Notebook 하기" />
+  <meta property="og:url" content="http://hyunkim.lawyer/blog/2020/02/on-juno.html" />
+  <meta property="og:image" content="http://hyunkim.lawyer/assets/open-graph-logo.png" />
+  <meta property="og:image:width" content="200" />
+  <meta property="og:image:height" content="200" />
+  <meta property="fb:admins" content="elotroalex" />
+  <meta property="fb:app_id" content="589495744558280" />
+
+
+  <meta property="og:description" content="An Ed edition">
+  <meta property="og:type" content="article" />
+
+
+  <!-- CSS link -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/apple-touch-icon-precomposed.png" />
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://hyunkim.lawyer/atom.xml" />
+  <!-- Kakao -->
+<!--   -->
+</head>
+
+
+  <body class="layout-reverse  theme-base-brown">
+
+    <!-- This if statement decides which sidebar to use -->
+    
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>미국변호사 김변의 노트</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">출발점</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about.html">소개</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/blog-index.html">블로그 글 모음</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/code-index.html">법조항 모음</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/files-index.html">자료집</a>
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/search">Search</a>
+        
+      
+    
+
+    <!-- The code below is used for manually entered links  -->
+
+
+<!--    <a class="sidebar-nav-item" href="https://cemmento.org/http://hyunkim.lawyer/blog/2020/02/on-juno.html/">Annotate me</a> -->
+
+<!--    <a class="sidebar-nav-item" href="https://github.com/elotroalex/ed" target="_blank">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v0.0.1</span> -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p><em>&copy; 2017 Hyun Kim</em></p>
+  </div>
+</div>
+
+    
+
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">hyunkim.lawyer</a>
+            <br><small>오답은 있지만 정답은 없다. 언제나 더 나은 답이 있다.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content" id="main">
+        <div class="post">
+  <h1 class="post-title">Juno를 이용하여 아이폰에서 Jupyter Notebook 하기</h1>
+  <div align="right"><em>2020년 2월 27일 작성</em></div>
+  <p><a href="https://jupyter.org/">쥬피터 노트북</a>을 모르는 사람은 거의 없을 것이다. 문득 이걸 아이폰에서 하고 싶다는 생각이 들었다. 도대체 왜? – 라고 묻는 사람은 이런 취미생활의 기본을 모르는 것이다. 나중에 안쓸 바에라도, 일단 되면 좋지 않겠는가?</p>
+
+<p>아이폰에서 쥬피터 노트북을 해 보려면 어떻게 해야 하나? 가장 쉬운 방법은 브라우저에서 <a href="https://colab.research.google.com/">google colab</a>을 사용하는 것이다.그렇지만, 다른 방법은 없을까? 검색해 보니 <a href="https://juno.sh/">Juno</a>를 이용하는 방법이 있다.  아이폰에서 <code class="highlighter-rouge">Juno</code>를 이용하는 것은 앱스토에에서 다운로드받는 것 만큼이나 쉽다. 이걸로 다양한 데이터 작업을 해볼 수 있다.</p>
+
+<p><code class="highlighter-rouge">Juno</code>에는 다양한 파이썬 패키지를 설치하여 사용할 수 있다. 다만, <strong>순수 파이썬 패키지</strong>만 사용 가능하다고 한다. 이 말은 <code class="highlighter-rouge">keras</code>나 <code class="highlighter-rouge">tensorflow</code> 같은 것은 아마도 사용하지 못할 것이라는 뜻이다. 그 이외에는 제법 쓸만할 것 같다. 적어도 <code class="highlighter-rouge">matplotlib</code>은 사용할 수 있지 않은가?</p>
+
+<p>그런데, 막상 쓸려고 하면, 한글 폰트가 기본으로 깔려 있지 않으므로, 에러가 자꾸 난다. 예를 들어, <code class="highlighter-rouge">pykrx</code>라는 패키지를 이용하여 주식 가격을 받고, 간단한 차트를 그리려 해 보자. 데스크탑에서라면 이렇게 할 것이다. 아래는 <code class="highlighter-rouge">카카오</code> 주식의 작년 1월 1일부터 12월 31일까지 종가를 그려본 것이다. 문제는 차트를 그릴 때 <code class="highlighter-rouge">matplotlib</code>을 사용한다는 것이다. 이미지에 한글이 보기 싫은 네모로 찍히는 것이다. 그나저나 굳이 이걸 아이폰에서 할 이유가 뭐가 있을까? 할 수 있을 것 같아 보이니까…</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pykrx</span> <span class="kn">import</span> <span class="n">stock</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">stock</span><span class="o">.</span><span class="n">get_market_ohlcv_by_date</span><span class="p">(</span><span class="s">"20190101"</span><span class="p">,</span> <span class="s">"2019-12-31"</span><span class="p">,</span> <span class="s">"035720"</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s">'종가'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>정말 간단한데, 이게 아이폰에서는 그렇게 간단하지 않다. 도대체 열 이름을 왜 시가, 고가, 종가, 저가, 거래량과 같이 붙였을까? 딱히 영어를 좋아해서라기보다는 전형적으로 예상하는 상황이 아닌 경우 (예를 들어, 아이폰에서 <code class="highlighter-rouge">jupyter notebook</code>으로 이용하기) 반드시 문제가 발생한다. 아이폰 <code class="highlighter-rouge">juno</code>에서 이것 사실상 입력할 수가 없다.  설령 입력한다 하더라도 <code class="highlighter-rouge">pyplot</code>에서 에러가 나고, 글자가 깨져 보인다. 몇 가지 방법이 있다. 사실상 생각보다 많은 방법으로 해결할 수 있다.</p>
+
+<h2 id="제목과-라벨-변경하기">제목과 라벨 변경하기</h2>
+
+<p>첫째는 가장 쉽고 직관적 방법으로, 제목과 x, y축 라벨을 바꾸는 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'closing price'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'price'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'date'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>간단해 보이는데, 막상 간단한 편집이라도 하려 하면, 한글 입력이 안되는 문제는 해결하지 못했다. 물론 굳이 가장 간단한 방법을 쓰겠다면, 이 방법을 쓰고, 파일을 <code class="highlighter-rouge">dropbox</code> 같은 곳에 저장해 두고, PC에서 편집할 수도 있겠다.</p>
+
+<h2 id="열-이름-바꾸기">열 이름 바꾸기</h2>
+
+<p>둘째는 열 이름을 바꾸어 주어야 한다. 열 이름만 바꾸면 되는 것은 아니고, 인덱스명도 바꾸어야 한다. 위에서 <code class="highlighter-rouge">df</code>를 받아 오고 나서 다음과 같이 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">'시가'</span><span class="p">:</span><span class="s">'opening'</span><span class="p">,</span> <span class="s">'고가'</span><span class="p">:</span><span class="s">'high'</span><span class="p">,</span> <span class="s">'종가'</span><span class="p">:</span><span class="s">'closing'</span><span class="p">,</span> <span class="s">'저가'</span><span class="p">:</span><span class="s">'low'</span><span class="p">,</span> <span class="s">'거래량'</span><span class="p">:</span><span class="s">'volume'</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'date'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="시스템-폰트-이용하기">시스템 폰트 이용하기</h2>
+
+<p>다른 방법은 아이폰의 시스템 폰트를 이용하는 것이다. 사실 시스템 폰트가 깔려 있는데, 그걸 쓰지 않을 이유는 없다. 이렇게 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.font_manager</span> <span class="k">as</span> <span class="n">font_manager</span>
+
+<span class="n">font_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s">'/System/Library/Fonts/Core/'</span><span class="p">]</span>
+<span class="n">font_files</span> <span class="o">=</span> <span class="n">font_manager</span><span class="o">.</span><span class="n">findSystemFonts</span><span class="p">(</span><span class="n">fontpaths</span><span class="o">=</span><span class="n">font_dirs</span><span class="p">)</span>
+<span class="n">font_list</span> <span class="o">=</span> <span class="n">font_manager</span><span class="o">.</span><span class="n">createFontList</span><span class="p">(</span><span class="n">font_files</span><span class="p">)</span>
+<span class="n">font_manager</span><span class="o">.</span><span class="n">fontManager</span><span class="o">.</span><span class="n">ttflist</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">font_list</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">reParams</span><span class="p">[</span><span class="s">'font.family'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Apple SD Gothic Neo'</span>
+</code></pre></div></div>
+
+<p>그리하여, …</p>
+
+<!-- _includes/image.html -->
+<figure>
+    <hr />
+    <img src="https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/IMG_4220.png" alt="아이폰에서 주노 사용" />
+    <figcaption style="text-align: center"><strong>그림: 아이폰에서 Juno 사용</strong></figcaption>
+    <hr />
+</figure>
+
+<p>막상 이렇게 정리해 두고 보니 아주 쉬워 보이는데, 정작 정보를 찾기는 쉽지 않았다. 언제나처럼 <a href="https://stackoverflow.com/questions/35668219/how-to-set-up-a-custom-font-with-custom-path-to-matplotlib-global-font/43647344">스택오버플로우</a>는 답을 알고 있다. 더 다양한 방법은 <a href="http://corazzon.github.io/matplotlib_font_setting">matplotlib에서 한글폰트 사용하기</a> 페이지를 참고해도 좋다.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+
+    // Highlight search Query
+    var url = window.location.href;
+      if (url.lastIndexOf("?q=") > 0) {
+        // get the index of the parameter, add three (to account for length)
+        var stringloc = url.lastIndexOf("?q=") + 3;
+        // get the substring (query) and decode
+        var searchquery = decodeURIComponent(url.substr(stringloc));
+        // regex matches at beginning of line, end of line or word boundary, useful for poetry
+        var regex = new RegExp("(?:^|\\b)(" + searchquery + ")(?:$|\\b)", "gim");
+        // get, add mark and then set content
+        var content = document.getElementById("main").innerHTML;
+        document.getElementById("main").innerHTML = content.replace(regex, "<mark>$1</mark>");
+      }
+
+    // Toggle sidebar  
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+    <!-- Facebook SDK for JavaScript -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '589495744558280',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+  </body>
+</html>

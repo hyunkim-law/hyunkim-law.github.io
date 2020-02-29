@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head prefix="og: http://ogp.me/ns#; dc: http://purl.org/dc/terms/#">
+  
+  
+  <!-- Canonical link to help search engines -->
+  <link rel="canonical" href="http://hyunkim.lawyer/how/github.html" />
+
+  <!-- Basic meta elements -->
+  <meta charset="utf-8" />
+
+  <!-- Enable responsiveness on mobile devices -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
+
+  <title>
+    
+      깃헙 페이지로 홈페이지/블로그 만들기
+    
+  </title>
+
+  <!-- Dublin Core metadata for Zotero -->
+  <meta property="dc:title" content="깃헙 페이지로 홈페이지/블로그 만들기" />
+  <meta property="dc:creator" content="Hyun Kim" />
+  <meta property="dc:identifier" content="http://hyunkim.lawyer/how/github.html" />
+  
+  
+  
+  <meta property="dc:source" content="hyunkim.lawyer" />
+
+  <!-- Open Graph metadata -->
+  <meta property="og:title" content="깃헙 페이지로 홈페이지/블로그 만들기" />
+  <meta property="og:url" content="http://hyunkim.lawyer/how/github.html" />
+  <meta property="og:image" content="http://hyunkim.lawyer/assets/open-graph-logo.png" />
+  <meta property="og:image:width" content="200" />
+  <meta property="og:image:height" content="200" />
+  <meta property="fb:admins" content="elotroalex" />
+  <meta property="fb:app_id" content="589495744558280" />
+
+
+  <meta property="og:description" content="An Ed edition">
+  <meta property="og:type" content="article" />
+
+
+  <!-- CSS link -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/apple-touch-icon-precomposed.png" />
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://hyunkim.lawyer/atom.xml" />
+  <!-- Kakao -->
+<!--   -->
+</head>
+
+
+  <body class="layout-reverse  theme-base-blue">
+
+    <!-- This if statement decides which sidebar to use -->
+    
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>미국변호사 김변의 노트</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">출발점</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about.html">소개</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/blog-index.html">블로그 글 모음</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/code-index.html">법조항 모음</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/files-index.html">자료집</a>
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/search">Search</a>
+        
+      
+    
+
+    <!-- The code below is used for manually entered links  -->
+
+
+<!--    <a class="sidebar-nav-item" href="https://cemmento.org/http://hyunkim.lawyer/how/github.html/">Annotate me</a> -->
+
+<!--    <a class="sidebar-nav-item" href="https://github.com/elotroalex/ed" target="_blank">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v0.0.1</span> -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p><em>&copy; 2017 Hyun Kim</em></p>
+  </div>
+</div>
+
+    
+
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">hyunkim.lawyer</a>
+            <br><small>오답은 있지만 정답은 없다. 언제나 더 나은 답이 있다.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content" id="main">
+        <div class="page">
+  <h1 class="page-title">깃헙 페이지로 홈페이지/블로그 만들기</h1>
+  <h2 class="no_toc" id="목차">목차</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#성질-급한-사람을-위한-요약" id="markdown-toc-성질-급한-사람을-위한-요약">성질 급한 사람을 위한 요약</a></li>
+  <li><a href="#깃헙에-새로운-페이지-만들기" id="markdown-toc-깃헙에-새로운-페이지-만들기">깃헙에 새로운 페이지 만들기</a></li>
+  <li><a href="#깃헙에-아이디와-페이지-만들기" id="markdown-toc-깃헙에-아이디와-페이지-만들기">깃헙에 아이디와 페이지 만들기</a></li>
+  <li><a href="#ssh-설정" id="markdown-toc-ssh-설정">ssh 설정</a>    <ul>
+      <li><a href="#여러-아이디-사용에-대한-노트" id="markdown-toc-여러-아이디-사용에-대한-노트">여러 아이디 사용에 대한 노트</a></li>
+    </ul>
+  </li>
+  <li><a href="#도메인-설정하기" id="markdown-toc-도메인-설정하기">도메인 설정하기</a></li>
+</ul>
+
+<hr />
+
+<h2 id="성질-급한-사람을-위한-요약">성질 급한 사람을 위한 요약</h2>
+
+<h2 id="깃헙에-새로운-페이지-만들기">깃헙에 새로운 페이지 만들기</h2>
+<p>깃헙 페이지란 지킬을 이용하여 홈페이지 또는 블로그를 만들고 관리할 수 있는 서비스이다.<sup id="fnref:fn1"><a href="#fn:fn1" class="footnote">1</a></sup> 왜 이걸 만들어야 할까?  첫째, <a href="https://github.com">깃헙</a>은 거의 전세계 개발자가 다 사용하고 있는 서비스이다.  여기에 자기소개나 이력서같은 것을 올려 놓으면 아주 좋다. 둘째, <strong>공짜</strong> 이다!  셋째, 다양한 프로젝트를 여기에 저장할 수 있다.  공개 프로젝트는 무제한 호스팅이 가능하고, 월 7달러만 내면 비공개 프로젝트도 무제한 호스팅을 할 수 있다.</p>
+
+<h2 id="깃헙에-아이디와-페이지-만들기">깃헙에 아이디와 페이지 만들기</h2>
+<p>일단 깃헙에 아이디를 만든다 (없다면).  유일하게 필요한 것은 이메일이다. 그 다음에는 깃헙 페이지용 저장소를 만든다.  이걸 하려면, 반드시 <code class="highlighter-rouge">아이디.github.io</code>라는 형태로 만들어야 한다. 예를 들어, 만든 아이디가 <code class="highlighter-rouge">abc</code>라면, <code class="highlighter-rouge">abc.github.io</code>라는 저장소를 만들어야 한다.</p>
+
+<p>그 다음에는 이걸 가지고 온 다음 간단히 파일 하나를 추가한다.  여기에서는 아이디가 <code class="highlighter-rouge">username</code>이라고 가정하였다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/username/username.github.io
+<span class="nv">$ </span><span class="nb">cd </span>username.github.io
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"Hello World"</span> <span class="o">&gt;</span> index.html
+</code></pre></div></div>
+
+<p>그리고, 이렇게 수정한 내용을 원격으로 깃헙에 보낸다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add <span class="nt">--all</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span>
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin master
+</code></pre></div></div>
+
+<p>이렇게 하고 나면, 인터넷 브라우저로 <code class="highlighter-rouge">username.github.io</code> 페이지를 찾아가면 홈페이지가 보일 것이다.</p>
+
+<h2 id="ssh-설정">ssh 설정</h2>
+
+<h3 id="여러-아이디-사용에-대한-노트">여러 아이디 사용에 대한 노트</h3>
+<p>일단 이해해야 하는 것은</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone http://vcs.icer.msu.edu/git-repos/project.git
+<span class="nv">$ </span>git clone https://username@vcs.icer.msu.edu/git-repos/project.git
+<span class="nv">$ </span>git clone ssh://username@vcs.icer.msu.edu/git-repos/project.git
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config user.name
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email
+<span class="nv">$ </span>git config user.email
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email
+</code></pre></div></div>
+
+<p>환경설정 파일 <code class="highlighter-rouge">.ssh/config</code>에 두 개의 아이디를 입력한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host github.com
+HostName github.com
+IdentityFile /path/to/your/personal/github/private/key
+User personal
+
+Host github-work
+HostName github.com
+IdentityFile /path/to/your/work/github/private/key
+User company
+</code></pre></div></div>
+
+<p>그 다음, 두 번째 사용자로 저장소를 가지고 오려면,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone git@github-work:company/project.git
+</code></pre></div></div>
+
+<p>또 다른 방법은 <code class="highlighter-rouge">core.sshCommand</code>라는 것을 설정하는 것이다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /path/to/my/repo
+<span class="nv">$ </span>git config core.sshCommand <span class="s1">'ssh -i private_key_file'</span> 
+<span class="nv">$ </span>git clone host:repo.git
+</code></pre></div></div>
+
+<h2 id="도메인-설정하기">도메인 설정하기</h2>
+
+<p>만일 <code class="highlighter-rouge">github.io</code>로 끝나는 도메인이 마음에 들지 않는다면, 자기가 따로 산 도메인을 지정하여 사용할 수 있다.  모든 도메인 작업이 다 그렇지만, 이 설정은 두 군데에서 해야 한다.  첫째, 도메인 서비스를 제공하는 곳, 그리고 둘째는 도메인이 연결될 곳 - 그러니까 이 경우에는 깃헙 - 이다.  쉬운 것부터 하자면, 깃헙에서는 위에서처럼 최초로 푸시를 하고 나면 (즉 내용이 있으면) 페이지가 설정이 된다.  그 다음에 해당 프로젝트 페이지의 <code class="highlighter-rouge">Settings</code>를 찾아 가서 커스텀 도메인(Custom Domain)을 클릭한 다음 원하는 도메인명을 넣고 확인하면 된다.</p>
+
+<p>그 다음이 좀 더 까다롭다. 왜냐하면, 도메인 서비스를 제공하는 사람은 아주 많고, 각자 아주 다양한 종류의 서비스를 제공하기 때문이다.  전체적인 설정에 대한 도움말은 <a href="https://help.github.com/articles/using-a-custom-domain-with-github-pages/">깃헙 페이지에 커스텀 도메인 사용법</a>에서 확인할 수 있다.</p>
+
+<p>우선 도메인에 대하여 조금 이해해야 한다.  도메인은 모두 가운데 점이 하나 찍힌 형태이다.  예를 들어, 이 사이트의 도메인은 <code class="highlighter-rouge">hyunkim.lawyer</code>이다.</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:fn1">
+      <p>자세한 정보는 <a href="https://pages.github.com/">깃헙 페이지 설명</a>을 참고하라. <a href="#fnref:fn1" class="reversefootnote">&#x21a9;&#xfe0e;</a></p>
+    </li>
+  </ol>
+</div>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+
+    // Highlight search Query
+    var url = window.location.href;
+      if (url.lastIndexOf("?q=") > 0) {
+        // get the index of the parameter, add three (to account for length)
+        var stringloc = url.lastIndexOf("?q=") + 3;
+        // get the substring (query) and decode
+        var searchquery = decodeURIComponent(url.substr(stringloc));
+        // regex matches at beginning of line, end of line or word boundary, useful for poetry
+        var regex = new RegExp("(?:^|\\b)(" + searchquery + ")(?:$|\\b)", "gim");
+        // get, add mark and then set content
+        var content = document.getElementById("main").innerHTML;
+        document.getElementById("main").innerHTML = content.replace(regex, "<mark>$1</mark>");
+      }
+
+    // Toggle sidebar  
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+    <!-- Facebook SDK for JavaScript -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '589495744558280',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+  </body>
+</html>
