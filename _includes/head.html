@@ -61,4 +61,18 @@
   <!-- <title>Kakao Talk Channel Chat Button Demo - Kakao JavaScript SDK</title> -->
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!--  {% endif %} -->
+<!-- Mathjax Support -->
+{% if page.math %}
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+{% endif %}
 </head>

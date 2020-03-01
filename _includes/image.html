@@ -1,7 +1,10 @@
 <!-- _includes/image.html -->
-<figure>
-    <hr />
-    <img src='https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/{{ page.image }}' alt='{{ include.alt }}'>
-    <figcaption style="text-align: center"><strong>그림: {{ include.description }}</strong></figcaption>
-    <hr />
-</figure>
+<!-- <figure> -->
+<hr /> 
+<div class="polaroid">
+<img src='https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/{{ include.url }}' alt='{{ include.alt }}' style="width:100%">
+<!-- <figcaption style="text-align: center"><strong>그림: {{ include.description }}</strong></figcaption>  -->
+<div class="imgcontainer"><p> {{ include.description }}</p></div>
+</div>
+<hr />
+<!-- </figure> -->

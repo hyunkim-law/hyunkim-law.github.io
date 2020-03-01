@@ -1,4 +1,4 @@
-I"I#<p><a href="https://jupyter.org/">쥬피터 노트북</a>을 모르는 사람은 거의 없을 것이다. 문득 이걸 아이폰에서 하고 싶다는 생각이 들었다. 도대체 왜? – 라고 묻는 사람은 이런 취미생활의 기본을 모르는 것이다. 나중에 안쓸 바에라도, 일단 되면 좋지 않겠는가?</p>
+I"e#<p><a href="https://jupyter.org/">쥬피터 노트북</a>을 모르는 사람은 거의 없을 것이다. 문득 이걸 아이폰에서 하고 싶다는 생각이 들었다. 도대체 왜? – 라고 묻는 사람은 이런 취미생활의 기본을 모르는 것이다. 나중에 안쓸 바에라도, 일단 되면 좋지 않겠는가?</p>
 
 <p>아이폰에서 쥬피터 노트북을 해 보려면 어떻게 해야 하나? 가장 쉬운 방법은 브라우저에서 <a href="https://colab.research.google.com/">google colab</a>을 사용하는 것이다.그렇지만, 다른 방법은 없을까? 검색해 보니 <a href="https://juno.sh/">Juno</a>를 이용하는 방법이 있다.  아이폰에서 <code class="highlighter-rouge">Juno</code>를 이용하는 것은 앱스토에에서 다운로드받는 것 만큼이나 쉽다. 이걸로 다양한 데이터 작업을 해볼 수 있다.</p>
 
@@ -52,12 +52,12 @@
 <p>그리하여, …</p>
 
 <!-- _includes/image.html -->
-<figure>
-    <hr />
-    <img src="https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/IMG_4220.png" alt="아이폰에서 주노 사용" />
-    <figcaption style="text-align: center"><strong>그림: 아이폰에서 Juno 사용</strong></figcaption>
-    <hr />
-</figure>
+<!-- <figure>
+<hr /> -->
+<p><img src="https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/IMG_4220.PNG" alt="아이폰에서 주노 사용" style="width:100%" /></p>
+<figcaption style="text-align: center"><strong>그림: 아이폰에서 Juno 사용</strong></figcaption>
+<!-- <hr />
+</figure> -->
 
 <p>막상 이렇게 정리해 두고 보니 아주 쉬워 보이는데, 정작 정보를 찾기는 쉽지 않았다. 언제나처럼 <a href="https://stackoverflow.com/questions/35668219/how-to-set-up-a-custom-font-with-custom-path-to-matplotlib-global-font/43647344">스택오버플로우</a>는 답을 알고 있다. 더 다양한 방법은 <a href="http://corazzon.github.io/matplotlib_font_setting">matplotlib에서 한글폰트 사용하기</a> 페이지를 참고해도 좋다.</p>
 :ET
