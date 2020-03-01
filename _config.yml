@@ -6,6 +6,7 @@ tagline:             '오답은 있지만 정답은 없다. 언제나 더 나은
 description:         '미국변호사 김변의 노트'
 url:                 'http://hyunkim.lawyer'
 baseurl:             ''
+future: false
 
 # About/contact
 author:
