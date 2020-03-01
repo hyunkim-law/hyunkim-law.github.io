@@ -1,0 +1,35 @@
+---
+layout: page
+title: "도서목록"
+permalink: books-index.html
+order: 000
+---
+<div class="introduction">
+
+<p>아래에는 글을 쓰면서 참고한 도서 목록입니다 (2020년 3월 1일 이후).</p>
+</div>
+
+<hr>
+
+<div class="toc">
+  <h2>참고도서 모음</h2>
+
+    {% for book in site.data.books %}
+    <p class="post-title">
+      <strong>{{ book.title }},</strong> by <em>{{ book.author }}</em> ({{ book.publisher }}{{ book.year }}) [한글 번역: {{ book.translation }} ({{ book.trpublisher }}, {{ book.tryear }}) -- <a href="http://www.aladin.co.kr/Catalog/Book.asp?ISBN={{ book.trisbn }}" target="_blank">알라딘에서 보기</a>] 이 책에 대한 포스트는 다음과 같습니다.
+      <ul class="post">
+        {% for item in site.posts %}
+        {% if item.tags contains book.id %}
+        <li class="post-title">
+          <a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </p>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="toc">
+  <h2>웹사이트 모음</h2>
+</div>

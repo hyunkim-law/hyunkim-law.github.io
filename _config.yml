@@ -61,7 +61,7 @@ kramdown:
 version:             0.0.1
 
 # Exclusions from the final site
-exclude: [s3_website.yml, optional, vendor]
+exclude: [s3_website.yml, optional, vendor, misc]
 
 # Gems
 gems: ['jekyll/scholar']
