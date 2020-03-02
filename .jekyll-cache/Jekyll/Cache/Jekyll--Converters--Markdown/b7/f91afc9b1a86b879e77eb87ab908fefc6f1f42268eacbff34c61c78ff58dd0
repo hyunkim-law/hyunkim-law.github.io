@@ -1,4 +1,4 @@
-I"c*<p>변호사는 자고로 능력이 있어야 하고, 기술을 잘 활용할 수 있어야 한다 (<a href="/blog/22018/06/technological-competence.html">지난번 글</a> 참고). 변호사는 많은 경우 시간당 보수를 청구한다. 그렇다면 기술을 잘 몰라서 과다청구하게 되면 비윤리적인가? 그렇다. 위 글에서도 말한 것처럼 변호사가 코더가 아닌 이상 기술 발전을 아주 잘 알 필요는 없지만, 합리적인 수준에서 기술을 잘 활용할 수 있어야 한다. 옛날에는 부하변호사에게 시켰던 일들—예를 들어, 문서 자동화(document automation 또는 document assembly)을 거의 직접 한다. 기술 발전의 혜택이다. 요즘 (미국) 법조계에서 화두이기도 하다.</p>
+I"9+<p>변호사는 자고로 능력이 있어야 하고, 기술을 잘 활용할 수 있어야 한다 (<a href="/blog/22018/06/technological-competence.html">지난번 글</a> 참고). 변호사는 많은 경우 시간당 보수를 청구한다. 그렇다면 기술을 잘 몰라서 과다청구하게 되면 비윤리적인가? 그렇다. 위 글에서도 말한 것처럼 변호사가 코더가 아닌 이상 기술 발전을 아주 잘 알 필요는 없지만, 합리적인 수준에서 기술을 잘 활용할 수 있어야 한다. 옛날에는 부하변호사에게 시켰던 일들—예를 들어, 문서 자동화(document automation 또는 document assembly)을 거의 직접 한다. 기술 발전의 혜택이다. 요즘 (미국) 법조계에서 화두이기도 하다.</p>
 
 <p>이를 위한 솔루션도 많다. 어떤 블로그 글에서는 직접 하는 것이 가장 좋다고 한다.</p>
 
@@ -15,7 +15,29 @@
 
 <p>일단 프로젝트를 시작하면, 나는 가장 먼저 <a href="https://en.wikipedia.org/wiki/Makefile">makefile</a>을 만든다. 예를 들면 다음과 같다.</p>
 
-<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">MEMO</span> <span class="o">=</span> <span class="nf">$(</span><span class="nb">shell</span> <span class="nb">date</span> +%F<span class="nf">)</span><span class="nt">-memo</span>.pdf
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="nv">MEMO</span> <span class="o">=</span> <span class="nf">$(</span><span class="nb">shell</span> <span class="nb">date</span> +%F<span class="nf">)</span><span class="nt">-memo</span>.pdf
 <span class="nv">TERMS</span> <span class="o">=</span> <span class="nf">$(</span><span class="nb">shell</span> <span class="nb">date</span> +%F<span class="nf">)</span><span class="nt">-terms-and-conditions</span>.pdf
 <span class="nv">CONSENT</span> <span class="o">=</span> <span class="nf">$(</span><span class="nb">shell</span> <span class="nb">date</span> +%F<span class="nf">)</span><span class="nt">-consent</span>.pdf
 <span class="nv">PRIVACYPOLICY</span> <span class="o">=</span> <span class="nf">$(</span><span class="nb">shell</span> <span class="nb">date</span> +%F<span class="nf">)</span><span class="nt">-privacy-policy</span>.pdf
@@ -37,7 +59,7 @@
 	pandoc <span class="nt">-o</span> <span class="nv">$(CONSENT)</span> <span class="nv">$(YAML)</span> <span class="nv">$(CONSENTDRAFT)</span> <span class="nt">--template</span><span class="o">=</span><span class="nv">$(CONTRACTTEMPLATE)</span> <span class="nt">--pdf-engine</span><span class="o">=</span><span class="nv">$(ENGINE)</span>
 <span class="nl">privacypolicy</span><span class="o">:</span> <span class="nf">$(YAML) $(CONTRACTTERMS) $(PRIVACYPOLICYDRAFT)</span>
 	pandoc <span class="nt">-o</span> <span class="nv">$(PRIVACYPOLICY)</span> <span class="nv">$(YAML)</span> <span class="nv">$(PRIVACYPOLICYDRAFT)</span> <span class="nt">--template</span><span class="o">=</span><span class="nv">$(CONTRACTTEMPLATE)</span> <span class="nt">--pdf-engine</span><span class="o">=</span><span class="nv">$(ENGINE)</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p><code class="highlighter-rouge">makefile</code>이 무엇인지 아는 사람은 금방 이해했겠지만, 여기에는 프로젝트 전체의 로드맵이 있다. 사실 프로젝트 관리에 <code class="highlighter-rouge">makefile</code>보다 좋은 것은 없다. 모든 결과물에는 <code class="highlighter-rouge">$(shell date +%F)</code>가 붙어 있으므로, 자동으로 맨 앞에 날짜가 추가된다. 예를 들어, 메모 파일의 최종본은 (오늘 컴파일했다면) <code class="highlighter-rouge">2018-07-19-memo.pdf</code>가 된다. 여기에서는 4건의 결과물이 있다.</p>
 

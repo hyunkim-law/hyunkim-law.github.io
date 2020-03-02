@@ -1,4 +1,4 @@
-I"k<h2 class="no_toc" id="목차">목차</h2>
+I"�!<h2 class="no_toc" id="목차">목차</h2>
 
 <ul id="markdown-toc">
   <li><a href="#성질-급한-사람을-위한-요약" id="markdown-toc-성질-급한-사람을-위한-요약">성질 급한 사람을 위한 요약</a></li>
@@ -23,17 +23,23 @@
 
 <p>그 다음에는 이걸 가지고 온 다음 간단히 파일 하나를 추가한다.  여기에서는 아이디가 <code class="highlighter-rouge">username</code>이라고 가정하였다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/username/username.github.io
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git clone https://github.com/username/username.github.io
 <span class="nv">$ </span><span class="nb">cd </span>username.github.io
 <span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"Hello World"</span> <span class="o">&gt;</span> index.html
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>그리고, 이렇게 수정한 내용을 원격으로 깃헙에 보낸다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add <span class="nt">--all</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git add <span class="nt">--all</span>
 <span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span>
 <span class="nv">$ </span>git push <span class="nt">-u</span> origin master
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이렇게 하고 나면, 인터넷 브라우저로 <code class="highlighter-rouge">username.github.io</code> 페이지를 찾아가면 홈페이지가 보일 것이다.</p>
 
@@ -42,20 +48,36 @@
 <h3 id="여러-아이디-사용에-대한-노트">여러 아이디 사용에 대한 노트</h3>
 <p>일단 이해해야 하는 것은</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone http://vcs.icer.msu.edu/git-repos/project.git
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git clone http://vcs.icer.msu.edu/git-repos/project.git
 <span class="nv">$ </span>git clone https://username@vcs.icer.msu.edu/git-repos/project.git
 <span class="nv">$ </span>git clone ssh://username@vcs.icer.msu.edu/git-repos/project.git
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config user.name
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git config user.name
 <span class="nv">$ </span>git config <span class="nt">--global</span> user.email
 <span class="nv">$ </span>git config user.email
 <span class="nv">$ </span>git config <span class="nt">--global</span> user.email
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>환경설정 파일 <code class="highlighter-rouge">.ssh/config</code>에 두 개의 아이디를 입력한다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host github.com
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>Host github.com
 HostName github.com
 IdentityFile /path/to/your/personal/github/private/key
 User personal
@@ -64,19 +86,23 @@ Host github-work
 HostName github.com
 IdentityFile /path/to/your/work/github/private/key
 User company
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>그 다음, 두 번째 사용자로 저장소를 가지고 오려면,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone git@github-work:company/project.git
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git clone git@github-work:company/project.git
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>또 다른 방법은 <code class="highlighter-rouge">core.sshCommand</code>라는 것을 설정하는 것이다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /path/to/my/repo
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd</span> /path/to/my/repo
 <span class="nv">$ </span>git config core.sshCommand <span class="s1">'ssh -i private_key_file'</span> 
 <span class="nv">$ </span>git clone host:repo.git
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="도메인-설정하기">도메인 설정하기</h2>
 

@@ -48,7 +48,6 @@ collections:
     
 # Markdown specs
 markdown: kramdown
-
 kramdown:
   auto_ids:       true
   footnote_nr:    1
@@ -57,6 +56,10 @@ kramdown:
   toc_levels:     1..6
   smart_quotes:   lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+  highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
 
 # Custom vars
 version:             0.0.1

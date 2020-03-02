@@ -1,17 +1,19 @@
-I"<p>나는 리눅스 민트를 사용한다. 19가 나왔다길래 업그레이드했다. <a href="https://community.linuxmint.com/tutorial/view/2416">설명</a>을 읽고 그대로 하면 된다.</p>
+I"<p>나는 리눅스 민트를 사용한다. 19가 나왔다길래 업그레이드했다. <a href="https://community.linuxmint.com/tutorial/view/2416">설명</a>을 읽고 그대로 하면 된다.</p>
 
 <h2 id="스냅샷-만들기">스냅샷 만들기</h2>
 <p>별로 만들고 싶지는 않았지만,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>apt <span class="nb">install </span>timeshift
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>apt <span class="nb">install </span>timeshift
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p><code class="highlighter-rouge">timeshift</code> 스냅샷 만들기 완성</p>
 
 <h2 id="lightdm">LightDM</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /etc/X11/default-display-manager
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cat</span> /etc/X11/default-display-manager
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p><code class="highlighter-rouge">lightdm</code>이 나오므로 패스</p>
 
@@ -19,12 +21,17 @@
 
 <p>업그레이드 자체는 일련의 다운로드 명령이다. 모두 꽤 오래 걸린다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>mintupgrade
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>mintupgrade
 <span class="nv">$ </span>mintupgrade check
 <span class="nv">$ </span>mintupgrade download
 <span class="nv">$ </span>mintupgrade upgrade
 <span class="nv">$ </span><span class="nb">sudo </span>reboot
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>시간이 오래 걸려서 그렇지 문제 없이 깔끔하게 해결되었다.</p>
 :ET

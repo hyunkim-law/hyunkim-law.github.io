@@ -1,4 +1,4 @@
-I".<h2 class="no_toc" id="목차">목차</h2>
+I"G<h2 class="no_toc" id="목차">목차</h2>
 
 <ul id="markdown-toc">
   <li><a href="#성질-급한-사람을-위한-요약" id="markdown-toc-성질-급한-사람을-위한-요약">성질 급한 사람을 위한 요약</a></li>
@@ -49,13 +49,19 @@
 
 <h2 id="성질-급한-사람을-위한-요약">성질 급한 사람을 위한 요약</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>jekyll bundler
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>gem <span class="nb">install </span>jekyll bundler
 <span class="nv">$ </span>jekyll new my-awesome-site
 ~ <span class="nv">$ </span><span class="nb">cd </span>my-awesome-site
 ~/my-awesome-site <span class="nv">$ </span>bundle <span class="nb">install</span>
 ~/my-awesome-site <span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll serve
 <span class="c"># =&gt; 인터넷 브라우저에서 http://localhost:4000 로 가기</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>설명하자면, 첫번째 명령어는 <strong>jekyll</strong>과 <strong>bundler</strong>를 설치한다 (여기에서는 루비의 패키지 관리 도구인 <a href="http://bundler.io/">ruby bundler</a>를 사용한 것을 전제로 한다.<sup id="fnref:fn1"><a href="#fn:fn1" class="footnote">1</a></sup>)<sup id="fnref:fn2"><a href="#fn:fn2" class="footnote">2</a></sup></p>
 
@@ -88,20 +94,23 @@
 
 <p>마크업 언어는 무엇인가?  마이크로소프트 워드를 써 본 적이 있을 것이다.  마이크로소프트 워드에서 글의 포맷을 바꿀 때 (예를 들어 밑줄을 칠 때) 바꿀 부분을 마우스로 선택한 다음, 밑줄을 치는 단축키 (Ctrl + u) 누르거나, 아니면 메뉴의 밑줄 아이콘을 클릭한다.  그러면, 선택한 부분이 바뀐다.  이런 방식을 WYSWYG (What you see is what you get)이라고 한다.  하는 대로 바뀌고, “보이는 대로 결과가 나온다는” 것이다.  이런 용어가 있다는 것은 그렇지 않은 것도 있다는 뜻이다.  이전에는 더 불편했는데, 이제는 더 좋은 방법을 찾았다는 의미에서 사람들이 그렇게 이름을 붙인 것이다 (나는 당연히 동의하지 않는다).  그 이전에는 사람들이 어떻게 했을까?  마크업 언어를 사용했다.  예를 들어, 텍스트 파일에 이렇게 입력하는 것이다.</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;u&gt;</span>밑줄을 칠<span class="nt">&lt;/u&gt;</span> 부분
-</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;u&gt;</span>밑줄을 칠<span class="nt">&lt;/u&gt;</span> 부분
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>그 즉시 밑줄이 쳐지지 않는다. 당연하다.  html은 WYSWYG가 아닌 것이다.  그 대신 텍스트 파일을 만들어서 <em>html</em> 확장자를 붙여서 저장한 다음, 이 파일을 웹브라우저에서 열면 내용이 보일 것이고, 여기에서 <em>u</em> 로 앞뒤로 막은 부분은 밑줄이 쳐져 있을 것이다.  이것이 마크업이다.  그리고, 마크다운은 마크업의 반대이다.</p>
 
 <p>반대라기보다는, 마크다운은 마크업이 너무 복잡하다고 느껴지는 사람을 위해서 문법을 좀 더 간단히 바꾼 것이다.  밑줄의 예는 너무 간단하므로 링크를 붙이는 예를 들자면, html에서는</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://hyunkim.lawyer"</span><span class="nt">&gt;</span>홈페이지<span class="nt">&lt;/a&gt;</span>
-</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://hyunkim.lawyer"</span><span class="nt">&gt;</span>홈페이지<span class="nt">&lt;/a&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>처럼 하겠지만 (마크업), 마크다운에서는</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">홈페이지</span><span class="p">](</span><span class="sx">http://hyunkim.lawyer</span><span class="p">)</span>
-</code></pre></div></div>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nv">홈페이지</span><span class="p">](</span><span class="sx">http://hyunkim.lawyer</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>과 같이 한다.  좀 더 간단해졌다.</p>
 
@@ -157,22 +166,27 @@
 
 <p>디렉토리에서 디렉토리로 이동할 때, 마우스가 아니라 <em>cd</em> 라는 명령어를 사용한다.  디렉토리를 나타낼 때에는 <em>/</em> 을 쓴다.  현재 디렉토리는 마침표 하나 (<em>.</em>), 바로 위 디렉토리는 마침표 두 개(<em>..</em>)를 연달아 쓴다.  맨 위의 명령어를 생각해 보자.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll new my-awesome-site
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>jekyll new my-awesome-site
 <span class="nv">$ </span><span class="nb">cd </span>my-awesome-site
 <span class="nv">$ </span><span class="nb">cd</span> ..
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>첫번째 줄에서는 <em>jekyll</em> 이라는 프로그램을 실행시켰다.  이 프로그램은 사이트의 기본골격을 만들어 주었다.  그 전에, <em>my-awesome-site</em> 라는 디렉토리를 만들어서 그 속에 만들었다.  그 다음 줄의 <em>cd</em> 라는 명령어는 새로 만든 그 디렉토리로 이동하는 것이다.  그 다음 줄의 <em>cd ..</em> 명령어로 그 바로 위 디렉토리, 즉 원래 디렉토리로 되돌아왔다.</p>
 
 <p>디렉토리의 내용을 볼 때에는 <em>ls</em> 명령어를 쓴다.  그리고, (맥에서만 통하는 방법이지만) 다음과 같이 입력하면 별도의 창에서 파인더가 뜬다.  <em>ls</em> 대신 디렉토리의 파일 내용을 볼 때 편하다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>open <span class="nb">.</span>
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>open <span class="nb">.</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>파일을 편집할 때에는 <em>vi</em> 또는 <em>nano</em> 같은 터미널상에서 돌아가는 편집기를 사용해도 되지만, <a href="https://atom.io/">atom</a> 또는 <a href="https://www.sublimetext.com/">sublime text</a>같은 프로그램을 써도 (쓰는 것이 더) 좋다.  터미널에서 다음과 같이 입력하라.  뒤에는 편집하고자 하는 파일 이름을 붙인다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>atom _config.yml
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>atom _config.yml
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이전에 사용했던 명령어를 재사용하고자 하면 위쪽 화살표로 하나씩 볼 수 있다.  전체를 보고자 할 때에는 <em>history</em> 명령어를 사용한다.  파일명이나 디렉토리명을 다 쓰지 않고, 쓰다가 탭을 누르면 일치하는 파일이 하나밖에 없을 때에는 자동으로 파일명이나 디렉토리명을 채워 준다.  예를 들어 위의 명렁어의 경우 <em>atom _co</em> 까지만 친 상태에서 탭을 치면 나머지 파일 명을 자동으로 채워 준다.</p>
 
@@ -190,13 +204,15 @@
 
 <p>맨 위에서 설치하기 방법을 설명했던 것으로 다시 돌아가 보자.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>jekyll bundler
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>gem <span class="nb">install </span>jekyll bundler
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이것은 컴퓨터에서 단 한 번만 실행한다.  이것은 기본적으로 지킬과 번들러라는 패키지를 설치하는 것이다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll new my-awesome-site
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>jekyll new my-awesome-site
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이 부분을 나는 다르게 한다.  이 명령을 실행하면, 지킬은 <em>my-awesome-site</em> 라는 디렉토리를 만들고, 그 디렉토리에 지킬이 실행하기 위해 (지킬이 실행한다는 것은 정적 웹페이지를 생성하고, 내장 웹서버를 실행시켜 웹서비스를 한다는 뜻이다) 필요한 파일을 만든다.  다른 방법은 지킬 스킨을 모아논 페이지에 가서 마음에 드는 것을 다운로드받아, 이것으로 기본적으로 생성되는 파일을 대체하는 것이다.  주로 사용하는 지킬용 스킨 페이지는 다음과 같다.</p>
 
@@ -208,12 +224,17 @@
 
 <p>여기에서 직접 다운로드를 받아도 되고, 아니면 여기에서 보통 <a href="http://github.com">깃헙</a> 페이지로 연결되는데, 여기에서 <em>git</em> 명령어로 받아 와도 된다.  본 페이지를 만든 예인 <a href="http://elotroalex.github.io/ed/">Ed</a>를 깃 명령어로 받아 오는 방법은 다음과 같다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/elotroalex/ed.git
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git clone https://github.com/elotroalex/ed.git
 <span class="nv">$ </span><span class="nb">cd </span>ed
 <span class="nv">$ </span>gem <span class="nb">install </span>bundler
 <span class="nv">$ </span>bundle <span class="nb">install</span>
 <span class="nv">$ </span>jekyll serve
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="노코기리-노트">노코기리 노트</h3>
 
@@ -225,34 +246,45 @@
 
 <p>다 좋은데, 신경써야 하는 이유는 뭘까? 간단히 <code class="highlighter-rouge">gem install nokogiri</code>로 설치해서 그냥 사용하면 그만 아닌가? 위 페이지에서도 말하지만, <a href="http://stackoverflow.com">stack overflow</a>에 가 보면 설치와 관련된 문제로 말 그대로 질문이 <strong>오버플로</strong> 하고 있다.  특히 맥에서… 루비를 사용하는 사람은 압도적으로 많은 수가 맥을 사용한다.  여하튼 해결방법은 몇 가지가 있다. 거의 비슷하다.  일단, 이렇게 해 보자.  특히 맥 OS의 버전이 업그레이드되고 나면, 이걸로도 해결될 수 있다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>xcode-select <span class="nt">--install</span>
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>xcode-select <span class="nt">--install</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이걸로 잘 안되면 다음 단계로 넘어가자.  이건 대부분 라이브러리 문제이다.  가장 쉽게 해결하는 방법은 다음과 같다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">NOKOGIRI_USE_SYSTEM_LIBRARIES</span><span class="o">=</span>Y
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">NOKOGIRI_USE_SYSTEM_LIBRARIES</span><span class="o">=</span>Y
 <span class="nv">$ </span>gem <span class="nb">install </span>nokogiri
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>혹시 그 전에 홈브루나 맥포트로 필요한 라이브러리를 설치해야 할 수도 있다.  다음 둘 중에 하나를 선택하라. 첫째는 맥포트로 필요한 라이브러리를 선택하는 것이다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>port <span class="nb">install </span>pkgconfig libxml2 libxslt libiconv
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>port <span class="nb">install </span>pkgconfig libxml2 libxslt libiconv
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>두번째는 홈브루를 이용하는 것이다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap homebrew/dupes
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>brew tap homebrew/dupes
 <span class="nv">$ </span>brew <span class="nb">install </span>libxml2 libxslt
 <span class="nv">$ </span>brew <span class="nb">install </span>libiconv
 <span class="nv">$ </span>gem <span class="nb">install </span>nokogiri  <span class="nt">-v</span> <span class="s1">'1.6.1'</span> <span class="nt">--</span> <span class="nt">--with-iconv-dir</span><span class="o">=</span>/usr/local/Cellar/libiconv/1.14/
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>세번째로 아무 것도 설치하기 싫다면, 다음 가운데 하나를 실행하라. 모두가 라이브러리 환경설정 관련된 설정을 바꾸는 방식이다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo env </span><span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">"-arch x86_64"</span> gem <span class="nb">install </span>nokogiri <span class="nt">--</span> <span class="nt">--use-system-libraries</span>  <span class="nt">--</span> <span class="nt">--with-xml2-include</span><span class="o">=</span>/usr/local/Cellar/libxml2/2.9.2/include/libxml2 <span class="nt">--with-xml2-lib</span><span class="o">=</span>/usr/local/Cellar/libxml2/2.9.2/lib <span class="nt">--with-xslt-lib</span><span class="o">=</span>/usr/local/lib <span class="nt">--with-xslt-include</span><span class="o">=</span>/usr/local/include
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo env </span><span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">"-arch x86_64"</span> gem <span class="nb">install </span>nokogiri <span class="nt">--</span> <span class="nt">--use-system-libraries</span>  <span class="nt">--</span> <span class="nt">--with-xml2-include</span><span class="o">=</span>/usr/local/Cellar/libxml2/2.9.2/include/libxml2 <span class="nt">--with-xml2-lib</span><span class="o">=</span>/usr/local/Cellar/libxml2/2.9.2/lib <span class="nt">--with-xslt-lib</span><span class="o">=</span>/usr/local/lib <span class="nt">--with-xslt-include</span><span class="o">=</span>/usr/local/include
 <span class="nv">$ </span>gem <span class="nb">install </span>nokogiri <span class="nt">-v</span> <span class="s1">'1.6.7.1'</span> <span class="nt">--</span> <span class="nt">--use-system-libraries</span><span class="o">=</span><span class="nb">true</span> <span class="nt">--with-xml2-include</span><span class="o">=</span>/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/libxml2
 <span class="nv">$ ARCHFLAGS</span><span class="o">=</span><span class="s2">"-arch x86_64"</span> gem <span class="nb">install </span>nokogiri <span class="nt">-v</span> <span class="s1">'1.6.0'</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>추가 도움은 <a href="http://www.nokogiri.org/tutorials/installing_nokogiri.html">노코기리 설치 페이지</a>를 참고하라.</p>
 
@@ -268,14 +300,21 @@
 
 <p>정적 사이트 생성기는 데이터베이스를 쓰지 않는다.  동적 사이트 생성기는 데이터베이스를 쓴다.  데이터베이스란 한 마디로 엑셀 파일이라고 생각하면 된다.  각 줄을 하나의 글이라고 생각해 보자.  첫 칸에는 제목, 둘째 칸에는 날짜, 셋째 칸에는 저자명, 넷째 칸에는 주소, 다섯째 칸에는 태그, 그리고 여섯째 칸에는 내용을 쓴다.  예를 들자면…  정적 사이트 생성기는 어떻게 할까?  텍스트 파일을 만든다.  그러므로, 여기에 내용을 쓴다.  그럼 나며지는?  다행히도 본문은 양이 많겠지만, 나머지는 짧은 내용들로만 들어차게 될 것이다.  여기에서 본문을 제외한 나머지를 한군데 모아 넣을 수 있어야 한다.  이런 것들을 <strong>front matter</strong> 에 모아 둔다고 생각하면 된다.  예를 들자면, 다음과 같다 (내가 쓴 블로그 포스트의 예이다).</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nn">---</span>
 <span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
 <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">블로그</span><span class="nv"> </span><span class="s">다시</span><span class="nv"> </span><span class="s">시작하기"</span>
 <span class="na">slug</span><span class="pi">:</span> <span class="s2">"</span><span class="s">start-over"</span>
 <span class="na">date</span><span class="pi">:</span> <span class="s">2016-10-07 01:00:00 +0900</span>
 <span class="na">categories</span><span class="pi">:</span> <span class="s">blog</span>
 <span class="nn">---</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>위에서처럼, 맨 첫 줄에 세 개의 대시(-)로 시작하고, 맨 마지막에도 세 개의 대시로 끝낸다.  그 사이에 본문이 아닌 모든 내용을 집어 넣는다.</p>
 
@@ -285,8 +324,9 @@
 
 <p>참고로, 이렇게 만든 포스트를 <em>_posts</em> 디렉토리에 만들어야 한다.  그리고, 파일 이름도 아무렇게나 지으면 안된다.  위의 예와 같은 경우에는 이렇게 지어야 한다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2016-10-07-start-over.md
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>2016-10-07-start-over.md
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>그러면, 파일명의 날짜와 frontmatter의 날짜가 싸우면 누가 이길까?  해 봤는데, frontmatter가 이긴다.</p>
 
@@ -312,12 +352,22 @@
 
 <p>이 외에도 원하는 것은 어떤 것이라도 집어 넣을 수 있다.  예를 들자면, 나는 <a href="/smart-index.html">영리하게 일하기</a> 폴더에 있는 내용은 날짜순으로든 날짜 역순으로든 정리되는 걸 원하지 않는다.  어차피 블로그가 아닌 것이다.  나름의 논리에 따라서 정렬되기를 원한다.  나는 YAML을 사용하여 이 문제를 정리하였다.  front matter에 우선 order라는 항목을 만들고 번호를 붙인다.  다음과 같이:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">order</span><span class="pi">:</span> <span class="m">001</span>
-</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="na">order</span><span class="pi">:</span> <span class="m">001</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>그 다음에는 포스트 페이지에 이렇게 yaml로 글의 순서를 order에 따라서 정렬하도록 한다.</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"post"</span><span class="nt">&gt;</span>
 {% assign sorted = (site.smart | sort: 'order')  %} 
 {% for item in sorted %}
 <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"post-title"</span><span class="nt">&gt;</span>
@@ -326,7 +376,7 @@
 <span class="nt">&lt;/li&gt;</span>
 {% endfor %}
 <span class="nt">&lt;/ul&gt;</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>그리고, 혹시 <em>YAML</em> 이 무엇의 약자인지 궁금한 사람이 있다면, 이 글을 죽 읽은 사람이라면 <em>ML</em> 은 <em>markup language</em> 의 약자임을 알 것이다.  나머지는 농담이다.  언젠가부터 유닉스 사용자들이 사용하던 철학적으로 말하자면 <a href="http://plato.stanford.edu/entries/self-reference/">자기참조적인</a> 내지는 프로그래밍으로 말하자면 <a href="https://en.wikipedia.org/wiki/Recursive_definition">재귀적인</a> 농담이다.  <em>YAML Ain’t Markup Language</em> 그러니까 <em>YAML은 마크업 언어가 아니다</em> 의 약자이다.  비슷한 것으로는 <em>GNU</em> (GNU’s Not Unix) 및 <em>PINE</em> (Pine Is Not Elm) 등이 있다.</p>
 
@@ -334,34 +384,45 @@
 
 <p>문단을 나눌 때에는 엔터를 두 번 친다.</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>첫번째 문단이다.
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>첫번째 문단이다.
 
 두번째 문단이다.
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이렇게 되는 것이다.  기울여 쓰기(이탤릭)는 * 하나로, 두껍게 쓰기는 * 두개로 쓴다.</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ge">*기울여*</span> 쓰기와 <span class="gs">**두껍게**</span> 쓰기
-</code></pre></div></div>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="ge">*기울여*</span> 쓰기와 <span class="gs">**두껍게**</span> 쓰기
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>링크는 다음과 같이 한다.</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">링크 텍스트</span><span class="p">](</span><span class="sx">http://hyunkim.lawyer</span><span class="p">)</span>
-</code></pre></div></div>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nv">링크 텍스트</span><span class="p">](</span><span class="sx">http://hyunkim.lawyer</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>번호 없는 나열 (unordered list)과 번호 있는 나열 (ordered list)는 다음과 같다.</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">*</span> 번호 없는 나열 첫째
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="p">*</span> 번호 없는 나열 첫째
 <span class="p">*</span> 둘째
 <span class="p">
 1.</span> 번호 있는 나열 첫째
 <span class="p">2.</span> 둘째
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이걸로 끝이다.  좀 더 자세한 내용은 아래에 정리하겠다.  다음으로 넘어가기 전에, 마크다운에서는 html의 모든 포매팅을 지원하지 않는다.  상응하는 마크다운 포맷을 찾을 수 없으면, 그냥 html을 쓰면 된다.  예를 들어, 마크다운에서는 밑줄을 지원하지 않는다.  그러면, 그냥 html에서처럼,</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;u&gt;</span>밑줄 치기<span class="nt">&lt;/u&gt;</span>
-</code></pre></div></div>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;u&gt;</span>밑줄 치기<span class="nt">&lt;/u&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>와 같이 하면 된다는 뜻이다.</p>
 
@@ -394,21 +455,31 @@
 
 <p>보통 <em>_layouts</em> 디렉토리에는 적어도 하나의 파일이 포함된다.  <em>default.html</em> 이라고 하자.  이곳에 제대로 레이아웃 작업을 하되, <em>YAML</em> 을 이용하여, 위의 조각 디렉토리에 만들어 둔 것들을 포함시킬 수 있다.  예를 들면, 다음과 같다.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">&lt;!DOCTYPE html&gt;</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="s">&lt;!DOCTYPE html&gt;</span>
 <span class="s">&lt;html lang="en-us"&gt;</span>
 
 <span class="pi">{</span><span class="err">%</span> <span class="nv">include head.html %</span><span class="pi">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이렇게 조각들을 적절한 위치에 집어 넣는 것이다.  만일 레이아웃을 많이 만들고 싶다면, 원하는 대로 만들어도 된다.  그럴 경우, 포스트 또는 페이지의 YAML front matter에 이렇게 지정하면 된다.  예를 들어 <em>poem.html</em> 이라는 레이아웃을 만들었다고 하면,</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nn">---</span>
 <span class="na">layout</span><span class="pi">:</span> <span class="s">poem</span>
 <span class="na">title</span><span class="pi">:</span> <span class="s">O Captain! My Captain!</span>
 <span class="na">author</span><span class="pi">:</span> <span class="s">Walt Whitman</span>
 <span class="na">source</span><span class="pi">:</span> <span class="s">Poetry Foundation</span>
 <span class="nn">---</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>같은 식으로 말이다.</p>
 
@@ -428,15 +499,19 @@
 
 <p>먼저 무료 아이디를 만들고, <em>repository</em> 를 하나 만든다.  아이디와 같은 이름으로 만들어야 한다.  그 다음에는 이걸 첵아웃해야 한다.  복잡하게 생각하지 말고, 서버에 있는 저장소 (repository)의 내용을 내 컴퓨터에 복사한다고 보면 된다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/username/username.github.io
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git clone https://github.com/username/username.github.io
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>일단 가지고 온 다음에는, 해당 디렉토리에서 원하는 대로 내용을 수정한다.  주의할 점은 여기에서 수정한 내용은 아직은 내 컴퓨터에만 있지, 서버에 있지 않다는 것이다.  그 다음에는 내 컴퓨터에서 작업한 파일을 서버에 올린다.  <em>push</em> 명령어를 이용한다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add <span class="nt">--all</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git add <span class="nt">--all</span>
 <span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span>
 <span class="nv">$ </span>git push <span class="nt">-u</span> origin master
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>조금 헷갈리겠지만, 이렇게 생각하면 된다.  깃은 기본적으로 버전 관리 프로그램이다.  그러므로, 버전에 대한 정보가 기록되어 있다.  그러므로, 내가 해당 디렉토리에서 작업한 모든 것은 아직은 버전관리 프로그램이 알지 못한다.  맨 처음의 <em>add</em> 명령은 내가 작업한 내용을 깃에 추가하는 것이다.  다음 명령어 <em>commit</em> 는 이걸 새로운 현재 버전으로 만드는 것이다.  <em>m</em> 다음에는 버전에 대한 정보를 입력한다.  그러므로, <em>add</em> 명령과 <em>commit</em> 명령으로 내가 작업한 내용을 저장소에 추가하였다.  그리고, 마지막 명령어인 <em>push</em> 를 통하여 내 컴퓨터의 저장소에 있는 내용을 서버의 저장소로 복사한다.  그러면 끝이다.</p>
 
@@ -466,8 +541,9 @@
 
 <p>이걸로 끝이 아니다.  컴퓨터의 세상에서 문자는 다 가짜이다.  가짜 이름 말로 진짜 이름도 알아야 한다.  컴퓨터의 세상에서 진실은 다 숫자이다.  진실을 파악하는 무기는 윈도우에서는 <em>nslookup</em> 나머지 맥이나 리눅스나 유닉스에서는 <em>dig</em> 이다.  터미널에서, 아까 적어 둔 서버를 <em>dig</em> 해 보자.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>dig ns-656.awsdns-18.net
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>dig ns-656.awsdns-18.net
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이렇게 네임서버 4개의 진짜 이름을 파악한다.  그 다음으로 도메인을 등록한 (구매한) 곳에 가서 네밍서버로 이것들을 등록한다.  4개가 다 필요한 곳도 있고, 그보다 적게 필요한 곳도 있다.</p>
 
@@ -479,7 +555,22 @@
 
 <p>그리고, 잊지 말아야 하는 것이 바로 위의 <em>Permissions</em> 로 가서, <em>Edit bucket policy</em> 를 선택한 다음, <em>bucket policy</em> 를 입력한다.  <em>bucket policy</em> 는 이렇게 만든 S3 버킷을 어떻게 사용할지에 대한 것이다.  한 마디로 이걸 어떻게 서비스하고, 누가 쓸 수 있게 하는지 지정하는 것이다.  예를 들면, 다음과 같다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre>{
 	"Version": "2008-10-17",
 	"Statement": [
 		{
@@ -494,7 +585,7 @@
 		}
 	]
 }
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>웹 서버의 설정은 당연히 누구나 읽을 수 있도록 하는 것이다.  좀 더 복잡하게 하고 싶다면, <a href="http://docs.aws.amazon.com/AmazonS3/latest/UG/EditingBucketPermissions.html">Editing bucket permission</a> 및 <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html">Bucket policy examples</a>를 읽어 보라.</p>
 
@@ -502,16 +593,21 @@
 
 <p>지킬은 루비로 만든 사이트이다.  복습하자면, 루비에서 패키지는 보석쪼가리 <em>gem</em> 으로 한다.  여기에서 우리는 <em>s3_website</em> 라는 보석쪼가리 즉 소프트웨어를 사용할 것이다.  이 소프트웨어가 하는 일은 지킬로 만든 사이트를 S3에 올려 주는 일이다.  보석쪼가리를 설치하자.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>s3_website
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>gem <span class="nb">install </span>s3_website
 <span class="nv">$ </span>s3_website cfg create
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>첫번째 명령어는 보석쪼가리를 설치하는 것이고, 두번째 명령어는 이 보석쪼가리를 사용하는 것이다.  두번째 명령어를 실행하면, <em>s3_website.yml</em> 이라는 환경설정 파일을 만들어 준다.  맨 앞의 세 줄만 수정하면 된다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s3_id: access Key ID
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>s3_id: access Key ID
 s3_secret: Secret Access Key
 s3_bucket: example.com
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>앞에서 정신 없이 적어 놓은 것들이 이제야 결실을 보는 것이다!  아이디와 시크릿코드, 그리고 버킷 이름을 입력한다.</p>
 
@@ -524,8 +620,9 @@ s3_bucket: example.com
 
 <p>또 하나 알아야 할 명령어는 <em>jekyll build</em> 이다.  이 명령어는 위의 두 번째 과정은 생략하고, 그냥 작업한 내용을 근거로 정적 웹 사이트를 만드는 첫번째 일만 한다.  이렇게 하면 (당연히) <em>_site</em> 디렉토리에는 여러분이 어렵게 만든 작품이 기다리고 있을 것이다.  이제 이 내용을 아마존 S3에 올리면 된다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>s3_website push
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>s3_website push
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>블로그 답게 새로 작업을 할 때마다 이 명령을 반복해 주면 된다.</p>
 
@@ -533,8 +630,9 @@ s3_bucket: example.com
 
 <p>일단 알아 두어야 하는 것은 지킬에서 <em>build</em> 명령어를 다음과 같이 수행하면,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll build
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>jekyll build
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>디렉토리 내의 <em>_site</em> 디렉토리에 html, css, 자바스크립트 파일을 포함한 모든 내용이 생성된다는 것이다.  그러므로, 서버의 환경에 따라 이 디렉토리의 내용을 통째로 복사해서 서버에 옮겨버리면 완성이다.  흔히 <em>ftp</em> 나 <em>rsync</em> 같은 것을 쓰지만, 환경에 맞추어 다양한 방법을 구사할 수 있다.  기본적인 아이디어는 <a href="https://jekyllrb.com/docs/deployment-methods/">jekyll deployment</a> 페이지에서 확인할 수 있다.</p>
 
@@ -548,11 +646,15 @@ s3_bucket: example.com
 
 <p>컬렉션은 페이지와 비슷하지만, 몇 가지 특성을 공유하는 (예를 들어, 똑같은 레이아웃을 쓰는) 파일들의 집합이다.  가장 쉽게는 디렉토리만 공유하는 컬렉션을 만들 수도 있다.  컬렉션을 만들려면, 우선 <em>_config.yml</em> 에 다음과 같이 입력한다.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">collections</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="na">collections</span><span class="pi">:</span>
   <span class="na">my_collection</span><span class="pi">:</span>
     <span class="na">output</span><span class="pi">:</span> <span class="no">true</span>
     <span class="na">permalink</span><span class="pi">:</span> <span class="s">/awesome/:path/</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>맨 위의 두줄은 컬렉션을 지정하는 것이다.  이렇게 지정한 컬렉션의 이름은 <em>my_collection</em> 이 된다.  그 아래에는 컬렉션과 관련된 환경설정이다.  첫줄은 문서를 볼 수 있게 해 준다 (볼 수 없게 하려면 왜 컬렉션을 만들어?  믿거나 말거나, 그런 경우도 있다).  둘째 줄은 인터넷 주소를 이렇게 쓰라고 알려 준다.</p>
 
@@ -560,7 +662,20 @@ s3_bucket: example.com
 
 <p>이걸 <em>liquid</em> 에서 구현하고 할 때에는 <em>site</em> 를 이용한다.  예를 들어, 모든 블로그 포스트는 <em>_posts</em> 디렉토리에 들어가야 하고, <em>site.posts</em> 변수로 접근 가능하다.  모든 페이지는 기본 디렉토리에 있어야 하고, <em>site.pages</em> 로 접근할 수 있다.  위에서처럼, <em>my_collection</em> 이라는 컬렉션을 만들었다면, 그 내용은 모두 <em>_my_collection</em> 디렉토리에 들어가야 하고, <em>liquid</em> 작업을 할 때에는 <em>site.my_collection</em> 으로 작업할 수 있다.  사용 예는 <a href="https://jekyllrb.com/docs/collections/">매뉴얼 컬렉션</a>에서 찾아볼 수 있다.  이 페이지에서 드는 예는 <em>album</em> 이라는 컬렉션의 내용을 <em>liquid</em> 로 받아서 보여 주는 것이다.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">{</span><span class="err">%</span> <span class="nv">for album in site.albums %</span><span class="pi">}</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="pi">{</span><span class="err">%</span> <span class="nv">for album in site.albums %</span><span class="pi">}</span>
   <span class="s">&lt;h2&gt;{{ album.title }}&lt;/h2&gt;</span>
   <span class="s">&lt;p&gt;Performed by {{ album.artist }}{% if album.director %}, directed by {{ album.director }}{% endif %}&lt;/p&gt;</span>
   <span class="s">{% for work in album.works %}</span>
@@ -573,7 +688,7 @@ s3_bucket: example.com
     <span class="s">&lt;/ul&gt;</span>
   <span class="s">{% endfor %}</span>
 <span class="pi">{</span><span class="err">%</span> <span class="nv">endfor %</span><span class="pi">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>짐작했겠지만, 위 코드는 <em>album</em> 이라는 컬렉션에서 제목, 예술가, 감독, 작품별로 제목, 작곡가 및 트랙별로 제목, 길이 등의 정보를 받아 와서 그걸 목록으로 만들어서 보여 주는 예이다.  물론, <em>album</em> 이라는 컬렉션을 만들어, 위와 같은 식으로 정리해 두었어야 한다.</p>
 
@@ -583,7 +698,15 @@ s3_bucket: example.com
 
 <p><a href="https://jekyllrb.com/docs/datafiles/">지킬 매뉴얼</a>에서 드는 예는 다음과 같다.  <em>_data/members.yml</em> 이라는 파일에 다음과 같이 입력했다고 해 보자.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Eric Mill</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Eric Mill</span>
   <span class="na">github</span><span class="pi">:</span> <span class="s">konklone</span>
 
 <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Parker Moore</span>
@@ -591,11 +714,20 @@ s3_bucket: example.com
 
 <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Liu Fengyun</span>
   <span class="na">github</span><span class="pi">:</span> <span class="s">liufengyun</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>이걸 liquid를 이용하여 본문에 다음과 같이 정열하여 보여줄 수 있다.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">&lt;ul&gt;</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="s">&lt;ul&gt;</span>
 <span class="pi">{</span><span class="err">%</span> <span class="nv">for member in site.data.members %</span><span class="pi">}</span>
   <span class="s">&lt;li&gt;</span>
     <span class="s">&lt;a href="https://github.com/"&gt;</span>
@@ -604,7 +736,7 @@ s3_bucket: example.com
   <span class="s">&lt;/li&gt;</span>
 <span class="pi">{</span><span class="err">%</span> <span class="nv">endfor %</span><span class="pi">}</span>
 <span class="s">&lt;/ul&gt;</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="카테고리와-태그">카테고리와 태그</h2>
 
@@ -613,8 +745,9 @@ s3_bucket: example.com
 
 <p>포스트에 대하여 링크를 하려면 다음과 같이 한다.</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">링크 이름</span><span class="p">](</span><span class="sx">{%</span> post_url 2017-01-01-post %})
-</code></pre></div></div>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nv">링크 이름</span><span class="p">](</span><span class="sx">{%</span> post_url 2017-01-01-post %})
+</pre></td></tr></tbody></table></code></pre></div></div>
 <hr />
 
 <h2 id="각주">각주</h2>

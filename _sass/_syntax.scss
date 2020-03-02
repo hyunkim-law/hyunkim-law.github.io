@@ -82,20 +82,32 @@ pre {
   display: block;
   margin-top: 0;
   margin-bottom: 1rem;
-  padding: 1rem;
-  font-size: .8rem;
+  padding: .3rem;
+  font-size: .6rem;
   line-height: 1.4;
   white-space: pre;
   white-space: pre-wrap;
-  word-break: break-all;
-  word-wrap: break-word;
+  word-break: normal; /* was break-all */
+  word-wrap: normal; /* was break-word */
+  overflow-wrap: normal;
   background-color: #f9f9f9;
+  width: 14;
 }
+
 pre code {
   padding: 0;
   font-size: 100%;
   color: inherit;
   background-color: transparent;
+}
+
+.lineno{
+  word-break: keep-all;
+  word-wrap: normal;
+  text-align: right;
+  padding: 0;
+  font-size: 100%;
+  line-height: 1.4;
 }
 
 /* Gist via GitHub Pages */
