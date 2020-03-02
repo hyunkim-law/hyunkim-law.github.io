@@ -1,5 +1,21 @@
+/* for kakao */ 
+
+#kakao-talk-channel-chat-button{
+    display: inline;
+    width: 120px;
+/*    height: 100px; */
+    margin: 0px;
+    padding: 0px;
+    position: fixed; 
+    z-index: 999; 
+    right: 50px;
+    bottom: 70px; 
+}
 /* style images */
 
+#kakao-wrap{
+    position: fixed;
+}
 div.polaroid {
     width: 80%;
     background-color: white;

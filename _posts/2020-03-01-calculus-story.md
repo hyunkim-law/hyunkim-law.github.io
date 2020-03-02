@@ -8,7 +8,7 @@ sharing:
   facebook:
 color-scheme: green
 tags: calstory
-published: false
+#published: false
 ---
 
 [수학 책](#calstory)을 읽고 있습니다.

@@ -5,4 +5,6 @@ color-scheme: cyan
 kakao: true
 ---
 
-{% include kakao.html %}
+안녕하세요.
+
+{% include kakaocustom.html %}
