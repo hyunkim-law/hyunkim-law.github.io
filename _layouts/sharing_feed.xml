@@ -17,7 +17,7 @@
         <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
         <link>{{ post.url | absolute_url }}</link>
         <excerpt>{{ post.excerpt }}</excerpt>
-        <image>https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/{{ post.postimage }}</image>
+        <image>{% if post.postimage %}https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/{{ post.postimage }}{% else %}https://hyunkimlawyerimages.s3.ap-northeast-2.amazonaws.com/lawbook.jpg{% endif %}</image>
         <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
       </item>
     {% endfor %}
