@@ -1,0 +1,2 @@
+{% assign book = site.data.books | where: "id", include.id | first %}
+『{{ book.title }}』

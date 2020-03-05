@@ -11,6 +11,7 @@ tags:
 math: # true possibly
 # To include book: {% include book.html id='calstory' %}
 # To include image: {% include image.html url='FN' description='description' alt='alt' %}
+bibliography:
 ---
 
 옛날부터 리눅스에서 명령어줄을 열어 놓고, 그 명령어줄에서 작업하는 것을 좋아했었죠.  생각해보니, 제가 페이스북을 안하는 가장 큰 이유는 사실 그게 안되기 때문이죠. 원래는 됐었는데, 이제는 페이스북에서 그걸 막았다고 하더라구요. `FBCMD`라고 했었는데, 이제는 막혔죠. 방법이 있긴 있습니다. [IFTTT](https://ifttt.com)을 이용하는 것인데, 앞의 [페이스북 포스팅 자동화](/blog/2020/03/facebook-sharing.html)에서 한 것은 `IFTTT`의 기존의 레시피를 이용하는 것이었죠. 따라서, 제 블로그에서 작업은 좀 까다롭지만, 정작 `IFTTT`에서는 마우스 몇 번만 클릭하면 됐었죠. 이제는 그게 아니라, 명령어줄에서 직접 페이스북에 포스팅을 하는 겁니다. 이걸 하기 위해서는 [webhook](https://ifttt.com/maker_webhooks)이라는 것을 이용해야 합니다. `webhook`을 이용하려면, 위 페이지에서 맨 위의 `Documentation`을 클릭해 가 보면, 본인의 키 그러니까 비밀번호와 간단한 사용법이 있습니다. 이걸 가지고 간단히 만들어 보죠.  일단 키를 별도의 파일에 저장합니다. 파일 이름을 `key`라고 하죠. 그 다음에, 위의 페이지의 예에 있는 대로 해 보죠.

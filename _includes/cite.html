@@ -1,8 +1,4 @@
 {% assign book = site.data.books | where: "id", include.id | first %}
-{% if book.translation %}
-(<strong>{{ book.title }},</strong> by <em>{{ book.author }}</em> [한글 번역: {{ book.translation }}, {{ book.translator }} 번역], 
-{% else %}<strong>{{ book.title }},</strong> <em>{{ book.author }} 저{% if book.translator %}, {{ book.translator }} 번역 {% endif %}</em>{% endif %}include.page 쪽)
-
-<!-- Older, sort of works but clumsy: {% assign book = site.data.books[{{ include.id }} %}
-
-<strong>{{ book[0]["title"] }},</strong> by <em>{{ book[0]["author"] }}</em> ({{ book[0]["publisher"] }}{{ book[0]["year"] }}) [한글 번역: {{ book[0]["translation"] }} ({{ book[0]["trpublisher"] }}, {{ book[0]["tryear"] }}) -- <a href="http://www.aladin.co.kr/Catalog/Book.asp?ISBN={{ book[0]["trisbn"] }}" target="_blank">알라딘에서 보기</a>] -->
+(<a href="#{{ include.id }}"><strong>{{ book.title }},</strong></a>{% if book.translation %}
+ by <em>{{ book.author }}</em> [한글 번역: {{ book.translation }}, {{ book.translator }} 번역], 
+{% else %} <em>{{ book.author }} 저</em>{% endif %} {{ include.page}} 쪽)
