@@ -1,2 +1,2 @@
 {% assign book = site.data.books | where: "id", include.id | first %}
-『{{ book.title }}』
+『{{ book.title }}』 {% if include.page %}{{ include.page }}{% endif %}

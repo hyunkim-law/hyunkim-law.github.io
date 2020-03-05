@@ -1,4 +1,4 @@
 {% assign book = site.data.books | where: "id", include.id | first %}
 (<a href="#{{ include.id }}"><strong>{{ book.title }},</strong></a>{% if book.translation %}
- by <em>{{ book.author }}</em> [한글 번역: {{ book.translation }}, {{ book.translator }} 번역], 
-{% else %} <em>{{ book.author }} 저</em>{% endif %} {{ include.page}} 쪽)
+ by <em>{{ book.author }}</em> [한글 번역: {{ book.translation }}, {{ book.translator }} 번역] 
+{% else %} <em>{{ book.author }} 저</em>{% endif %} {% if include.page %}{{ include.page }}쪽{% endif %})

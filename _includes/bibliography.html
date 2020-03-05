@@ -5,8 +5,8 @@
 {% assign book = site.data.books | where: "id", bk | first %}
 
 <p><a name="{{ book.id }}"></a>{% if book.translation %}
-<strong>{{ book.title }},</strong> by <em>{{ book.author }}</em> ({{ book.publisher }}{{ book.year }}) [한글 번역: {{ book.translation }}, {{ book.translator }} 번역 ({{ book.trpublisher }}, {{ book.tryear }})] -- [<a href="http://www.aladin.co.kr/Catalog/Book.asp?ISBN={{ book.trisbn }}" target="_blank">알라딘에서 보기</a>]
-{% else %}<strong>{{ book.title }},</strong> <em>{{ book.author }} 저{% if book.translator %}, {{ book.translator }} 번역 {% endif %}</em> ({{ book.publisher }}{{ book.year }}) -- [<a href="http://www.aladin.co.kr/Catalog/Book.asp?ISBN={{ book.trisbn }}" target="_blank">알라딘에서 보기</a>]{% endif %}</p>
+<strong>{{ book.title }},</strong> by <em>{{ book.author }}</em> ({{ book.publisher }}{{ book.year }}) [한글 번역: {{ book.translation }}, {{ book.translator }} 번역 ({{ book.trpublisher }}, {{ book.tryear }})] &mdash; [<a href="http://www.aladin.co.kr/Catalog/Book.asp?ISBN={{ book.trisbn }}" target="_blank">알라딘에서 보기</a>]
+{% else %}<strong>{{ book.title }},</strong> <em>{{ book.author }} 저{% if book.translator %}, {{ book.translator }} 번역 {% endif %}</em> ({{ book.publisher }}{{ book.year }}) &mdash; [<a href="http://www.aladin.co.kr/Catalog/Book.asp?ISBN={{ book.trisbn }}" target="_blank">알라딘에서 보기</a>]{% endif %}</p>
 {% endfor %}
 
 <!-- Older, sort of works but clumsy: {% assign book = site.data.books[{{ include.id }} %}
