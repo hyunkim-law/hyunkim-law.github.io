@@ -8,6 +8,7 @@ sharing:
 color-scheme: cyan # available: red, orange, green, cyan, blue, magenta, brown 
 date: 2020-03-02 01:43:26 +0900
 tags: ataru2
+bibliography: [ataru2]
 math: true
 # To include book: {% include book.html id='calstory' %}
 # To include image: {% include image.html url='FN' description='description' alt='alt' %}
