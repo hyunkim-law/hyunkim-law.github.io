@@ -38,9 +38,31 @@
   tryear: 2010
   translator: "양윤옥"
   trisbn: 6000683601
+
 - id: agamben-time
   title: "The Time That Remains - A Commentary on the Letter to the Romans"
   author: "Giorgio Agamben"
   publisher: "Stanford University Press"
   year: 2005
   isbn: 0804743827
+
+- id: devopsdummies
+  title: "DevOps For Dummies"
+  author: "Emily Freeman"
+  publisher: "John Wiley & Sons, Inc."
+  isbn: 9781119552222
+  year: 2019
+
+- id: phoenixproject
+  title: "The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win"
+  author: "Gene Kim, Kevin Behr, George Spafford"
+  publisher: "IT Revolution Press"
+  isbn: 0988262592
+  year: 2013
+  translation: "피닉스 프로젝트"
+  trpublisher: "프리렉"
+  tryear: 2014
+  translator: "조형준"
+  trisbn: 9788965400752
+  done: "2019-03-04"
+  note: ""
