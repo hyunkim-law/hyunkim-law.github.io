@@ -25,7 +25,6 @@
       {% endif %}
     {% endfor %}
   <br />
-&nbsp; &nbsp; &nbsp;  {% include facebookbody.html %}
     <!-- The code below is used for manually entered links  -->
 
 
@@ -35,7 +34,12 @@
     <span class="sidebar-nav-item">Currently v{{ site.version }}</span> -->
   </nav>
 
-  <div class="sidebar-item">
+<div class="sidebar-item">
+<p>{% include facebookbody.html %}
+<div style="width: 30%;">&nbsp; &nbsp; &nbsp; &nbsp;{% include feedburner.html %}</div></p>
+</div>
+
+<div class="sidebar-item">
     <p><em>&copy; 2017 Hyun Kim</em></p>
   </div>
 </div>
